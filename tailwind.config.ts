@@ -13,8 +13,20 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      fontFamily: {
+        'segoe': ['Segoe UI', 'sans-serif'],
+      },
+      fontSize: {
+        'special-offer': ['36px', {
+          lineHeight: '47.88px',
+        }],
+      },
+      fontWeight: {
+        'semi-bold': '600',  // Use string for fontWeight
+      },
     },
   },
   plugins: [],
 };
+
 export default config;

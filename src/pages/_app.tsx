@@ -8,7 +8,7 @@ const theme = createTheme({
   typography: {
     // fontFamily: Roboto.style.fontFamily,
   },
-  direction: "rtl",
+  direction: "ltr",
 });
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;

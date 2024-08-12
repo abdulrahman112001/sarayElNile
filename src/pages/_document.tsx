@@ -9,7 +9,7 @@ export default function Document(
   props: JSX.IntrinsicAttributes & DocumentHeadTagsProps
 ) {
   return (
-    <Html lang="ar" dir="rtl">
+    <Html lang="en" dir="ltr">
       <Head>
         <DocumentHeadTags {...props} />
       </Head>

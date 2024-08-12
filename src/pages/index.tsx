@@ -1,8 +1,27 @@
+import {
+  AdventuresSection,
+  AttractionsSection,
+  DestinationSection,
+  ExcursionsSection,
+  HeroSection,
+  OffersSection,
+  PeaopleSaySection,
+  ToursSection,
+  WhyUsSection,
+} from "@/components/organisms";
+
 export default function Home() {
-  
   return (
     <>
-     wreg
+      <HeroSection />
+      <OffersSection />
+      <WhyUsSection />
+      <ToursSection />
+      <DestinationSection />
+      <AttractionsSection />
+      <ExcursionsSection />
+      <AdventuresSection />
+      <PeaopleSaySection />
     </>
   );
 }
