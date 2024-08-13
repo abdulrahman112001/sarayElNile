@@ -126,6 +126,18 @@ export const Header = ({ header, className }: HeaderProps_TP) => {
                 Nile Cruises
               </Link>
             </li>
+            <li>
+              <Link
+                href="/blogs"
+                className={`block font-segoe font-semibold text-[14px] px-3 py-1 rounded ${
+                  router.pathname === "/blogs"
+                    ? "bg-[#e6af62] text-white"
+                    : "text-[#945E13] hover:bg-[#f0e6d6] hover:text-[#e6af62]"
+                }`}
+              >
+                Blogs
+              </Link>
+            </li>
           </ul>
 
           {/* Earth Icon for Language Change (Inside Modal) */}

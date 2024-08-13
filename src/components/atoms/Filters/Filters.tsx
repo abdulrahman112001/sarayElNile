@@ -188,7 +188,7 @@ const FilterSidebar = () => {
       </FilterSection>
 
       <div className="flex justify-center mt-4">
-        <button className="p-4 w-full bg-yellow-600 text-white rounded-md hover:bg-yellow-500 transition duration-300 font-segoe">
+        <button className="p-4 w-full bg-custom-gradient text-white rounded-md hover:bg-yellow-500 transition duration-300 font-segoe">
           Apply
         </button>
       </div>
