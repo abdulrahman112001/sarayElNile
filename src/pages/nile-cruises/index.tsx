@@ -4,9 +4,9 @@ import { FaStar } from "react-icons/fa";
 import Try from "../../../public/assets/firstImage.jpeg";
 import OverView from "./OverView";
 import ExcursionsTab from "./ExcursionsTab";
-import PackageTab from "./PackageTab";
 import PackageDetails from "./PackageTab";
 import Pry from "../../../public/assets/pyr.jpeg";
+
 const PyramidsSection = () => {
   const [activeTab, setActiveTab] = useState("Overview");
 
@@ -25,11 +25,11 @@ const PyramidsSection = () => {
         </div>
 
         {/* Card */}
-        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/4 w-full max-w-3xl">
+        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/4 w-full max-w-3xl px-4 sm:px-6 md:px-8">
           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="flex">
+            <div className="flex flex-col sm:flex-row">
               {/* Left side - Image */}
-              <div className="w-5/12 relative h-52">
+              <div className="w-full sm:w-5/12 relative h-48 sm:h-64">
                 <Image
                   src={Pry}
                   alt="Pyramids of Giza"
@@ -38,8 +38,10 @@ const PyramidsSection = () => {
                 />
               </div>
               {/* Right side - Content */}
-              <div className="w-2/3 p-4">
-                <h2 className="text-xl font-bold mb-2">Pyramids of Giza</h2>
+              <div className="w-full sm:w-7/12 p-4">
+                <h2 className="text-lg sm:text-xl font-segoe mb-2">
+                  Pyramids of Giza
+                </h2>
                 <div className="flex items-center mb-2">
                   {[...Array(5)].map((_, i) => (
                     <FaStar
@@ -51,13 +53,13 @@ const PyramidsSection = () => {
                   ))}
                   <span className="ml-2 text-sm text-gray-600">4.5</span>
                 </div>
-                <p className="text-gray-700 text-sm">
-                  Once ancient Upper Egypts capital at Thebes, Luxors
+                <p className="text-gray-700 text-xs sm:text-sm font-segoe">
+                  Once ancient Upper Egypt's capital at Thebes, Luxor's
                   archaeological heavyweight put it right behind Cairo for
                   visitors keen to peel back the millennia. Hemming the Nile 400
-                  miles (644 kilometers) south of Egypts capital, its
-                  commercialized trappings dont detract from the emotional force
-                  of its antiquities.
+                  miles (644 kilometers) south of Egypt's capital, its
+                  commercialized trappings don't detract from the emotional
+                  force of its antiquities.
                 </p>
               </div>
             </div>
@@ -66,24 +68,26 @@ const PyramidsSection = () => {
       </div>
 
       {/* Tabs Section */}
-      <div className="flex mt-16 ml-14 w-1/6">
-        {["Overview", "Packages", "Excursions"].map((tab) => (
-          <button
-            key={tab}
-            className={`text-left font-segoe p-2 px-4 mx-2 rounded-md ${
-              activeTab === tab
-                ? "bg-custom-gradient text-white"
-                : "bg-white text-gray-700"
-            }`}
-            onClick={() => setActiveTab(tab)}
-          >
-            {tab}
-          </button>
-        ))}
+      <div className="flex flex-wrap justify-center mt-28 sm:mt-36 md:mt-20 px-4 py-6 sm:px-6 overflow-x-auto">
+        <div className="flex space-x-2 sm:space-x-4">
+          {["Overview", "Packages", "Excursions"].map((tab) => (
+            <button
+              key={tab}
+              className={`text-center font-segoe py-2 px-4 rounded-md whitespace-nowrap ${
+                activeTab === tab
+                  ? "bg-custom-gradient text-white"
+                  : "bg-white text-gray-700"
+              }`}
+              onClick={() => setActiveTab(tab)}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
       </div>
 
-      <div className="mt-2 flex w-full">
-        <div className="flex-1 rounded-md">
+      <div className="mt-4">
+        <div className="rounded-md">
           {activeTab === "Overview" && <OverView />}
           {activeTab === "Packages" && <PackageDetails />}
           {activeTab === "Excursions" && <ExcursionsTab />}

@@ -24,40 +24,38 @@ const UserProfileCard: React.FC<UserProfileCardProps> = ({
   description,
 }) => {
   return (
-    <div>
-      <div className="flex rounded-lg overflow-hidden">
-        {/* Left Section: Image */}
-        <div className="flex-shrink-0 w-1/2 mr-4">
+    <div className="flex flex-col md:flex-row rounded-lg overflow-hidden ">
+      {/* Left Section: Image */}
+      <div className="w-full md:w-1/2">
+        <Image
+          src={imageSrc}
+          alt="User Background"
+          className="w-full h-full object-cover mr-3 rounded-lg "
+        />
+      </div>
+      {/* Right Section: User Details */}
+      <div className="w-full md:w-1/2 p-4">
+        <div className="flex items-center mb-4">
           <Image
-            src={imageSrc}
-            alt="User Background"
-            className="w-full h-full object-cover rounded-xl"
+            src={userPhoto}
+            alt={username}
+            className="w-10 h-10 rounded-full border-2 border-gray-300 mr-4"
           />
-        </div>
-        {/* Right Section: User Details */}
-        <div className="flex-1 p-2">
-          <div className="flex items-center mb-4">
-            <Image
-              src={userPhoto}
-              alt={username}
-              className="w-11 h-11 rounded-full border-2 border-gray-300 mr-4"
-            />
-            <div>
-              <h3 className="text-xl font-semibold">{username}</h3>
-              <div className="flex items-center mt-1">
-                {Array.from({ length: 5 }).map((_, index) => (
-                  <FaStar
-                    key={index}
-                    className={`text-yellow-500 ${
-                      index < rating ? "text-yellow-500" : "text-gray-300"
-                    }`}
-                  />
-                ))}
-              </div>
+          <div>
+            <h3 className="text-xl font-semibold">{username}</h3>
+            <div className="flex items-center mt-1">
+              {Array.from({ length: 5 }).map((_, index) => (
+                <FaStar
+                  key={index}
+                  className={`text-yellow-500 ${
+                    index < rating ? "text-yellow-500" : "text-gray-300"
+                  }`}
+                />
+              ))}
             </div>
           </div>
-          <p className="text-gray-700">{description}</p>
         </div>
+        <p className="text-gray-400">{description}</p>
       </div>
     </div>
   );
@@ -75,7 +73,7 @@ const CarouselModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
       username: "John Doe",
       rating: 4,
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliquaaaa.",
     },
     {
       imageSrc: Back,
@@ -83,7 +81,7 @@ const CarouselModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
       username: "Jane Smith",
       rating: 5,
       description:
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     },
     // Add more cards as needed
   ];
@@ -155,13 +153,13 @@ const UserProfilePage: React.FC = () => {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <div className="p-2">
+    <div className="p-2 md:p-4">
       <UserProfileCard
         imageSrc={Back}
         userPhoto={User}
         username="John Doe"
         rating={4}
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut laboreconsectetur adipiscing elit. Sed do eiusmod tempor incididunt ut laboreconsectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       />
       <button
         onClick={openModal}

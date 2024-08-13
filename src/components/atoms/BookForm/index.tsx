@@ -17,6 +17,45 @@ const months = [
   "December",
 ];
 
+const Dropdown = ({
+  items,
+  selectedItem,
+  onSelect,
+  placeholder,
+  isDropdownOpen,
+  setIsDropdownOpen,
+}) => (
+  <div className="relative">
+    <input
+      type="text"
+      value={selectedItem}
+      onFocus={() => setIsDropdownOpen(true)}
+      onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)}
+      placeholder={placeholder}
+      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
+    />
+    <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+    {isDropdownOpen && (
+      <div className="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg">
+        <div className="p-2">
+          {items.map((item) => (
+            <div
+              key={item}
+              className="px-4 py-2 hover:bg-yellow-200 cursor-pointer"
+              onClick={() => {
+                onSelect(item);
+                setIsDropdownOpen(false);
+              }}
+            >
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+);
+
 export default function BookingForm() {
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(1);
@@ -33,95 +72,34 @@ export default function BookingForm() {
 
       <form className="space-y-4">
         {/* Location Dropdown */}
-        <div className="relative">
-          <input
-            type="text"
-            value={location}
-            onFocus={() => setIsLocationDropdownOpen(true)}
-            onBlur={() =>
-              setTimeout(() => setIsLocationDropdownOpen(false), 200)
-            }
-            onChange={(e) => setLocation(e.target.value)}
-            placeholder="Where"
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
-          />
-          <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-          {isLocationDropdownOpen && (
-            <div className="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg">
-              {locations.map((loc) => (
-                <div
-                  key={loc}
-                  className="px-4 py-2 hover:bg-yellow-200 cursor-pointer"
-                  onClick={() => {
-                    setLocation(loc);
-                    setIsLocationDropdownOpen(false);
-                  }}
-                >
-                  {loc}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        <Dropdown
+          items={locations}
+          selectedItem={location}
+          onSelect={(item) => setLocation(item)}
+          placeholder="Where"
+          isDropdownOpen={isLocationDropdownOpen}
+          setIsDropdownOpen={setIsLocationDropdownOpen}
+        />
 
         {/* Month Dropdown */}
+        <Dropdown
+          items={months}
+          selectedItem={month}
+          onSelect={(item) => setMonth(item)}
+          placeholder="Select month"
+          isDropdownOpen={isMonthDropdownOpen}
+          setIsDropdownOpen={setIsMonthDropdownOpen}
+        />
+
         <div className="relative">
           <input
             type="text"
-            value={month}
-            onFocus={() => setIsMonthDropdownOpen(true)}
-            onBlur={() => setTimeout(() => setIsMonthDropdownOpen(false), 200)}
-            onChange={(e) => setMonth(e.target.value)}
-            placeholder="Select month"
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
+            placeholder="Enter Your Number"
+            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-          {isMonthDropdownOpen && (
-            <div className="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg">
-              <div className="grid grid-cols-2 gap-1 p-2">
-                <div className="flex flex-col">
-                  {months.slice(0, 6).map((m) => (
-                    <div
-                      key={m}
-                      className="px-4 py-2 hover:bg-yellow-200 cursor-pointer"
-                      onClick={() => {
-                        setMonth(m);
-                        setIsMonthDropdownOpen(false);
-                      }}
-                    >
-                      {m}
-                    </div>
-                  ))}
-                </div>
-                <div className="flex flex-col">
-                  {months.slice(6).map((m) => (
-                    <div
-                      key={m}
-                      className="px-4 py-2 hover:bg-yellow-200 cursor-pointer"
-                      onClick={() => {
-                        setMonth(m);
-                        setIsMonthDropdownOpen(false);
-                      }}
-                    >
-                      {m}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
         </div>
 
-        <div className="flex">
-          <select className="w-16 p-3 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <option>+23</option>
-          </select>
-          <input
-            type="tel"
-            placeholder="0123333334678"
-            className="flex-1 p-3 border border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
         <div className="relative">
           <input
             type="text"
@@ -130,81 +108,51 @@ export default function BookingForm() {
           />
           <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
         </div>
+
         <div className="relative">
-          <select className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <option>Select your Nationality</option>
-          </select>
+          <input
+            type="text"
+            placeholder="Select Your Nationality"
+            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
           <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
         </div>
-        <div>
-          <textarea
-            placeholder="Tell us More Details"
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            rows={3}
-          ></textarea>
-        </div>
+
+        <textarea
+          placeholder="Tell us More Details"
+          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          rows={3}
+        ></textarea>
+
         <div className="space-y-2">
-          <div className="flex justify-between items-center">
-            <span className="text-gray-700">Number of Adults</span>
-            <div className="flex items-center space-x-2">
-              <button
-                type="button"
-                onClick={() => setAdults(Math.max(1, adults - 1))}
-                className="p-2 border border-gray-300 rounded-md hover:bg-gray-100 active:bg-gray-200 transition duration-150"
-              >
-                <Minus size={16} />
-              </button>
-              <span>{adults}</span>
-              <button
-                type="button"
-                onClick={() => setAdults(adults + 1)}
-                className="p-2 border border-gray-300 rounded-md hover:bg-gray-100 active:bg-gray-200 transition duration-150"
-              >
-                <Plus size={16} />
-              </button>
+          {[
+            { label: "Adults", value: adults, setValue: setAdults },
+            { label: "Children", value: children, setValue: setChildren },
+            { label: "Infants", value: infants, setValue: setInfants },
+          ].map(({ label, value, setValue }) => (
+            <div key={label} className="flex justify-between items-center">
+              <span className="text-gray-700">{`Number of ${label}`}</span>
+              <div className="flex items-center space-x-2">
+                <button
+                  type="button"
+                  onClick={() => setValue(Math.max(0, value - 1))}
+                  className="p-2 border border-gray-300 rounded-md hover:bg-gray-100 active:bg-gray-200 transition duration-150"
+                >
+                  <Minus size={16} />
+                </button>
+                <span>{value}</span>
+                <button
+                  type="button"
+                  onClick={() => setValue(value + 1)}
+                  className="p-2 border border-gray-300 rounded-md hover:bg-gray-100 active:bg-gray-200 transition duration-150"
+                >
+                  <Plus size={16} />
+                </button>
+              </div>
             </div>
-          </div>
-          <div className="flex justify-between items-center">
-            <span className="text-gray-700">Number of Children</span>
-            <div className="flex items-center space-x-2">
-              <button
-                type="button"
-                onClick={() => setChildren(Math.max(0, children - 1))}
-                className="p-2 border border-gray-300 rounded-md hover:bg-gray-100 active:bg-gray-200 transition duration-150"
-              >
-                <Minus size={16} />
-              </button>
-              <span>{children}</span>
-              <button
-                type="button"
-                onClick={() => setChildren(children + 1)}
-                className="p-2 border border-gray-300 rounded-md hover:bg-gray-100 active:bg-gray-200 transition duration-150"
-              >
-                <Plus size={16} />
-              </button>
-            </div>
-          </div>
-          <div className="flex justify-between items-center">
-            <span className="text-gray-700">Number of Infants</span>
-            <div className="flex items-center space-x-2">
-              <button
-                type="button"
-                onClick={() => setInfants(Math.max(0, infants - 1))}
-                className="p-2 border border-gray-300 rounded-md hover:bg-gray-100 active:bg-gray-200 transition duration-150"
-              >
-                <Minus size={16} />
-              </button>
-              <span>{infants}</span>
-              <button
-                type="button"
-                onClick={() => setInfants(infants + 1)}
-                className="p-2 border border-gray-300 rounded-md hover:bg-gray-100 active:bg-gray-200 transition duration-150"
-              >
-                <Plus size={16} />
-              </button>
-            </div>
-          </div>
+          ))}
         </div>
+
         <div className="flex items-center space-x-2">
           <input
             type="checkbox"
@@ -215,6 +163,7 @@ export default function BookingForm() {
             Free Cancellation
           </label>
         </div>
+
         <div className="flex items-center space-x-2">
           <input
             type="checkbox"
@@ -225,6 +174,7 @@ export default function BookingForm() {
             Reserve Later
           </label>
         </div>
+
         <button className="w-full p-3 bg-[#986518] text-white rounded-md hover:bg-yellow-700 transition duration-150">
           Book Now
         </button>

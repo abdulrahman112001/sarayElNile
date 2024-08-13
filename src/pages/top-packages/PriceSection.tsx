@@ -17,7 +17,7 @@ const pricePlansData: PricePlan[] = [
     title: "Plan 1",
     period: "Sep - May",
     plans: [
-      { name: "Basic Plan", price: "$29" },
+      { name: "Normal Plan", price: "$29" },
       { name: "Standard Plan", price: "$49" },
       { name: "Premium Plan", price: "$99" },
     ],
@@ -26,7 +26,7 @@ const pricePlansData: PricePlan[] = [
     title: "Plan 2",
     period: "Sep - May",
     plans: [
-      { name: "Basic Plan", price: "$29" },
+      { name: "Normal Plan", price: "$29" },
       { name: "Standard Plan", price: "$49" },
       { name: "Premium Plan", price: "$99" },
     ],
@@ -45,23 +45,26 @@ const PricePlanCard: React.FC<{ title: string }> = ({ title, children }) => {
 
 const PricePlans: React.FC = () => {
   return (
-    <div>
-      <h2 className="text-3xl font-segoe text-start mt-9 mb-6">
+    <div className="container mx-auto px-4">
+      <h2 className="text-2xl md:text-3xl font-segoe text-start mt-6 md:mt-9 mb-4 md:mb-6">
         Prices & Accommodation
       </h2>
-      <div className="flex flex-col space-y-4">
+      <div className="flex flex-col space-y-8">
         {pricePlansData.map((plan, index) => (
-          <div key={index} className="flex justify-between space-x-4">
+          <div
+            key={index}
+            className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0"
+          >
             <PricePlanCard title={`${plan.title} - Option 1`}>
               <p className="m-4 font-segoe">{plan.period}</p>
               <div className="flex flex-col space-y-4">
                 {plan.plans.map((p, i) => (
                   <div
                     key={i}
-                    className="bg-[#FFF9F9] p-4 rounded-lg flex justify-around items-center text-center"
+                    className="bg-[#FFF9F9] p-3 md:p-4 rounded-lg flex flex-col md:flex-row justify-around items-center text-center space-y-2 md:space-y-0"
                   >
-                    <FaUser className="text-2xl text-yellow-800" />
-                    <p className="text-lg font-segoe mb-2">{p.name}</p>
+                    <FaUser className="text-xl md:text-2xl text-yellow-800" />
+                    <p className="text-base md:text-lg font-segoe">{p.name}</p>
                     <p className="font-semibold">{p.price}</p>
                   </div>
                 ))}
@@ -73,10 +76,10 @@ const PricePlans: React.FC = () => {
                 {plan.plans.map((p, i) => (
                   <div
                     key={i}
-                    className="bg-[#FFF9F9] p-4 rounded-lg flex justify-around items-center text-center"
+                    className="bg-[#FFF9F9] p-3 md:p-4 rounded-lg flex flex-col md:flex-row justify-around items-center text-center space-y-2 md:space-y-0"
                   >
-                    <FaUser className="text-2xl text-yellow-800" />
-                    <p className="text-lg font-segoe mb-2">{p.name}</p>
+                    <FaUser className="text-xl md:text-2xl text-yellow-800" />
+                    <p className="text-base md:text-lg font-segoe">{p.name}</p>
                     <p className="font-semibold">{p.price}</p>
                   </div>
                 ))}
@@ -85,8 +88,7 @@ const PricePlans: React.FC = () => {
           </div>
         ))}
       </div>
-
-      <h2 className="text-3xl font-segoe text-start mt-9 mb-6">
+      <h2 className="text-2xl md:text-3xl font-segoe text-start mt-6 md:mt-9 mb-4 md:mb-6">
         Travelers Photos
       </h2>
     </div>

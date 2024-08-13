@@ -1,3 +1,4 @@
+import React from "react";
 import Image from "next/image";
 import Map from "../../../public/assets/map.jpeg";
 import { FaDownload } from "react-icons/fa";
@@ -37,17 +38,23 @@ const TourItinerary = () => {
   ];
 
   return (
-    <div>
+    <div className="p-4">
       <h2 className="text-3xl font-segoe text-start mt-9 mb-6">Itinerary</h2>
 
-      <div className="flex max-w-6xl mx-auto overflow-hidden">
+      <div className="flex flex-col md:flex-row max-w-6xl mx-auto overflow-hidden">
         {/* Left side - Map */}
-        <div className="w-1/2 relative">
-          <Image src={Map} alt="Tour Map" layout="fill" objectFit="cover" />
+        <div className="relative w-full md:w-1/2 h-80 md:h-auto">
+          <Image
+            src={Map}
+            alt="Tour Map"
+            layout="fill"
+            objectFit="cover"
+            className="rounded-md"
+          />
         </div>
 
         {/* Right side - Scrollable Itinerary with Stepper */}
-        <div className="w-1/2 p-6 overflow-y-auto max-h-[600px] relative">
+        <div className="w-full md:w-1/2 p-6 overflow-y-auto max-h-[600px] relative">
           <div className="absolute left-8 top-8 bottom-8 w-[2px] bg-[#A16207]"></div>
           {itineraryItems.map((item, index) => (
             <div key={index} className="mb-10 relative pl-12">
