@@ -4,6 +4,7 @@ import ExcursionList from "@/components/atoms/EgyptExcursions"; // Update path a
 import Explore from "@/components/atoms/ExploreExcursios"; // Check path and filename
 import SearchExcursios from "@/components/atoms/SearchExcursions/SearchExcursios"; // Check path and filename
 import Drops from "@/components/atoms/drops";
+import Excursions from "./Excursions";
 
 const Home: React.FC = () => {
   return (
@@ -18,7 +19,7 @@ const Home: React.FC = () => {
         <Drops />
       </div>
       <div>
-        <ExcursionList />
+        <Excursions />
       </div>
     </div>
   );

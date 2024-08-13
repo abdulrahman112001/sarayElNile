@@ -27,7 +27,7 @@ export default function BookingForm() {
   const [isMonthDropdownOpen, setIsMonthDropdownOpen] = useState(false);
 
   return (
-    <div className="w-80 p-6 bg-white rounded-lg shadow-lg border border-gray-200">
+    <div className="p-6 bg-white rounded-lg shadow-lg border border-gray-200">
       <h2 className="text-sm text-gray-500 mb-2">From $2000</h2>
       <h1 className="text-2xl font-bold mb-4 text-gray-800">US $1000</h1>
 
@@ -225,7 +225,7 @@ export default function BookingForm() {
             Reserve Later
           </label>
         </div>
-        <button className="w-full p-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-150">
+        <button className="w-full p-3 bg-[#986518] text-white rounded-md hover:bg-yellow-700 transition duration-150">
           Book Now
         </button>
       </form>
