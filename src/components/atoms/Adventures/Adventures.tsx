@@ -87,7 +87,7 @@ export default function Adventures() {
                     alt={card.title}
                   />
                   {/* Overlay Text */}
-                  <div className="absolute inset-0 flex flex-col font-segoe justify-center items-center text-center p-4 text-white bg-black bg-opacity-15 hover:bg-opacity-65 hover:transition-all transition-opacity duration-500 opacity-100 group-hover:opacity-100">
+                  <div className="absolute inset-0 flex flex-col font-segoe justify-center items-center text-center p-4 text-white bg-black bg-opacity-15 hover:bg-opacity-40 hover:transition-all transition-opacity duration-500 opacity-100 group-hover:opacity-100">
                     <h2 className="text-xl font-semibold">{card.title}</h2>
                     {/* Hover Text */}
                     <div className="absolute bottom-4 w-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-opacity-75 p-2 rounded-md">

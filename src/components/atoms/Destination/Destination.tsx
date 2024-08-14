@@ -16,7 +16,7 @@ const DestinationCard: React.FC<DestinationCardProps> = ({
   name,
   imageUrl,
 }) => (
-  <div className="relative rounded-lg overflow-hidden group w-64 h-40 mx-auto my-2">
+  <div className="relative rounded-lg overflow-hidden group w-72 h-60 mx-auto my-2">
     <Image
       src={imageUrl}
       alt={name}

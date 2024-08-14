@@ -1,31 +1,32 @@
 import React from "react";
-import { FaParking, FaWifi, FaSwimmingPool, FaCoffee } from "react-icons/fa";
+import { MdDone } from "react-icons/md";
+import { VscError } from "react-icons/vsc";
 
 type Item = {
-  icon: React.ComponentType<any>;
+  icon: boolean; // true or false
   title: string;
   description: string;
 };
 
 const includedItems: Item[] = [
   {
-    icon: FaParking,
+    icon: true,
     title: "Parking",
     description:
       "Free private parking is possible on site (reservation is not possible).",
   },
   {
-    icon: FaWifi,
+    icon: true,
     title: "Wi-Fi",
     description: "Free Wi-Fi is available throughout the property.",
   },
   {
-    icon: FaSwimmingPool,
+    icon: false,
     title: "Swimming Pool",
     description: "Enjoy access to our outdoor swimming pool.",
   },
   {
-    icon: FaCoffee,
+    icon: true,
     title: "Breakfast",
     description: "Complimentary breakfast is included each morning.",
   },
@@ -40,7 +41,12 @@ const Included = () => {
           key={index}
           className="flex items-center max-w-3xl mx-auto p-4 mt-4"
         >
-          <item.icon className="font-segoe text-[#A16207] mr-4 text-xl" />
+          {/* Conditionally render icon based on the boolean value */}
+          {item.icon ? (
+            <MdDone className="font-segoe text-green-700 mr-4 text-2xl" />
+          ) : (
+            <VscError className="font-segoe text-red-500 mr-4 text-2xl" />
+          )}
           <div>
             <span className="font-segoe text-[#A16207] text-xl">
               {item.title}

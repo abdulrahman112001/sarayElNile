@@ -45,32 +45,41 @@ const excursionData = [
     rating: 4.8,
     reviews: 45,
   },
+  {
+    id: 4,
+    image: Roude,
+    location: "Luxor, Egypt",
+    title: "Sofitel Winter Palace Luxor",
+    duration: "3-4 hours • Pickup Available",
+    price: "$350",
+    rating: 4.8,
+    reviews: 45,
+  },
   // Add more excursion objects here
 ];
 
 export default function Excursions() {
-  // Update the type of sliderRef to properly reference a Slider instance
   const sliderRef = React.useRef<Slider>(null);
 
   const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
+    dots: false,
+    infinite: false,
+    speed: 300,
+    slidesToShow: 3.3, // Show 3 full cards and part of the 4th
     slidesToScroll: 1,
     arrows: false, // Hide default arrows
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 2.5, // Show 2 full cards and part of the 3rd on tablet
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 1.5, // Show 1 full card and part of the 2nd on mobile
           slidesToScroll: 1,
         },
       },
@@ -81,7 +90,9 @@ export default function Excursions() {
     <div className="relative p-1">
       <Slider {...settings} ref={sliderRef}>
         {excursionData.map((excursion) => (
-          <div key={excursion.id} className="p-2">
+          <div key={excursion.id} className="p-1">
+            {" "}
+            {/* Reduced padding */}
             <div className="flex flex-col max-w-xs mx-auto cursor-pointer hover:border border-gray-400 rounded-lg overflow-hidden shadow-lg bg-white h-[500px]">
               <div className="relative h-2/3">
                 <Image
@@ -145,13 +156,13 @@ export default function Excursions() {
         ))}
       </Slider>
       <button
-        className="absolute top-1/2 left-4 transform -translate-y-1/2 p-2 bg-[#FFF1BA] text-[#232323] rounded-full shadow-lg hover:bg-yellow-600 transition"
+        className="hidden md:block absolute top-1/2 left-4 transform -translate-y-1/2 p-2 bg-[#FFF1BA] text-[#232323] rounded-full shadow-lg hover:bg-yellow-600 transition"
         onClick={() => sliderRef.current?.slickPrev()}
       >
         <BsChevronLeft size={24} />
       </button>
       <button
-        className="absolute top-1/2 right-4 transform -translate-y-1/2 p-2 bg-[#FFF1BA] text-[#232323] rounded-full shadow-lg hover:bg-yellow-600 transition"
+        className="hidden md:block absolute top-1/2 right-4 transform -translate-y-1/2 p-2 bg-[#FFF1BA] text-[#232323] rounded-full shadow-lg hover:bg-yellow-600 transition"
         onClick={() => sliderRef.current?.slickNext()}
       >
         <BsChevronRight size={24} />

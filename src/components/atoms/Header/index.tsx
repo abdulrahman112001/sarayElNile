@@ -1,9 +1,9 @@
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import Logo from "../../../../public/assets/srayaLogo.png";
-import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { CiGlobe } from "react-icons/ci";
+import Logo from "../../../../public/assets/srayaLogo.png";
 
 type HeaderProps_TP = {
   header: string;
@@ -12,7 +12,28 @@ type HeaderProps_TP = {
 
 export const Header = ({ header, className }: HeaderProps_TP) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isFixed, setIsFixed] = useState(true);
   const router = useRouter();
+
+  useEffect(() => {
+    let lastScrollTop = 0;
+    const handleScroll = () => {
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+
+      // Check if the user has scrolled to the top or stopped scrolling
+      if (scrollTop === 0 || scrollTop < lastScrollTop) {
+        setIsFixed(true);
+      } else {
+        setIsFixed(false);
+      }
+
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleLanguageChange = () => {
     alert("Language change button clicked!");
@@ -20,7 +41,9 @@ export const Header = ({ header, className }: HeaderProps_TP) => {
 
   return (
     <header
-      className={`fixed top-0 w-full shadow-md font-sans tracking-wide z-50 ${className} sm:px-16 px-0 bg-white`}
+      className={`${
+        isFixed ? "fixed" : "relative"
+      } top-0 w-full shadow-md font-sans tracking-wide z-50 sm:px-16 px-0 bg-white transition-all duration-300 ${className}`}
     >
       <div className="flex items-center justify-between px-4 py-2 min-h-[50px]">
         <Link href="/">
@@ -52,7 +75,7 @@ export const Header = ({ header, className }: HeaderProps_TP) => {
         <div
           className={`lg:flex lg:items-center lg:justify-center lg:flex-1 ${
             isMenuOpen
-              ? "flex flex-col items-center space-y-4 fixed inset-y-0 right-0 z-50 bg-white p-6 w-[50%] max-w-sm mx-auto rounded-lg"
+              ? "flex flex-col items-center space-y-4 fixed inset-y-0 right-0 z-50 bg-white p-6 w-[100%] max-w-sm mx-auto rounded-lg"
               : "hidden"
           }`}
         >
@@ -78,7 +101,7 @@ export const Header = ({ header, className }: HeaderProps_TP) => {
           </button>
 
           <ul className="flex flex-col items-center gap-y-4 lg:flex-row lg:gap-x-5 lg:space-y-0">
-            <li>
+            <li onClick={() => setIsMenuOpen(false)}>
               <Link
                 href="/"
                 className={`block font-segoe font-semibold text-[14px] px-3 py-1 rounded ${
@@ -90,7 +113,7 @@ export const Header = ({ header, className }: HeaderProps_TP) => {
                 Explore
               </Link>
             </li>
-            <li>
+            <li onClick={() => setIsMenuOpen(false)}>
               <Link
                 href="/top-packages"
                 className={`block font-segoe font-semibold text-[14px] px-3 py-1 rounded ${
@@ -102,7 +125,7 @@ export const Header = ({ header, className }: HeaderProps_TP) => {
                 Top Packages
               </Link>
             </li>
-            <li>
+            <li onClick={() => setIsMenuOpen(false)}>
               <Link
                 href="/top-excursions"
                 className={`block font-segoe font-semibold text-[14px] px-3 py-1 rounded ${
@@ -114,7 +137,7 @@ export const Header = ({ header, className }: HeaderProps_TP) => {
                 Top Excursions
               </Link>
             </li>
-            <li>
+            <li onClick={() => setIsMenuOpen(false)}>
               <Link
                 href="/nile-cruises"
                 className={`block font-segoe font-semibold text-[14px] px-3 py-1 rounded ${
@@ -126,7 +149,7 @@ export const Header = ({ header, className }: HeaderProps_TP) => {
                 Nile Cruises
               </Link>
             </li>
-            <li>
+            <li onClick={() => setIsMenuOpen(false)}>
               <Link
                 href="/blogs"
                 className={`block font-segoe font-semibold text-[14px] px-3 py-1 rounded ${

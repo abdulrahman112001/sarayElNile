@@ -5,14 +5,14 @@ import MyPage from "../MyPage";
 const ImageGallery: React.FC = () => {
   return (
     <div className="flex flex-col md:flex-row bg-[#FAFAFA] p-4 md:px-16">
-      {/* Main Content Area */}
-      <div className="w-full md:w-2/3 p-2 md:pl-12">
-        <MyPage />
+      {/* Booking Form First on Mobile Devices */}
+      <div className="w-full md:w-1/3 p-2 pt-20 md:pt-28 order-1 md:order-2">
+        <BookingForm />
       </div>
 
-      {/* Placeholder for another component */}
-      <div className="w-full md:w-1/3 p-2 pt-4 md:pt-28">
-        <BookingForm />
+      {/* Main Content Area */}
+      <div className="w-full md:w-2/3 p-2 md:pl-12 md:pt-28 order-2 md:order-1">
+        <MyPage />
       </div>
     </div>
   );

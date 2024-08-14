@@ -12,9 +12,9 @@ export default function BluerForm() {
 
         <form className="space-y-3">
           {/* Row 1: Search Inputs with Icons */}
-          <div className="flex flex-col sm:flex-row sm:space-x-2 mb-3">
+          <div className="flex flex-row space-x-2 mb-3">
             {/* Search Input 1 with Icon */}
-            <div className="relative w-full">
+            <div className="relative flex-1">
               <FaCar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-yellow-500" />
               <input
                 type="text"
@@ -24,7 +24,7 @@ export default function BluerForm() {
             </div>
 
             {/* Search Input 2 with Icon */}
-            <div className="relative w-full sm:ml-2 mt-2 sm:mt-0">
+            <div className="relative flex-1">
               <FaCar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
               <input
                 type="text"
@@ -49,12 +49,13 @@ export default function BluerForm() {
             <div className="flex-1 mb-3 sm:mb-0">
               <input
                 type="date"
+                placeholder="Enter Date"
                 className="w-full px-3 py-2 border border-[#FFF3C5] rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 text-sm"
               />
             </div>
             <button
               type="submit"
-              className="w-full sm:w-auto py-2 px-3 bg-[#f3edbc] text-yellow-800 font-segoe rounded-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 text-sm"
+              className="w-full sm:w-auto py-2 text-white px-3 bg-custom-gradient font-segoe rounded-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 text-sm"
             >
               Search
             </button>

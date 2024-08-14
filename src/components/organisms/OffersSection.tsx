@@ -1,6 +1,7 @@
 import React from "react";
 import Offer from "../atoms/Offer/Offer";
-
+import Photo1 from "../../../public/assets/camels.jpeg";
+import Photo2 from "../../../public/assets/pyr.jpeg";
 type Props = {};
 
 const OffersSection = (props: Props) => {
@@ -12,10 +13,20 @@ const OffersSection = (props: Props) => {
 
       <div className="flex flex-wrap justify-center">
         <div className="w-full sm:w-1/2 md:w-1/2 lg:w-3/6 p-5">
-          <Offer />
+          <Offer
+            imageSrc={Photo1}
+            title="Planning a trip to the 2024 Summer Games?"
+            description="Brussels is a quick train ride from all the action."
+            linkHref="#"
+          />
         </div>
         <div className="w-full sm:w-1/2 md:w-1/2 lg:w-3/6 p-5">
-          <Offer />
+          <Offer
+            imageSrc={Photo2}
+            title="Explore the Pyramids Egypt!"
+            description="Discover the ancient wonders and modern attractions."
+            linkHref="#"
+          />
         </div>
       </div>
     </div>

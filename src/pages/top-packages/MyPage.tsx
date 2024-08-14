@@ -13,7 +13,6 @@ import Reviews from "./Reviews";
 import RandomButtons from "./RandomButtons";
 
 const ImageGallery = ({ title, breadcrumb, mainContent }) => {
-  // Including the Main image in the images array
   const images = [
     "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
     "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
@@ -36,11 +35,9 @@ const ImageGallery = ({ title, breadcrumb, mainContent }) => {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <div className="flex flex-col pt-28">
-      {/* Title */}
+    <div className="flex flex-col">
       <h1 className="text-2xl font-bold mb-4">{title}</h1>
 
-      {/* Breadcrumb */}
       <nav className="mb-4">
         {breadcrumb.map((crumb, index) => (
           <span key={index} className="text-gray-500">
@@ -50,25 +47,31 @@ const ImageGallery = ({ title, breadcrumb, mainContent }) => {
         ))}
       </nav>
 
-      {/* Main Content Area */}
       <div className="flex">
-        {/* Image Gallery */}
         <div className="w-full pr-2">
-          {/* Main Image and Thumbnails */}
           {!isModalOpen && (
             <div className="flex">
-              {/* Thumbnails */}
-              <div className="w-1/10 flex flex-col space-y-2 pr-2">
+              {/* Hide thumbnails on mobile */}
+              <div className="w-1/10 flex flex-col space-y-2 pr-2 hidden md:flex">
                 {images.map((img, index) => (
-                  <img
+                  <div
                     key={index}
-                    src={typeof img === "string" ? img : img.src}
-                    alt={`Thumbnail ${index + 1}`}
-                    className={`w-full h-16 object-cover rounded-md cursor-pointer ${
-                      index === mainImage ? "ring-2 ring-blue-500" : ""
+                    className={`relative ${
+                      isModalOpen ? "bg-black bg-opacity-50" : ""
                     }`}
-                    onClick={() => setMainImage(index)}
-                  />
+                  >
+                    <img
+                      src={typeof img === "string" ? img : img.src}
+                      alt={`Thumbnail ${index + 1}`}
+                      className={`w-full h-16 object-cover rounded-md cursor-pointer ${
+                        index === mainImage ? "ring-2 ring-blue-500" : ""
+                      }`}
+                      onClick={() => setMainImage(index)}
+                    />
+                    {isModalOpen && (
+                      <div className="absolute inset-0 bg-black opacity-50 rounded-md" />
+                    )}
+                  </div>
                 ))}
                 <div
                   className="relative w-full h-16 cursor-pointer"
@@ -81,14 +84,18 @@ const ImageGallery = ({ title, breadcrumb, mainContent }) => {
                     objectFit="cover"
                     className="rounded-md"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center text-white font-segoe">
+
+                  {/* Dark overlay */}
+                  <div className="absolute inset-0 bg-black bg-opacity-50 rounded-md"></div>
+
+                  <div className="absolute inset-0 flex items-center justify-center text-white font-segoe z-10">
                     See More
                   </div>
                 </div>
               </div>
 
-              {/* Main Image */}
-              <div className="w-full relative">
+              {/* Adjust width of main image on mobile */}
+              <div className="w-full md:w-9/10 relative" onClick={openModal}>
                 <img
                   src={
                     typeof images[mainImage] === "string"
@@ -96,61 +103,64 @@ const ImageGallery = ({ title, breadcrumb, mainContent }) => {
                       : images[mainImage].src
                   }
                   alt="Main"
-                  className="w-full h-[350px] object-cover rounded-md"
+                  className="w-full h-[250px] md:h-[350px] object-cover rounded-md"
                 />
                 <button
                   onClick={prevImage}
-                  className="absolute left-2 top-1/2 transform -translate-y-1/2 p-2 rounded-full shadow-md"
+                  className="absolute left-2 top-1/2 transform -translate-y-1/2 p-2 rounded-full bg-black bg-opacity-50 text-white"
                 >
-                  <ChevronLeft size={24} color="white" />
+                  <ChevronLeft size={24} />
                 </button>
                 <button
                   onClick={nextImage}
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 rounded-full shadow-md"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 rounded-full bg-black bg-opacity-50 text-white"
                 >
-                  <ChevronRight size={24} color="white" />
+                  <ChevronRight size={24} />
                 </button>
               </div>
             </div>
           )}
 
-          {/* Modal */}
           {isModalOpen && (
             <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
+              <button
+                onClick={closeModal}
+                className="absolute top-20 right-40 p-2 rounded-full bg-white bg-opacity-50 text-black flex items-center justify-center"
+              >
+                <X size={32} />
+              </button>
               <div className="relative w-3/4 max-w-3xl p-4 rounded-lg">
-                <button
-                  onClick={closeModal}
-                  className="absolute top-4 right-4 text-black"
-                >
-                  <X size={24} />
-                </button>
-                <img
-                  src={
-                    typeof images[mainImage] === "string"
-                      ? images[mainImage]
-                      : images[mainImage].src
-                  }
-                  alt="Modal"
-                  className="w-full h-[300px] object-cover rounded-md"
-                />
-                <button
-                  onClick={prevImage}
-                  className="absolute left-2 top-1/2 transform -translate-y-1/2 p-2 rounded-full shadow-md"
-                >
-                  <ChevronLeft size={24} color="white" />
-                </button>
-                <button
-                  onClick={nextImage}
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 rounded-full shadow-md"
-                >
-                  <ChevronRight size={24} color="white" />
-                </button>
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                  {images.map((_, index) => (
-                    <div
+                <div className="relative">
+                  <img
+                    src={
+                      typeof images[mainImage] === "string"
+                        ? images[mainImage]
+                        : images[mainImage].src
+                    }
+                    alt="Modal"
+                    className="w-full h-[300px] object-cover rounded-md"
+                  />
+                  <button
+                    onClick={prevImage}
+                    className="absolute left-2 top-1/2 transform -translate-y-1/2 p-2 rounded-full bg-black bg-opacity-50 text-white"
+                  >
+                    <ChevronLeft size={24} />
+                  </button>
+                  <button
+                    onClick={nextImage}
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 rounded-full bg-black bg-opacity-50 text-white"
+                  >
+                    <ChevronRight size={24} />
+                  </button>
+                </div>
+                <div className="flex overflow-x-auto mt-4">
+                  {images.map((img, index) => (
+                    <img
                       key={index}
-                      className={`w-2 h-2 rounded-full cursor-pointer ${
-                        index === mainImage ? "bg-black" : "bg-gray-500"
+                      src={typeof img === "string" ? img : img.src}
+                      alt={`Thumbnail ${index + 1}`}
+                      className={`w-16 h-16 object-cover rounded-md cursor-pointer mx-1 ${
+                        index === mainImage ? "border-2 border-black" : ""
                       }`}
                       onClick={() => setMainImage(index)}
                     />

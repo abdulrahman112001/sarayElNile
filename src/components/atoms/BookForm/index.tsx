@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Modal } from "@mui/material";
 import { ChevronDown, Plus, Minus } from "lucide-react";
 
 const locations = ["New York", "London", "Paris", "Tokyo"];
@@ -37,7 +38,7 @@ const Dropdown = ({
     <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
     {isDropdownOpen && (
       <div className="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg">
-        <div className="p-2">
+        <div className="p-2 max-h-60 overflow-y-auto">
           {items.map((item) => (
             <div
               key={item}
@@ -64,121 +65,252 @@ export default function BookingForm() {
   const [month, setMonth] = useState("");
   const [isLocationDropdownOpen, setIsLocationDropdownOpen] = useState(false);
   const [isMonthDropdownOpen, setIsMonthDropdownOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-lg border border-gray-200">
-      <h2 className="text-sm text-gray-500 mb-2">From $2000</h2>
-      <h1 className="text-2xl font-bold mb-4 text-gray-800">US $1000</h1>
+    <div>
+      {/* Button to open the modal (visible only on small screens) */}
+      <button
+        className="p-4 w-full bg-custom-gradient text-white rounded-md hover:bg-yellow-500 transition duration-300 font-segoe block md:hidden"
+        onClick={() => setIsModalOpen(true)}
+      >
+        Open Booking Form
+      </button>
 
-      <form className="space-y-4">
-        {/* Location Dropdown */}
-        <Dropdown
-          items={locations}
-          selectedItem={location}
-          onSelect={(item) => setLocation(item)}
-          placeholder="Where"
-          isDropdownOpen={isLocationDropdownOpen}
-          setIsDropdownOpen={setIsLocationDropdownOpen}
-        />
+      {/* Modal containing the booking form */}
+      <Modal
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        className="flex items-center justify-center p-4"
+      >
+        <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full max-h-[90vh] overflow-y-auto relative">
+          <h2 className="text-sm text-gray-500 mb-2">From $2000</h2>
+          <h1 className="text-2xl font-bold mb-4 text-gray-800">US $1000</h1>
 
-        {/* Month Dropdown */}
-        <Dropdown
-          items={months}
-          selectedItem={month}
-          onSelect={(item) => setMonth(item)}
-          placeholder="Select month"
-          isDropdownOpen={isMonthDropdownOpen}
-          setIsDropdownOpen={setIsMonthDropdownOpen}
-        />
-
-        <div className="relative">
-          <input
-            type="text"
-            placeholder="Enter Your Number"
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-        </div>
-
-        <div className="relative">
-          <input
-            type="text"
-            placeholder="Start Date"
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-        </div>
-
-        <div className="relative">
-          <input
-            type="text"
-            placeholder="Select Your Nationality"
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-        </div>
-
-        <textarea
-          placeholder="Tell us More Details"
-          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          rows={3}
-        ></textarea>
-
-        <div className="space-y-2">
-          {[
-            { label: "Adults", value: adults, setValue: setAdults },
-            { label: "Children", value: children, setValue: setChildren },
-            { label: "Infants", value: infants, setValue: setInfants },
-          ].map(({ label, value, setValue }) => (
-            <div key={label} className="flex justify-between items-center">
-              <span className="text-gray-700">{`Number of ${label}`}</span>
-              <div className="flex items-center space-x-2">
-                <button
-                  type="button"
-                  onClick={() => setValue(Math.max(0, value - 1))}
-                  className="p-2 border border-gray-300 rounded-md hover:bg-gray-100 active:bg-gray-200 transition duration-150"
-                >
-                  <Minus size={16} />
-                </button>
-                <span>{value}</span>
-                <button
-                  type="button"
-                  onClick={() => setValue(value + 1)}
-                  className="p-2 border border-gray-300 rounded-md hover:bg-gray-100 active:bg-gray-200 transition duration-150"
-                >
-                  <Plus size={16} />
-                </button>
-              </div>
+          <form className="space-y-4 pb-20">
+            {" "}
+            {/* Add padding-bottom to avoid overlapping with the button */}
+            {/* Location Dropdown */}
+            <Dropdown
+              items={locations}
+              selectedItem={location}
+              onSelect={(item) => setLocation(item)}
+              placeholder="Where"
+              isDropdownOpen={isLocationDropdownOpen}
+              setIsDropdownOpen={setIsLocationDropdownOpen}
+            />
+            {/* Month Dropdown */}
+            <Dropdown
+              items={months}
+              selectedItem={month}
+              onSelect={(item) => setMonth(item)}
+              placeholder="Select month"
+              isDropdownOpen={isMonthDropdownOpen}
+              setIsDropdownOpen={setIsMonthDropdownOpen}
+            />
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Enter Your Number"
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             </div>
-          ))}
-        </div>
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Start Date"
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            </div>
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Select Your Nationality"
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            </div>
+            <textarea
+              placeholder="Tell us More Details"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              rows={3}
+            ></textarea>
+            <div className="space-y-2">
+              {[
+                { label: "Adults", value: adults, setValue: setAdults },
+                { label: "Children", value: children, setValue: setChildren },
+                { label: "Infants", value: infants, setValue: setInfants },
+              ].map(({ label, value, setValue }) => (
+                <div key={label} className="flex justify-between items-center">
+                  <span className="text-gray-700">{`Number of ${label}`}</span>
+                  <div className="flex items-center space-x-2">
+                    <button
+                      type="button"
+                      onClick={() => setValue(Math.max(0, value - 1))}
+                      className="p-2 border border-gray-300 rounded-md hover:bg-gray-100 active:bg-gray-200 transition duration-150"
+                    >
+                      <Minus size={16} />
+                    </button>
+                    <span>{value}</span>
+                    <button
+                      type="button"
+                      onClick={() => setValue(value + 1)}
+                      className="p-2 border border-gray-300 rounded-md hover:bg-gray-100 active:bg-gray-200 transition duration-150"
+                    >
+                      <Plus size={16} />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                id="freeCancellation"
+                className="h-5 w-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+              />
+              <label htmlFor="freeCancellation" className="text-gray-700">
+                Free Cancellation
+              </label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                id="reserveLater"
+                className="h-5 w-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+              />
+              <label htmlFor="reserveLater" className="text-gray-700">
+                Reserve Later
+              </label>
+            </div>
+          </form>
 
-        <div className="flex items-center space-x-2">
-          <input
-            type="checkbox"
-            id="freeCancellation"
-            className="h-5 w-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+          {/* Sticky Button */}
+          <div className="sticky bottom-0 left-0 w-full bg-white p-4">
+            <button className="w-full p-3 bg-[#986518] text-white rounded-md hover:bg-yellow-700 transition duration-150">
+              Book Now
+            </button>
+          </div>
+        </div>
+      </Modal>
+
+      {/* Booking Form (visible only on larger screens) */}
+      <div className="hidden md:block p-6 bg-white rounded-lg shadow-lg border border-gray-200">
+        <h2 className="text-sm text-gray-500 mb-2">From $2000</h2>
+        <h1 className="text-2xl font-bold mb-4 text-gray-800">US $1000</h1>
+
+        <form className="space-y-4">
+          {/* Location Dropdown */}
+          <Dropdown
+            items={locations}
+            selectedItem={location}
+            onSelect={(item) => setLocation(item)}
+            placeholder="Where"
+            isDropdownOpen={isLocationDropdownOpen}
+            setIsDropdownOpen={setIsLocationDropdownOpen}
           />
-          <label htmlFor="freeCancellation" className="text-gray-700">
-            Free Cancellation
-          </label>
-        </div>
 
-        <div className="flex items-center space-x-2">
-          <input
-            type="checkbox"
-            id="reserveLater"
-            className="h-5 w-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+          {/* Month Dropdown */}
+          <Dropdown
+            items={months}
+            selectedItem={month}
+            onSelect={(item) => setMonth(item)}
+            placeholder="Select month"
+            isDropdownOpen={isMonthDropdownOpen}
+            setIsDropdownOpen={setIsMonthDropdownOpen}
           />
-          <label htmlFor="reserveLater" className="text-gray-700">
-            Reserve Later
-          </label>
-        </div>
 
-        <button className="w-full p-3 bg-[#986518] text-white rounded-md hover:bg-yellow-700 transition duration-150">
-          Book Now
-        </button>
-      </form>
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Enter Your Number"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          </div>
+
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Start Date"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          </div>
+
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Select Your Nationality"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          </div>
+
+          <textarea
+            placeholder="Tell us More Details"
+            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            rows={3}
+          ></textarea>
+
+          <div className="space-y-2">
+            {[
+              { label: "Adults", value: adults, setValue: setAdults },
+              { label: "Children", value: children, setValue: setChildren },
+              { label: "Infants", value: infants, setValue: setInfants },
+            ].map(({ label, value, setValue }) => (
+              <div key={label} className="flex justify-between items-center">
+                <span className="text-gray-700">{`Number of ${label}`}</span>
+                <div className="flex items-center space-x-2">
+                  <button
+                    type="button"
+                    onClick={() => setValue(Math.max(0, value - 1))}
+                    className="p-2 border border-gray-300 rounded-md hover:bg-gray-100 active:bg-gray-200 transition duration-150"
+                  >
+                    <Minus size={16} />
+                  </button>
+                  <span>{value}</span>
+                  <button
+                    type="button"
+                    onClick={() => setValue(value + 1)}
+                    className="p-2 border border-gray-300 rounded-md hover:bg-gray-100 active:bg-gray-200 transition duration-150"
+                  >
+                    <Plus size={16} />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              id="freeCancellation"
+              className="h-5 w-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+            />
+            <label htmlFor="freeCancellation" className="text-gray-700">
+              Free Cancellation
+            </label>
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              id="reserveLater"
+              className="h-5 w-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+            />
+            <label htmlFor="reserveLater" className="text-gray-700">
+              Reserve Later
+            </label>
+          </div>
+
+          <button className="w-full p-3 bg-[#986518] text-white rounded-md hover:bg-yellow-700 transition duration-150">
+            Book Now
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

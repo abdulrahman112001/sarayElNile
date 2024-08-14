@@ -3,18 +3,11 @@ import Image from "next/image";
 import backgroundImage from "../../../../public/assets/phar.jpg"; // Adjust the path as needed
 import Slider from "react-slick";
 import useIsMobile from "../../../hooks/useIsMobile"; // Adjust the import path as needed
-import {
-  FaArrowLeft,
-  FaArrowRight,
-  FaStar,
-  FaTag,
-  FaShieldAlt,
-  FaChartLine,
-} from "react-icons/fa"; // Import icons from react-icons
+import { FaStar, FaTag, FaShieldAlt, FaChartLine } from "react-icons/fa"; // Import icons from react-icons
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-// Custom Arrow Components
+// Custom Arrow Components (Only for desktop view)
 const CustomPrevArrow = (props: any) => {
   const { onClick } = props;
   return (
@@ -72,29 +65,29 @@ const CustomNextArrow = (props: any) => {
 type CardData = {
   title: string;
   description: string;
-  icon: React.ReactNode; // Add an icon property
+  icon: React.ReactNode;
 };
 
 const cardData: CardData[] = [
   {
     title: "Card 1",
     description: "Description for card 1. Add any content you need here.",
-    icon: <FaStar className="text-[#C7AC4F] text-2xl mx-auto mb-4" />, // Add an icon
+    icon: <FaStar className="text-[#C7AC4F] text-2xl mx-auto mb-4" />,
   },
   {
     title: "Card 2",
     description: "Description for card 2. Add any content you need here.",
-    icon: <FaTag className="text-[#C7AC4F] text-2xl mx-auto mb-4" />, // Add an icon
+    icon: <FaTag className="text-[#C7AC4F] text-2xl mx-auto mb-4" />,
   },
   {
     title: "Card 3",
     description: "Description for card 3. Add any content you need here.",
-    icon: <FaShieldAlt className="text-[#C7AC4F] text-2xl mx-auto mb-4" />, // Add an icon
+    icon: <FaShieldAlt className="text-[#C7AC4F] text-2xl mx-auto mb-4" />,
   },
   {
     title: "Card 4",
     description: "Description for card 4. Add any content you need here.",
-    icon: <FaChartLine className="text-[#C7AC4F] text-2xl mx-auto mb-4" />, // Add an icon
+    icon: <FaChartLine className="text-[#C7AC4F] text-2xl mx-auto mb-4" />,
   },
 ];
 
@@ -105,16 +98,18 @@ const WhyUs: React.FC = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 1.5,
+    slidesToShow: 1,
     slidesToScroll: 1,
     centerMode: true,
-    nextArrow: <CustomNextArrow />,
-    prevArrow: <CustomPrevArrow />,
+    draggable: true,
+    arrows: !isMobile, // Hide arrows on mobile
+    nextArrow: !isMobile ? <CustomNextArrow /> : null,
+    prevArrow: !isMobile ? <CustomPrevArrow /> : null,
     responsive: [
       {
         breakpoint: 640,
         settings: {
-          slidesToShow: 1.5,
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
@@ -137,30 +132,26 @@ const WhyUs: React.FC = () => {
 
   return (
     <div className="relative h-96 flex items-center justify-center">
-      {/* Background Image */}
       <Image
         src={backgroundImage}
         alt="Background"
         className="absolute inset-0 w-full h-full object-cover"
       />
 
-      {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black opacity-90"></div>
 
-      {/* Container for cards */}
       <div className="relative z-10 flex flex-col items-center justify-center p-4 gap-6 w-full">
         <div className="text-center text-white font-segoe text-special-offer mb-8">
           Why Choose Us
         </div>
 
         {isMobile ? (
-          <Slider {...sliderSettings} className="w-full max-w-screen-lg">
+          <Slider {...sliderSettings} className="w-full max-w-screen-2xl">
             {cardData.map((card, index) => (
               <div
                 key={index}
-                className="bg-[#3C3A37] p-6 rounded-sm shadow-lg text-center"
+                className="bg-[#3C3A37] p-6  border-white border-x  rounded-sm shadow-lg text-center"
               >
-                {/* Icon above the title */}
                 {card.icon}
                 <h3 className="text-xl text-[#C7AC4F] font-segoe mb-4">
                   {card.title}
@@ -176,7 +167,6 @@ const WhyUs: React.FC = () => {
                 key={index}
                 className="bg-[#3C3A37] p-6 rounded-sm shadow-lg text-center"
               >
-                {/* Icon above the title */}
                 {card.icon}
                 <h3 className="text-xl text-[#C7AC4F] font-segoe mb-4">
                   {card.title}

@@ -16,7 +16,7 @@ const AttractionCard: React.FC<Attraction> = ({
   toursCount,
 }) => {
   return (
-    <div className="flex items-center bg-white rounded-lg overflow-hidden w-72 h-24 border border-gray-200 transition-transform duration-300 ease-in-out hover:shadow-lg ">
+    <div className="flex items-center cursor-pointer rounded-lg overflow-hidden w-80 h-24  transition-transform duration-300 ease-in-out hover:shadow-lg hover:border border-gray-200 hover:bg-white ">
       <div className="w-24 h-24 relative flex-shrink-0 overflow-hidden">
         <Image
           src={imageSrc}
@@ -53,7 +53,7 @@ const sampleAttractions: Attraction[] = [
   },
   {
     id: 3,
-    name: "City Exploration",
+    name: "City Exploration ",
     imageSrc: ImageCard,
     toursCount: 1500,
   },

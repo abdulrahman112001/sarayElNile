@@ -83,11 +83,11 @@ const TravelPackagePage = () => {
                       </p>
                       <p className="text-sm text-gray-600">Per Person</p>
                     </div>
-                    <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
-                      <button className="bg-custom-gradient hover:bg-yellow-700 text-white font-segoe py-2 px-6 rounded-sm transition-colors duration-200 transform hover:scale-105">
+                    <div className="flex sm:flex-row  sm:space-y-0 sm:space-x-2">
+                      <button className="bg-custom-gradient mr-3 md:mr-0 hover:bg-yellow-700 text-white font-segoe sm:py-2 sm:px-6 rounded-sm transition-colors duration-200 transform hover:scale-105 w-full sm:w-auto">
                         View tour
                       </button>
-                      <button className="border border-custom-gradient text-custom-gradient hover:bg-yellow-50 font-segoe py-2 px-6 rounded-sm transition-colors duration-200 transform hover:scale-105">
+                      <button className="border border-custom-gradient text-custom-gradient hover:bg-yellow-50 font-segoe  sm:py-2 sm:px-6 rounded-sm transition-colors duration-200 transform hover:scale-105 w-full sm:w-auto">
                         Download brochure
                       </button>
                     </div>

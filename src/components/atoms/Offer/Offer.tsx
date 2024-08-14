@@ -1,15 +1,15 @@
 import React from "react";
 import Image from "next/image";
-import Photo from "../../../../public/assets/roud.jpeg";
+import Photo from "../../../../public/assets/camels.jpeg";
 import Link from "next/link";
 
-export default function Offer() {
+export default function Offer({ imageSrc, title, description, linkHref }) {
   return (
     <div className="relative bg-white rounded-lg shadow-lg overflow-hidden w-full group">
       {/* Image */}
       <div className="relative h-64">
         <Image
-          src={Photo}
+          src={imageSrc}
           alt="Example"
           layout="fill"
           objectFit="cover"
@@ -17,17 +17,13 @@ export default function Offer() {
         />
 
         {/* Overlay Layer */}
-        <div className="absolute inset-0 flex items-center bg-black bg-opacity-50">
+        <div className="absolute inset-0 flex items-center bg-black bg-opacity-20">
           <div className="w-full p-6 text-left text-white">
-            <h2 className="text-2xl mb-2 font-segoe">
-              Planning a trip to the 2024 Summer Games?
-            </h2>
-            <p className="mb-4 font-segoe">
-              Brussels is a quick train ride from all the action.
-            </p>
+            <h2 className="text-2xl mb-2 font-segoe">{title}</h2>
+            <p className="mb-4 font-segoe">{description}</p>
             <Link
-              href="#"
-              className="inline-block py-2 px-4 font-segoe rounded-md border-2 hover:bg-yellow-700 hover:text-white border-yellow-700 text-yellow-600"
+              href={linkHref}
+              className="inline-block py-2 px-4 font-segoe rounded-md  hover:bg-yellow-700 hover:text-white  text-white bg-custom-gradient"
             >
               Explore
             </Link>
