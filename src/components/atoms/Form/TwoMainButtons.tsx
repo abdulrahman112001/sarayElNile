@@ -59,7 +59,7 @@ const HeroOverlay: React.FC<Props> = () => {
 
       {/* Fixed Buttons when Scrolling on Mobile */}
       {isScrolled && isMobile && (
-        <div className="fixed top-16 bg-white left-0 w-full shadow-lg py-2 z-50">
+        <div className="fixed top-16 bg-[#FAFAFA] left-0 w-full  py-4 z-20">
           <div className="flex flex-col items-center space-y-2 px-4">
             <Link href="/top-excursions" className="w-full">
               <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1">
