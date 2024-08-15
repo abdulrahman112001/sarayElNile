@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, Search } from "lucide-react";
 import DatePicker, { ReactDatePickerCustomHeaderProps } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Modal from "@mui/material/Modal";
@@ -20,7 +20,7 @@ const CustomHeader: React.FC<ReactDatePickerCustomHeaderProps> = ({
       disabled={prevMonthButtonDisabled}
       className="text-yellow-500 hover:text-yellow-600"
     >
-      <ChevronLeft className="w-4 h-4 " />
+      <ChevronLeft className="w-4 h-4" />
     </button>
     <span className="text-sm font-segoe">
       {date.toLocaleString("default", { month: "long", year: "numeric" })}
@@ -104,7 +104,7 @@ const SearchExcursios: React.FC = () => {
         />
       </div>
 
-      {/* Search Button */}
+      {/* Search Button for Desktop */}
       <button
         className="hidden sm:block bg-[#232323] text-white font-segoe rounded-md px-4 py-2 flex items-center text-center justify-center"
         onClick={() => setOpenModal(true)}
@@ -114,10 +114,10 @@ const SearchExcursios: React.FC = () => {
 
       {/* Mobile Modal Button */}
       <Button
-        className="block sm:hidden bg-[#232323] text-white font-segoe rounded-md px-4 py-2"
+        className="fixed top-16 w-full left-0 z-40 sm:hidden bg-white text-gray-400 font-segoe rounded-md px-4 py-4 hover:bg-white"
         onClick={() => setOpenModal(true)}
       >
-        Search
+        Search For a excursions or activity <Search className="ml-4" />
       </Button>
 
       {/* MUI Modal for Mobile View */}

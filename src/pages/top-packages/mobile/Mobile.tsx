@@ -10,9 +10,11 @@ const Mobile = (props: Props) => {
     <div className="bg-[#FAFAFA] h-screen flex flex-col">
       {/* Fixed Search Bar and Filter */}
       <div className="fixed top-0 left-0 right-0 bg-[#FAFAFA] p-6 z-10">
-        <div className="mt-20 flex justify-between gap-3">
-          <SearchInput />
-          <div className="w-full md:w-1/4">
+        <div className="mt-20 flex justify-between gap-3 w-full">
+          <div className="">
+            <SearchInput />
+          </div>
+          <div className="">
             <FilterSidebar />
           </div>
         </div>

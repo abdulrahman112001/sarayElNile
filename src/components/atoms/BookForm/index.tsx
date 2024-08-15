@@ -70,12 +70,12 @@ export default function BookingForm() {
   return (
     <div>
       {/* Button to open the modal (visible only on small screens) */}
-      <button
-        className="p-4 w-full bg-custom-gradient text-white rounded-md hover:bg-yellow-500 transition duration-300 font-segoe block md:hidden"
+      <Button
+        className="p-4 capitalize w-full bg-custom-gradient text-white rounded-md hover:bg-yellow-500 transition duration-300 font-segoe fixed top-20 right-0 z-40 md:hidden"
         onClick={() => setIsModalOpen(true)}
       >
         Open Booking Form
-      </button>
+      </Button>
 
       {/* Modal containing the booking form */}
       <Modal
@@ -164,21 +164,19 @@ export default function BookingForm() {
                     >
                       <span className="text-gray-700">{`Number of ${label}`}</span>
                       <div className="flex items-center space-x-2">
-                        <button
-                          type="button"
+                        <Button
                           onClick={() => setValue(Math.max(0, value - 1))}
                           className="p-2 border border-gray-300 rounded-md hover:bg-gray-100 active:bg-gray-200 transition duration-150"
                         >
                           <Minus size={16} />
-                        </button>
+                        </Button>
                         <span>{value}</span>
-                        <button
-                          type="button"
+                        <Button
                           onClick={() => setValue(value + 1)}
                           className="p-2 border border-gray-300 rounded-md hover:bg-gray-100 active:bg-gray-200 transition duration-150"
                         >
                           <Plus size={16} />
-                        </button>
+                        </Button>
                       </div>
                     </div>
                   ))}
@@ -218,11 +216,12 @@ export default function BookingForm() {
           </div>
         </Slide>
       </Modal>
+
       <div className="hidden md:block p-6 bg-white rounded-lg shadow-lg border border-gray-200">
         <h2 className="text-sm text-gray-500 mb-2">From $2000</h2>
         <h1 className="text-2xl font-bold mb-4 text-gray-800">US $1000</h1>
 
-        <form className="space-y-4">
+        <form className="space-y-6">
           {/* Location Dropdown */}
           <Dropdown
             items={locations}
@@ -275,11 +274,11 @@ export default function BookingForm() {
           <textarea
             placeholder="Tell us More Details"
             className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            rows={3}
+            rows={4}
           ></textarea>
 
           {/* Number selection for Adults, Children, and Infants */}
-          <div className="space-y-2">
+          <div className="space-y-4">
             {[
               { label: "Adults", value: adults, setValue: setAdults },
               { label: "Children", value: children, setValue: setChildren },
@@ -288,21 +287,19 @@ export default function BookingForm() {
               <div key={label} className="flex justify-between items-center">
                 <span className="text-gray-700">{`Number of ${label}`}</span>
                 <div className="flex items-center space-x-2">
-                  <button
-                    type="button"
+                  <Button
                     onClick={() => setValue(Math.max(0, value - 1))}
                     className="p-2 border border-gray-300 rounded-md hover:bg-gray-100 active:bg-gray-200 transition duration-150"
                   >
                     <Minus size={16} />
-                  </button>
+                  </Button>
                   <span>{value}</span>
-                  <button
-                    type="button"
+                  <Button
                     onClick={() => setValue(value + 1)}
                     className="p-2 border border-gray-300 rounded-md hover:bg-gray-100 active:bg-gray-200 transition duration-150"
                   >
                     <Plus size={16} />
-                  </button>
+                  </Button>
                 </div>
               </div>
             ))}
@@ -330,12 +327,11 @@ export default function BookingForm() {
               Reserve Later
             </label>
           </div>
-
-          {/* Submit Button */}
-          <Button className="w-full p-3 bg-[#986518] text-white rounded-md hover:bg-yellow-700 transition duration-150">
-            Book Now
-          </Button>
         </form>
+
+        <Button className="w-full p-3 bg-[#986518] text-white rounded-md hover:bg-yellow-700 transition duration-150">
+          Book Now
+        </Button>
       </div>
     </div>
   );

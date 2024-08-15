@@ -18,7 +18,6 @@ export const Header = ({ header, className }: HeaderProps_TP) => {
   const router = useRouter();
 
   useEffect(() => {
-    let lastScrollTop = 0;
     const handleScroll = () => {
       const scrollTop =
         window.pageYOffset || document.documentElement.scrollTop;
@@ -30,17 +29,24 @@ export const Header = ({ header, className }: HeaderProps_TP) => {
         setIsScrolled(true);
       }
 
-      if (scrollTop > lastScrollTop) {
-        // User is scrolling down
-        setIsFixed(false);
-      } else if (scrollTop < lastScrollTop || scrollTop === 0) {
-        // User is scrolling up or at the top
+      if (window.innerWidth >= 1024) {
+        // Apply scroll effect on large screens
+        if (scrollTop > lastScrollTop) {
+          // User is scrolling down
+          setIsFixed(false);
+        } else if (scrollTop < lastScrollTop || scrollTop === 0) {
+          // User is scrolling up or at the top
+          setIsFixed(true);
+        }
+      } else {
+        // Always fixed on mobile devices
         setIsFixed(true);
       }
 
       lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
     };
 
+    let lastScrollTop = 0;
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -60,9 +66,17 @@ export const Header = ({ header, className }: HeaderProps_TP) => {
           } ${className}
         `}
       >
-        <div className="flex items-center justify-between py-2 min-h-[50px]">
+        <div className="flex items-center justify-between  ">
           <Link href="/">
-            <Image src={Logo} height={20} width={70} alt="Logo" className="" />
+            <div className="">
+              <Image
+                src={Logo}
+                height={20} // Default height for small screens
+                width={70} // Default width for small screens
+                alt="Logo"
+                className="sm:w-[100px] lg:w-[100px]" // Adjust height and width for larger screens
+              />
+            </div>
           </Link>
 
           {/* Mobile Menu Toggle Button */}

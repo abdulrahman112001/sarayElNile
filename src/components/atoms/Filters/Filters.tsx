@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Slide, Radio, Checkbox, Slider } from "@mui/material";
+import { Modal, Slide, Radio, Checkbox, Slider, Button } from "@mui/material";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 interface FilterSectionProps {
@@ -62,12 +62,12 @@ const FilterSidebar = () => {
       <div className="hidden md:block p-4 h-full overflow-y-auto rounded-md">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-segoe">Applied filters</h2>
-          <button
+          <Button
             className="text-red-600 hover:text-red-500 font-segoe"
             onClick={handleClearFilters}
           >
             Clear All
-          </button>
+          </Button>
         </div>
 
         <FilterSection title="Destinations" defaultOpen={true}>
@@ -194,19 +194,19 @@ const FilterSidebar = () => {
         </FilterSection>
 
         <div className="flex justify-center mt-4">
-          <button className="p-4 w-full bg-custom-gradient text-white rounded-md hover:bg-yellow-500 transition duration-300 font-segoe">
+          <Button className="p-4 w-full bg-custom-gradient text-white rounded-md hover:bg-yellow-500 transition duration-300 font-segoe">
             Apply
-          </button>
+          </Button>
         </div>
       </div>
 
       {/* Mobile Filter Button */}
-      <button
-        className="p-4 w-full bg-custom-gradient text-white rounded-md hover:bg-yellow-500 transition duration-300 font-segoe block md:hidden"
+      <Button
+        className="p-4 w-full capitalize bg-custom-gradient text-white rounded-md hover:bg-yellow-500 transition duration-300 font-segoe block md:hidden"
         onClick={() => setIsModalOpen(true)}
       >
         Show Filters
-      </button>
+      </Button>
 
       {/* Modal containing the filters (only on small screens) */}
       <Modal
@@ -218,12 +218,12 @@ const FilterSidebar = () => {
           <div className="bg-white rounded-lg p-4 max-w-md w-full h-full flex flex-col">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-segoe">Applied filters</h2>
-              <button
+              <Button
                 className="text-red-600 hover:text-red-500 font-segoe"
                 onClick={handleClearFilters}
               >
                 Clear All
-              </button>
+              </Button>
             </div>
 
             <div className="flex-grow overflow-y-auto">
@@ -361,9 +361,9 @@ const FilterSidebar = () => {
                 setIsModalOpen(false);
               }}
             >
-              <button className="p-2 w-full bg-custom-gradient text-white rounded-md hover:bg-yellow-500 transition duration-300 font-segoe">
+              <Button className="p-2 w-full bg-custom-gradient text-white rounded-md hover:bg-yellow-500 transition duration-300 font-segoe">
                 Apply
-              </button>
+              </Button>
             </div>
           </div>
         </Slide>

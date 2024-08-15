@@ -5,6 +5,7 @@ import { FaStar } from "react-icons/fa";
 import Back from "../../../public/assets/userbg.jpeg";
 import User from "../../../public/assets/infocard.png";
 import Image from "next/image";
+import { Button } from "@mui/material";
 
 // Define the type for the component props
 type UserProfileCardProps = {
@@ -161,12 +162,12 @@ const UserProfilePage: React.FC = () => {
         rating={4}
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut laboreconsectetur adipiscing elit. Sed do eiusmod tempor incididunt ut laboreconsectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       />
-      <button
+      <Button
         onClick={openModal}
-        className="mt-6 flex items-center px-4 py-2 border border-opacity-60 border-yellow-700 bg-gray-100 text-[#A16207] font-segoe text-lg rounded-md hover:bg-[#8a4c03] hover:text-white transition-colors duration-300"
+        className="mt-6 flex items-center capitalize px-4 py-2 border border-opacity-60 border-yellow-700 bg-yellow-100 text-[#A16207] font-segoe text-lg rounded-md hover:bg-[#8a4c03] hover:text-white transition-colors duration-300"
       >
         View More Details
-      </button>
+      </Button>
       <CarouselModal isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );

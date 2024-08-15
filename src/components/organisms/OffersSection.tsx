@@ -7,7 +7,7 @@ type Props = {};
 const OffersSection = (props: Props) => {
   return (
     <div className="p-4">
-      <div className="text-center text-black font-segoe font-semi-bold text-special-offer p-10">
+      <div className="text-center text-black font-segoe sm:font-semi-bold font-medium text-2xl md:text-special-offer md:p-10 p-5">
         Special Offers
       </div>
 

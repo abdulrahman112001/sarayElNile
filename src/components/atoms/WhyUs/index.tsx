@@ -141,7 +141,7 @@ const WhyUs: React.FC = () => {
       <div className="absolute inset-0 bg-black opacity-90"></div>
 
       <div className="relative z-10 flex flex-col items-center justify-center p-4 gap-6 w-full">
-        <div className="text-center text-white font-segoe text-special-offer mb-8">
+        <div className="text-center text-white font-segoe text-2xl md:text-special-offer mb-8">
           Why Choose Us
         </div>
 

@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Photo from "../../../../public/assets/camels.jpeg";
 import Link from "next/link";
+import { Button } from "@mui/material";
 
 export default function Offer({ imageSrc, title, description, linkHref }) {
   return (
@@ -21,12 +22,14 @@ export default function Offer({ imageSrc, title, description, linkHref }) {
           <div className="w-full p-6 text-left text-white">
             <h2 className="text-2xl mb-2 font-segoe">{title}</h2>
             <p className="mb-4 font-segoe">{description}</p>
-            <Link
-              href={linkHref}
-              className="inline-block py-2 px-4 font-segoe rounded-md  hover:bg-yellow-700 hover:text-white  text-white bg-custom-gradient"
-            >
-              Explore
-            </Link>
+            <Button>
+              <Link
+                href=""
+                className="inline-block capitalize py-2 px-4 font-segoe rounded-md  hover:bg-yellow-700 hover:text-white  text-white bg-custom-gradient"
+              >
+                Explore
+              </Link>
+            </Button>
           </div>
         </div>
       </div>

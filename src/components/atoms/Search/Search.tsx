@@ -119,8 +119,8 @@ const SearchInput = () => {
       <div className="relative md:hidden w-full">
         <input
           type="text"
-          placeholder="Search"
-          className="w-full p-4 bg-[#232323] text-white font-segoe rounded-md placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/30"
+          placeholder="Search For a tour or Activity"
+          className="w-full p-4 bg-white text-gray-400 font-segoe rounded-md placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-white/30"
           onClick={() => setIsModalOpen(true)}
         />
         <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white" />

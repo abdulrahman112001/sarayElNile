@@ -88,9 +88,9 @@ const PyramidsSection = () => {
 
       <div className="mt-4">
         <div className="rounded-md">
-          {activeTab === "Overview" && <OverView />}
-          {activeTab === "Packages" && <PackageDetails />}
-          {activeTab === "Excursions" && <ExcursionsTab />}
+          {activeTab === "Overview" && <PackageDetails />}
+          {activeTab === "Packages" && <ExcursionsTab />}
+          {activeTab === "Excursions" && <OverView />}
         </div>
       </div>
     </div>

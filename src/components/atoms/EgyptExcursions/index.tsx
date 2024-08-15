@@ -4,6 +4,7 @@ import { Heart } from "lucide-react";
 import { FaStar } from "react-icons/fa";
 import Slider from "react-slick";
 import Egy from "../../../../public/assets/firstImage.jpeg";
+import { Button } from "@mui/material";
 
 interface ExcursionCardProps {
   imageSrc: any;

@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Map from "../../../public/assets/map.jpeg";
 import { FaDownload } from "react-icons/fa";
+import { Button } from "@mui/material";
 
 const TourItinerary = () => {
   const itineraryItems = [
@@ -76,10 +77,10 @@ const TourItinerary = () => {
       </div>
 
       {/* Button with Icon */}
-      <button className="mt-6 flex items-center px-4 py-2 border border-opacity-60 border-yellow-700 bg-gray-100 text-[#A16207] font-segoe text-lg rounded-md hover:bg-[#8a4c03] hover:text-white transition-colors duration-300">
+      <Button className="mt-6 flex capitalize items-center px-4 py-2 border border-opacity-60 border-yellow-700 bg-yellow-100 text-[#A16207] font-segoe text-lg rounded-md hover:bg-[#8a4c03] hover:text-white transition-colors duration-300">
         <FaDownload className="mr-2 text-[#A16207]" />
         Download Brochure
-      </button>
+      </Button>
     </div>
   );
 };

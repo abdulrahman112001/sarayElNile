@@ -97,14 +97,16 @@ const Drops: React.FC = () => {
       )}
 
       {/* Modal for Mobile */}
-      <Modal open={openModal} onClose={handleCloseModal}>
+      <Modal
+        open={openModal}
+        onClose={handleCloseModal}
+        className="flex items-end justify-center"
+      >
         <Box
           sx={{
-            position: "absolute",
-            top: "10%",
-            left: "50%",
-            transform: "translate(-50%, 0%)",
-            width: "90%",
+            position: "relative",
+            width: "100%",
+            maxWidth: 600,
             bgcolor: "background.paper",
             border: "1px solid #000",
             boxShadow: 24,
@@ -128,20 +130,12 @@ const Drops: React.FC = () => {
               ))}
             </div>
           ))}
-          <div className="flex justify-between mt-4">
-            <Button
-              className="bg-gray-300 p-3 px-6 text-gray-800"
-              onClick={handleCloseModal}
-            >
-              Close
-            </Button>
-            <Button
-              className="bg-custom-gradient p-3 px-6 text-white"
-              onClick={handleApplyFilters}
-            >
-              Apply
-            </Button>
-          </div>
+          <Button
+            onClick={handleApplyFilters}
+            className="bg-custom-gradient p-3 px-6 text-white fixed bottom-0 left-0 right-0 rounded-t-md"
+          >
+            Apply
+          </Button>
         </Box>
       </Modal>
     </div>

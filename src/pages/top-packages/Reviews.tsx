@@ -1,6 +1,7 @@
 import Image from "next/image";
 import User from "../../../public/assets/infocard.png";
 import { FaStar } from "react-icons/fa"; // Import the star icon
+import { Button } from "@mui/material";
 
 // Define the review item type
 interface Review {
@@ -82,9 +83,9 @@ const Reviews = () => {
         ))}
       </div>
       <div className="flex justify-center mt-4">
-        <button className="flex items-center px-4 py-2 border border-opacity-60 border-yellow-700 bg-gray-100 text-[#A16207] font-segoe text-lg rounded-md hover:bg-[#8a4c03] hover:text-white transition-colors duration-300">
+        <Button className="flex items-center capitalize px-4 py-2 border border-opacity-60 border-yellow-700 bg-yellow-100 text-[#A16207] font-segoe text-lg rounded-md hover:bg-[#8a4c03] hover:text-white transition-colors duration-300">
           View More Details
-        </button>
+        </Button>
       </div>
     </div>
   );
