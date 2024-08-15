@@ -22,7 +22,7 @@ const AttractionCard: React.FC<AttractionCardProps> = ({
   image,
 }) => {
   return (
-    <div className="flex flex-col cursor-pointer shadow-lg rounded-lg hover:border border-yellow-400 overflow-hidden bg-white w-11/12 mx-4 my-2 sm:my-4 lg:my-6">
+    <div className="flex flex-col cursor-pointer shadow-lg rounded-lg hover:border border-yellow-400 overflow-hidden bg-white w-11/12 sm:mx-4 mx-0 my-2 sm:my-4 lg:my-6">
       <div className="relative h-60 w-full">
         <Image
           src={image}
@@ -103,7 +103,7 @@ const Tours: React.FC = () => {
     infinite: false,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToScroll: 1,
     arrows: false,
     responsive: [
       {
@@ -116,10 +116,10 @@ const Tours: React.FC = () => {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 1.1,
           slidesToScroll: 1,
           centerMode: true, // Center the single item on mobile
-          centerPadding: "40px", // Adjust padding for centered card
+          centerPadding: "20px", // Adjust padding for centered card
         },
       },
     ],

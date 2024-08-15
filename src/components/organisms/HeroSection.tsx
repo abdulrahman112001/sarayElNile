@@ -9,7 +9,7 @@ const HeroSection = () => {
       <div className="relative w-full h-full overflow-hidden">
         <video
           className="absolute top-0 left-0 w-full h-full object-cover"
-          src="/assets/vd.mp4" // Adjust the path as needed
+          src="assets/vd.mp4" // Adjust the path as needed
           autoPlay
           loop
           muted

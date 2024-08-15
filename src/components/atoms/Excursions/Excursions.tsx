@@ -55,6 +55,16 @@ const excursionData = [
     rating: 4.8,
     reviews: 45,
   },
+  {
+    id: 4,
+    image: Roude,
+    location: "Luxor, Egypt",
+    title: "Sofitel Winter Palace Luxor",
+    duration: "3-4 hours • Pickup Available",
+    price: "$350",
+    rating: 4.8,
+    reviews: 45,
+  },
   // Add more excursion objects here
 ];
 
@@ -65,7 +75,7 @@ export default function Excursions() {
     dots: false,
     infinite: false,
     speed: 300,
-    slidesToShow: 3.3, // Show 3 full cards and part of the 4th
+    slidesToShow: 4, // Adjusted to show full cards
     slidesToScroll: 1,
     arrows: false, // Hide default arrows
     responsive: [
@@ -79,7 +89,7 @@ export default function Excursions() {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 1.5, // Show 1 full card and part of the 2nd on mobile
+          slidesToShow: 1.2, // Show 1 full card and part of the 2nd on mobile
           slidesToScroll: 1,
         },
       },
@@ -87,14 +97,18 @@ export default function Excursions() {
   };
 
   return (
-    <div className="relative p-1">
-      <Slider {...settings} ref={sliderRef}>
+    <div className="relative p-2 pb-4">
+      {" "}
+      {/* Adjusted padding for more space */}
+      <Slider {...settings} ref={sliderRef} className="mb-4">
         {excursionData.map((excursion) => (
-          <div key={excursion.id} className="p-1">
+          <div key={excursion.id} className="px-[9px] mb-3">
             {" "}
-            {/* Reduced padding */}
-            <div className="flex flex-col max-w-xs mx-auto cursor-pointer hover:border border-gray-400 rounded-lg overflow-hidden shadow-lg bg-white h-[500px]">
-              <div className="relative h-2/3">
+            {/* Increased padding */}
+            <div className="flex flex-col max-w-lg mx-auto cursor-pointer hover:border border-gray-400 rounded-lg overflow-hidden shadow-lg bg-white h-[500px]">
+              {" "}
+              {/* Increased card width */}
+              <div className="relative h-72">
                 <Image
                   className="w-full h-full object-cover"
                   src={excursion.image}
@@ -155,18 +169,6 @@ export default function Excursions() {
           </div>
         ))}
       </Slider>
-      <button
-        className="hidden md:block absolute top-1/2 left-4 transform -translate-y-1/2 p-2 bg-[#FFF1BA] text-[#232323] rounded-full shadow-lg hover:bg-yellow-600 transition"
-        onClick={() => sliderRef.current?.slickPrev()}
-      >
-        <BsChevronLeft size={24} />
-      </button>
-      <button
-        className="hidden md:block absolute top-1/2 right-4 transform -translate-y-1/2 p-2 bg-[#FFF1BA] text-[#232323] rounded-full shadow-lg hover:bg-yellow-600 transition"
-        onClick={() => sliderRef.current?.slickNext()}
-      >
-        <BsChevronRight size={24} />
-      </button>
     </div>
   );
 }

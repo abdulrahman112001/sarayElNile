@@ -356,12 +356,12 @@ const FilterSidebar = () => {
             </div>
 
             <div
-              className="flex justify-center mt-4 sticky bottom-0 bg-white p-4"
+              className="flex justify-center sticky bottom-0 bg-white p-2 pb-0"
               onClick={() => {
                 setIsModalOpen(false);
               }}
             >
-              <button className="p-4 w-full bg-custom-gradient text-white rounded-md hover:bg-yellow-500 transition duration-300 font-segoe">
+              <button className="p-2 w-full bg-custom-gradient text-white rounded-md hover:bg-yellow-500 transition duration-300 font-segoe">
                 Apply
               </button>
             </div>

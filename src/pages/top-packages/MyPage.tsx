@@ -125,12 +125,12 @@ const ImageGallery = ({ title, breadcrumb, mainContent }) => {
             <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
               <button
                 onClick={closeModal}
-                className="absolute top-20 right-40 p-2 rounded-full bg-white bg-opacity-50 text-black flex items-center justify-center"
+                className="absolute top-4 right-4 p-2 rounded-full bg-white bg-opacity-50 text-black flex items-center justify-center"
               >
                 <X size={32} />
               </button>
-              <div className="relative w-3/4 max-w-3xl p-4 rounded-lg">
-                <div className="relative">
+              <div className="relative w-full max-w-screen-sm h-[80%] max-h-screen p-4  rounded-lg">
+                <div className="relative w-full h-full">
                   <img
                     src={
                       typeof images[mainImage] === "string"
@@ -138,7 +138,7 @@ const ImageGallery = ({ title, breadcrumb, mainContent }) => {
                         : images[mainImage].src
                     }
                     alt="Modal"
-                    className="w-full h-[300px] object-cover rounded-md"
+                    className="w-full h-full object-cover rounded-md"
                   />
                   <button
                     onClick={prevImage}

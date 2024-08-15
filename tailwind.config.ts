@@ -25,6 +25,9 @@ const config: Config = {
       fontWeight: {
         'semi-bold': '600',  // Use string for fontWeight
       },
+      textShadow: {
+        custom: '0.0625rem 0 0.625rem #000',
+      },
     },
   },
   plugins: [],

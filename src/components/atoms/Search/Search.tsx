@@ -40,7 +40,7 @@ const SearchInput = () => {
             }
             onChange={(e) => setLocation(e.target.value)}
             placeholder="Where"
-            className="bg-transparent rounded-md pl-3 pr-10 py-2 focus:outline-none w-full cursor-pointer"
+            className="bg-transparent rounded-md pl-3 pr-10 py-2 focus:outline-none w-full cursor-pointer border border-gray-300"
           />
           <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
           {isLocationDropdownOpen && (
@@ -71,7 +71,7 @@ const SearchInput = () => {
             onBlur={() => setTimeout(() => setIsMonthDropdownOpen(false), 200)}
             onChange={(e) => setMonth(e.target.value)}
             placeholder="Select month"
-            className="bg-transparent rounded-md pl-3 pr-10 py-2 focus:outline-none w-full cursor-pointer"
+            className="bg-transparent rounded-md pl-3 pr-10 py-2 focus:outline-none w-full cursor-pointer border border-gray-300"
           />
           <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-transparent" />
           {isMonthDropdownOpen && (
@@ -111,18 +111,20 @@ const SearchInput = () => {
         </div>
         {/* Search Button */}
         <button className="bg-[#232323] text-white font-segoe rounded-md px-4 py-2 flex items-center text-center justify-center w-full md:w-auto">
+          <Search className="mr-2 w-5 h-5" />
           Search
         </button>
       </div>
 
-      {/* Mobile View: Open Modal Button */}
-      <button
-        className="flex md:hidden p-4 bg-[#232323] text-white font-segoe rounded-md mx-auto w-full"
-        onClick={() => setIsModalOpen(true)}
-      >
-        <Search className="mr-2" />
-        Search
-      </button>
+      <div className="relative md:hidden w-full">
+        <input
+          type="text"
+          placeholder="Search"
+          className="w-full p-4 bg-[#232323] text-white font-segoe rounded-md placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/30"
+          onClick={() => setIsModalOpen(true)}
+        />
+        <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white" />
+      </div>
 
       {/* Mobile Modal */}
       <Modal
@@ -211,9 +213,10 @@ const SearchInput = () => {
               )}
             </div>
             <button
-              className="bg-[#232323] text-white font-segoe rounded-md px-4 py-2 w-full"
+              className="bg-[#232323] text-white font-segoe rounded-md px-4 py-2 w-full flex items-center justify-center"
               onClick={() => setIsModalOpen(false)}
             >
+              <Search className="mr-2 w-5 h-5" />
               Search
             </button>
           </div>
