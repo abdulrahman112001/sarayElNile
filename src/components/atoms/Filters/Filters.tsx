@@ -202,7 +202,7 @@ const FilterSidebar = () => {
 
       {/* Mobile Filter Button */}
       <Button
-        className="p-4 w-full capitalize bg-custom-gradient text-white rounded-md hover:bg-yellow-500 transition duration-300 font-segoe block md:hidden"
+        className="p-4 w-full capitalize text-nowrap bg-custom-gradient text-white rounded-md hover:bg-yellow-500 transition duration-300  block md:hidden"
         onClick={() => setIsModalOpen(true)}
       >
         Show Filters

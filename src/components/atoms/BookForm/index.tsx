@@ -71,7 +71,7 @@ export default function BookingForm() {
     <div>
       {/* Button to open the modal (visible only on small screens) */}
       <Button
-        className="p-4 capitalize w-full bg-custom-gradient text-white rounded-md hover:bg-yellow-500 transition duration-300 font-segoe fixed top-20 right-0 z-40 md:hidden"
+        className="py-2 capitalize w-full bg-custom-gradient text-white rounded-md hover:bg-yellow-500 transition duration-300 font-segoe fixed top-16 right-0 z-40 md:hidden"
         onClick={() => setIsModalOpen(true)}
       >
         Open Booking Form

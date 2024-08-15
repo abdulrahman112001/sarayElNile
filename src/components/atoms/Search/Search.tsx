@@ -115,15 +115,14 @@ const SearchInput = () => {
           Search
         </button>
       </div>
-
       <div className="relative md:hidden w-full">
         <input
           type="text"
           placeholder="Search For a tour or Activity"
-          className="w-full p-4 bg-white text-gray-400 font-segoe rounded-md placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-white/30"
+          className="w-full p-4 pl-12 bg-white text-gray-400 font-segoe rounded-md placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-white/30"
           onClick={() => setIsModalOpen(true)}
         />
-        <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white" />
+        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-700 pointer-events-none" />
       </div>
 
       {/* Mobile Modal */}
