@@ -104,9 +104,9 @@ export const Header = ({ header, className }: HeaderProps_TP) => {
           <div className="hidden lg:flex lg:items-center lg:justify-center lg:flex-1">
             <ul className="flex flex-col items-center gap-y-4 lg:flex-row lg:gap-x-5 lg:space-y-0">
               {[
-                { href: "/", label: "Explore" },
-                { href: "/top-packages", label: "Top Packages" },
-                { href: "/top-excursions", label: "Top Excursions" },
+                { href: "/", label: "Home" },
+                { href: "/top-packages", label: "Tour Packages" },
+                { href: "/top-excursions", label: "Short Excursions" },
                 { href: "/nile-cruises", label: "Nile Cruises" },
                 { href: "/blogs", label: "Blogs" },
               ].map(({ href, label }) => (

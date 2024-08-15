@@ -1,6 +1,7 @@
 import React from "react";
 import "tailwindcss/tailwind.css";
 import BluerForm from "../atoms/Form/Form";
+import TwoMainButtons from "../atoms/Form/TwoMainButtons";
 
 const HeroSection = () => {
   return (
@@ -17,7 +18,9 @@ const HeroSection = () => {
       </div>
 
       {/* Form Above Video */}
-      <BluerForm />
+      {/* <BluerForm /> */}
+
+      <TwoMainButtons />
     </section>
   );
 };
