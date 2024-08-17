@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Button, Modal, Slide } from "@mui/material";
 import { ChevronDown, Plus, Minus } from "lucide-react";
-
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 const locations = ["New York", "London", "Paris", "Tokyo"];
 const months = [
   "January",
@@ -66,6 +67,7 @@ export default function BookingForm() {
   const [isLocationDropdownOpen, setIsLocationDropdownOpen] = useState(false);
   const [isMonthDropdownOpen, setIsMonthDropdownOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [value, setValue] = useState("");
 
   return (
     <div>
@@ -113,13 +115,14 @@ export default function BookingForm() {
                 />
 
                 {/* Input fields */}
-                <div className="relative">
-                  <input
-                    type="text"
+                <div className="relative flex items-center">
+                  <PhoneInput
                     placeholder="Enter Your Number"
+                    value={value}
+                    onChange={setValue}
+                    defaultCountry="US"
                     className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 </div>
 
                 <div className="relative">
@@ -181,29 +184,6 @@ export default function BookingForm() {
                     </div>
                   ))}
                 </div>
-
-                {/* Checkbox options */}
-                <div className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    id="freeCancellation"
-                    className="h-5 w-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
-                  />
-                  <label htmlFor="freeCancellation" className="text-gray-700">
-                    Free Cancellation
-                  </label>
-                </div>
-
-                <div className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    id="reserveLater"
-                    className="h-5 w-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
-                  />
-                  <label htmlFor="reserveLater" className="text-gray-700">
-                    Reserve Later
-                  </label>
-                </div>
               </form>
             </div>
 
@@ -243,13 +223,14 @@ export default function BookingForm() {
           />
 
           {/* Input fields */}
-          <div className="relative">
-            <input
-              type="text"
+          <div className="relative flex items-center">
+            <PhoneInput
               placeholder="Enter Your Number"
+              value={value}
+              onChange={setValue}
+              defaultCountry="US"
               className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
           </div>
 
           <div className="relative">

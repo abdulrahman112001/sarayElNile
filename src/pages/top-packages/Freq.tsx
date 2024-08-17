@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // Define the FAQ item type
 interface FAQItem {
@@ -42,20 +42,33 @@ const faqs: FAQItem[] = [
 
 // FAQ component
 const FAQ: React.FC = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggleItem = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
     <div>
       <h2 className="text-3xl font-segoe text-start mt-9 mb-6">
         Frequently Asked Questions
       </h2>
-      <div className="relative w-full mt-8  sm:mx-auto sm:max-w-2xl  sm:px-10">
+      <div className="relative w-full mt-8 sm:mx-auto sm:max-w-2xl sm:px-10">
         <div className="mx-auto px-5">
           <div className="mx-auto mt-8 grid max-w-xl divide-y divide-neutral-200">
             {faqs.map((faq, index) => (
               <div key={index} className="py-5">
-                <details className="group">
-                  <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
+                <div className="group">
+                  <div
+                    className="flex cursor-pointer list-none items-center justify-between font-medium"
+                    onClick={() => toggleItem(index)}
+                  >
                     <span>{faq.question}</span>
-                    <span className="transition group-open:rotate-180">
+                    <span
+                      className={`transition ${
+                        openIndex === index ? "rotate-180" : ""
+                      }`}
+                    >
                       <svg
                         fill="none"
                         height="24"
@@ -70,11 +83,11 @@ const FAQ: React.FC = () => {
                         <path d="M6 9l6 6 6-6"></path>
                       </svg>
                     </span>
-                  </summary>
-                  <p className="group-open:animate-fadeIn mt-3 text-neutral-600">
-                    {faq.answer}
-                  </p>
-                </details>
+                  </div>
+                  {openIndex === index && (
+                    <p className="mt-3 text-neutral-600">{faq.answer}</p>
+                  )}
+                </div>
               </div>
             ))}
           </div>

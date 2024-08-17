@@ -1,3 +1,4 @@
+import React from "react";
 import Image from "next/image";
 import User from "../../../public/assets/infocard.png";
 import { FaStar } from "react-icons/fa"; // Import the star icon
@@ -64,12 +65,15 @@ const Reviews = () => {
               className="rounded-full mr-3"
             />
             <div className="flex-1">
-              <div className="flex items-center">
+              <div className="flex flex-col">
                 <h3 className="font-bold text-black">{review.name}</h3>
-                <span className="ml-2 text-gray-500">{review.username}</span>
-                <span className="ml-2 text-gray-500">• {review.date}</span>
+                <div className="flex text-gray-500">
+                  <span>{review.username}</span>
+                  <span className="mx-2">•</span>
+                  <span>{review.date}</span>
+                </div>
               </div>
-              <div className="flex items-center mt-1">
+              <div className="flex items-center mt-2">
                 {[...Array(review.rating)].map((_, i) => (
                   <FaStar key={i} className="text-yellow-500" />
                 ))}

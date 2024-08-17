@@ -34,11 +34,11 @@ const HeroOverlay: React.FC<Props> = () => {
 
   return (
     <div>
-      <div className="absolute inset-0 flex flex-col justify-center items-center mt-20 text-white p-4">
-        <h1 className="text-4xl sm:text-5xl capitalize lg:text-6xl font-segoe text-center mb-4 lg:mb-6">
+      <div className="absolute inset-0 flex flex-col justify-center items-center mt-20  p-4">
+        <h1 className="text-4xl sm:text-5xl capitalize text-yellow-900 font-bold lg:text-6xl font-segoe text-center mb-4 lg:mb-6">
           Sarayelnile Tours With The Best Locals Ever!
         </h1>
-        <p className="text-lg sm:text-xl capitalize font-segoe lg:text-2xl text-center mb-8 lg:mb-10">
+        <p className="text-lg sm:text-xl capitalize text-yellow-900 font-bold font-segoe lg:text-2xl text-center mb-8 lg:mb-10">
           Confused? Want to sarayelnile your dream package? Enquire here in 1
           min.
         </p>
@@ -59,10 +59,10 @@ const HeroOverlay: React.FC<Props> = () => {
 
       {/* Fixed Buttons when Scrolling on Mobile */}
       {isScrolled && isMobile && (
-        <div className="fixed top-16 bg-[#FAFAFA] left-0 w-full  py-4 z-20">
-          <div className="flex flex-col items-center space-y-2 px-4">
+        <div className="fixed top-16 bg-[#FAFAFA] left-0 w-full py-4 z-20">
+          <div className="flex flex-row items-center justify-center space-x-2 px-4">
             <Link href="/inquire" className="w-full">
-              <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1">
+              <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-normal text-nowrap py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1">
                 Inquire Now
               </button>
             </Link>
@@ -72,7 +72,7 @@ const HeroOverlay: React.FC<Props> = () => {
               <div className="flex-grow border-t border-gray-300"></div>
             </div>
             <Link href="/top-packages" className="w-full">
-              <button className="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1">
+              <button className="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-normal text-nowrap py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1">
                 Discover Travel Packages
               </button>
             </Link>
