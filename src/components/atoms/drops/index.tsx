@@ -67,43 +67,45 @@ const Drops = () => {
       {/* Single Button for Mobile Devices */}
       {isMobile ? (
         <>
-          <div className="w-7/12 flex justify-between overflow-x-auto">
-            {filterOptions.map((filter) => (
-              <Select
-                key={filter.label}
-                value=""
-                displayEmpty
-                onChange={(event) => handleOptionClick(event.target.value)}
-                className="mr-2 border border-transparent"
-                sx={{
-                  minWidth: 120,
-                  "& .MuiSelect-select": {
-                    paddingY: "8px",
-                    fontSize: "0.875rem",
-                  },
-                }}
-                renderValue={(selected) => {
-                  if (selected.length === 0) {
-                    return filter.label;
-                  }
-                  return selected;
-                }}
-              >
-                {filter.options.map((option) => (
-                  <MenuItem key={option} value={option}>
-                    {option}
-                  </MenuItem>
-                ))}
-              </Select>
-            ))}
+          <div className="flex w-full justify-between items-center flex-wrap overflow-x-auto">
+            <div className="flex w-7/12 justify-start overflow-x-auto">
+              {filterOptions.map((filter) => (
+                <Select
+                  key={filter.label}
+                  value=""
+                  displayEmpty
+                  onChange={(event) => handleOptionClick(event.target.value)}
+                  className="mr-2 border border-transparent"
+                  sx={{
+                    minWidth: 120,
+                    "& .MuiSelect-select": {
+                      paddingY: "8px",
+                      fontSize: "0.875rem",
+                    },
+                  }}
+                  renderValue={(selected) => {
+                    if (selected.length === 0) {
+                      return filter.label;
+                    }
+                    return selected;
+                  }}
+                >
+                  {filter.options.map((option) => (
+                    <MenuItem key={option} value={option}>
+                      {option}
+                    </MenuItem>
+                  ))}
+                </Select>
+              ))}
+            </div>
+            <Button
+              className="flex w-4/12 justify-between capitalize items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg text-black"
+              onClick={handleOpenModal}
+            >
+              <CustomSvgIcon />
+              All filters
+            </Button>
           </div>
-          <Button
-            className="flex justify-between capitalize items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg text-black"
-            onClick={handleOpenModal}
-          >
-            <CustomSvgIcon />
-            All filters
-          </Button>
         </>
       ) : (
         // Render Dropdowns as Usual on Larger Screens
