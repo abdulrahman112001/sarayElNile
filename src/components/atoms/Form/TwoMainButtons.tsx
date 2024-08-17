@@ -34,7 +34,7 @@ const HeroOverlay: React.FC<Props> = () => {
 
   return (
     <div>
-      <div className="absolute inset-0 flex flex-col justify-center items-center text-white p-4">
+      <div className="absolute inset-0 flex flex-col justify-center items-center mt-20 text-white p-4">
         <h1 className="text-4xl sm:text-5xl capitalize lg:text-6xl font-segoe text-center mb-4 lg:mb-6">
           Sarayelnile Tours With The Best Locals Ever!
         </h1>
@@ -43,7 +43,7 @@ const HeroOverlay: React.FC<Props> = () => {
           min.
         </p>
         <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0">
-          <Link href="/top-excursions" passHref>
+          <Link href="/inquire" passHref>
             <button className="bg-yellow-800 capitalize font-segoe text-white font-semibold py-3 px-8 lg:py-4 lg:px-10 rounded-md mb-4 sm:mb-0 sm:mr-4 shadow-lg transition-all duration-300 ease-in-out  hover:bg-transparent hover:border-gray-300 hover:text-yellow-400 hover:shadow-xl transform hover:scale-105">
               Inquire Now
             </button>
@@ -61,7 +61,7 @@ const HeroOverlay: React.FC<Props> = () => {
       {isScrolled && isMobile && (
         <div className="fixed top-16 bg-[#FAFAFA] left-0 w-full  py-4 z-20">
           <div className="flex flex-col items-center space-y-2 px-4">
-            <Link href="/top-excursions" className="w-full">
+            <Link href="/inquire" className="w-full">
               <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1">
                 Inquire Now
               </button>

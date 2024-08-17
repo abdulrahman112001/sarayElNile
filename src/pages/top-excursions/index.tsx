@@ -9,7 +9,7 @@ import Excursions from "./Excursions";
 const Home: React.FC = () => {
   return (
     <div>
-      <div className="mt-24">
+      <div className="mt-28">
         <SearchExcursios />
       </div>
       <div>

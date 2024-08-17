@@ -210,7 +210,7 @@ export default function BookingForm() {
             {/* Sticky Button */}
             <div className="pt-4">
               <Button className="w-full p-3 bg-[#986518] text-white rounded-md hover:bg-yellow-700 transition duration-150">
-                Book Now
+                Submit
               </Button>
             </div>
           </div>
@@ -304,33 +304,10 @@ export default function BookingForm() {
               </div>
             ))}
           </div>
-
-          {/* Checkbox options */}
-          <div className="flex items-center space-x-2">
-            <input
-              type="checkbox"
-              id="freeCancellation"
-              className="h-5 w-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
-            />
-            <label htmlFor="freeCancellation" className="text-gray-700">
-              Free Cancellation
-            </label>
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <input
-              type="checkbox"
-              id="reserveLater"
-              className="h-5 w-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
-            />
-            <label htmlFor="reserveLater" className="text-gray-700">
-              Reserve Later
-            </label>
-          </div>
         </form>
 
-        <Button className="w-full p-3 bg-[#986518] text-white rounded-md hover:bg-yellow-700 transition duration-150">
-          Book Now
+        <Button className="w-full p-3 mt-3 bg-[#986518] text-white rounded-md hover:bg-yellow-700 transition duration-150">
+          Submit
         </Button>
       </div>
     </div>
