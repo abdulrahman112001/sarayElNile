@@ -1,32 +1,40 @@
+import React, { useState, useRef, useEffect, MouseEvent } from "react";
 import { Button } from "@mui/material";
-import React, { useState, useRef, useEffect } from "react";
 import { BsLuggageFill } from "react-icons/bs";
 import { FaBus } from "react-icons/fa";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 
-export default function BluerForm() {
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [showCalendar, setShowCalendar] = useState(false);
-  const [activeInput, setActiveInput] = useState(null);
-  const calendarRef = useRef(null);
+// Type for the selected date
+type DateType = Date | undefined;
 
-  const handleInputClick = (inputType) => {
+export default function BluerForm() {
+  const [selectedDate, setSelectedDate] = useState<DateType>(undefined);
+  const [showCalendar, setShowCalendar] = useState<boolean>(false);
+  const [activeInput, setActiveInput] = useState<string | null>(null);
+  const calendarRef = useRef<HTMLDivElement | null>(null);
+
+  const handleInputClick = (inputType: string) => {
     setActiveInput(inputType);
     setShowCalendar(true);
   };
 
-  const handleDayClick = (day) => {
-    setSelectedDate(day);
-    setShowCalendar(false);
+  const handleDayClick = (day: Date | undefined) => {
+    if (day) {
+      setSelectedDate(day);
+      setShowCalendar(false);
+    }
   };
 
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (calendarRef.current && !calendarRef.current.contains(event.target)) {
+    const handleClickOutside = (event: Event) => {
+      if (
+        calendarRef.current &&
+        !calendarRef.current.contains(event.target as Node)
+      ) {
         setShowCalendar(false);
       }
-    }
+    };
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
@@ -88,10 +96,10 @@ export default function BluerForm() {
               <DayPicker
                 mode="single"
                 selected={selectedDate}
-                onSelect={handleDayClick}
+                onDayClick={handleDayClick} // Updated prop for clicking days
                 fromMonth={activeInput === "excursion" ? new Date() : undefined}
                 toMonth={activeInput === "excursion" ? undefined : new Date()}
-                showMonthPicker={activeInput === "excursion"}
+                // Remove showMonthPicker
               />
             </div>
           )}

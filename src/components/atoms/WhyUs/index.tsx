@@ -29,9 +29,7 @@ const CustomPrevArrow = (props: any) => {
         top: "50%",
         cursor: "pointer",
       }}
-    >
-      <FaArrowLeft className="text-white text-xl" />
-    </div>
+    ></div>
   );
 };
 
@@ -56,9 +54,7 @@ const CustomNextArrow = (props: any) => {
         top: "50%",
         cursor: "pointer",
       }}
-    >
-      <FaArrowRight className="text-white text-xl" />
-    </div>
+    ></div>
   );
 };
 
@@ -102,9 +98,9 @@ const WhyUs: React.FC = () => {
     slidesToScroll: 1,
     centerMode: true,
     draggable: true,
-    arrows: !isMobile, // Hide arrows on mobile
-    nextArrow: !isMobile ? <CustomNextArrow /> : null,
-    prevArrow: !isMobile ? <CustomPrevArrow /> : null,
+    arrows: !isMobile,
+    nextArrow: !isMobile ? <CustomNextArrow /> : undefined, // Use undefined instead of null
+    prevArrow: !isMobile ? <CustomPrevArrow /> : undefined, // Use undefined instead of null
     responsive: [
       {
         breakpoint: 640,
@@ -150,7 +146,7 @@ const WhyUs: React.FC = () => {
             {cardData.map((card, index) => (
               <div
                 key={index}
-                className="bg-[#3C3A37] p-6  border-white border-x  rounded-sm shadow-lg text-center"
+                className="bg-[#3C3A37] p-6 border-white border-x rounded-sm shadow-lg text-center"
               >
                 {card.icon}
                 <h3 className="text-xl text-[#C7AC4F] font-segoe mb-4">

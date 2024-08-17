@@ -65,11 +65,32 @@ const AttractionCard: React.FC<AttractionCardProps> = ({
 const Tours: React.FC = () => {
   const attractions = [
     {
-      title: "Top attractions in Alex, to Luxor",
-      location: "Florence, Tuscany",
-      price: 320,
-      rating: 5,
-      image: Fisrt,
+      title: "Pyramids of Giza",
+      location: "Giza, Egypt",
+      price: 140,
+      rating: 2,
+      image: Second,
+    },
+    {
+      title: "Luxor Temple",
+      location: "Luxor, Egypt",
+      price: 50,
+      rating: 4,
+      image: Third,
+    },
+    {
+      title: "Pyramids of Giza",
+      location: "Giza, Egypt",
+      price: 140,
+      rating: 2,
+      image: Second,
+    },
+    {
+      title: "Luxor Temple",
+      location: "Luxor, Egypt",
+      price: 50,
+      rating: 4,
+      image: Third,
     },
     {
       title: "Pyramids of Giza",

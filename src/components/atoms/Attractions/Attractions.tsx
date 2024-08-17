@@ -100,7 +100,7 @@ const Attractions: React.FC = () => {
     slidesToShow: 1.1, // Show 1 card at a time
     slidesToScroll: 1,
     rows: 2, // Display 2 rows of cards
-    slidesToScroll: 2, // Scroll 2 cards at a time
+    // Scroll 2 cards at a time
   };
 
   return (

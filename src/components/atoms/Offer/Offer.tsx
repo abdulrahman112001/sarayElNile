@@ -1,17 +1,29 @@
 import React from "react";
 import Image from "next/image";
-import Photo from "../../../../public/assets/camels.jpeg";
-import Link from "next/link";
 import { Button } from "@mui/material";
+import Link from "next/link";
 
-export default function Offer({ imageSrc, title, description, linkHref }) {
+// Define the types for the props
+interface OfferProps {
+  imageSrc: any; // URL or path to the image
+  title: string; // Title of the offer
+  description: string; // Description of the offer
+  linkHref: string; // URL to navigate to
+}
+
+export default function Offer({
+  imageSrc,
+  title,
+  description,
+  linkHref,
+}: OfferProps) {
   return (
     <div className="relative bg-white rounded-lg shadow-lg overflow-hidden w-full group">
       {/* Image */}
       <div className="relative h-64">
         <Image
           src={imageSrc}
-          alt="Example"
+          alt={title} // Use title for alt text to improve accessibility
           layout="fill"
           objectFit="cover"
           className="w-full h-full"
@@ -24,7 +36,7 @@ export default function Offer({ imageSrc, title, description, linkHref }) {
             <p className="mb-4 font-segoe">{description}</p>
             <Button>
               <Link
-                href=""
+                href={linkHref} // Use linkHref for navigation
                 className="inline-block capitalize py-2 px-4 font-segoe rounded-md  hover:bg-yellow-700 hover:text-white  text-white bg-custom-gradient"
               >
                 Explore

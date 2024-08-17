@@ -106,7 +106,7 @@ const SearchExcursios: React.FC = () => {
 
       {/* Search Button for Desktop */}
       <button
-        className="hidden sm:block bg-[#232323] text-white font-segoe rounded-md px-4 py-2 flex items-center text-center justify-center"
+        className=" sm:block bg-[#232323] text-white font-segoe rounded-md px-4 py-2 flex items-center text-center justify-center"
         onClick={() => setOpenModal(true)}
       >
         Search

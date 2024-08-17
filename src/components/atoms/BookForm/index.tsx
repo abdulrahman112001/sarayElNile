@@ -3,8 +3,9 @@ import { Button, Modal, Slide } from "@mui/material";
 import { ChevronDown, Plus, Minus } from "lucide-react";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
-const locations = ["New York", "London", "Paris", "Tokyo"];
-const months = [
+
+const locations: string[] = ["New York", "London", "Paris", "Tokyo"];
+const months: string[] = [
   "January",
   "February",
   "March",
@@ -19,7 +20,16 @@ const months = [
   "December",
 ];
 
-const Dropdown = ({
+interface DropdownProps {
+  items: string[];
+  selectedItem: string;
+  onSelect: (item: string) => void;
+  placeholder: string;
+  isDropdownOpen: boolean;
+  setIsDropdownOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Dropdown: React.FC<DropdownProps> = ({
   items,
   selectedItem,
   onSelect,
@@ -59,19 +69,20 @@ const Dropdown = ({
 );
 
 export default function BookingForm() {
-  const [adults, setAdults] = useState(1);
-  const [children, setChildren] = useState(1);
-  const [infants, setInfants] = useState(0);
-  const [location, setLocation] = useState("Where");
-  const [month, setMonth] = useState("");
-  const [isLocationDropdownOpen, setIsLocationDropdownOpen] = useState(false);
-  const [isMonthDropdownOpen, setIsMonthDropdownOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [value, setValue] = useState("");
+  const [adults, setAdults] = useState<number>(1);
+  const [children, setChildren] = useState<number>(1);
+  const [infants, setInfants] = useState<number>(0);
+  const [location, setLocation] = useState<string>("Where");
+  const [month, setMonth] = useState<string>("");
+  const [isLocationDropdownOpen, setIsLocationDropdownOpen] =
+    useState<boolean>(false);
+  const [isMonthDropdownOpen, setIsMonthDropdownOpen] =
+    useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [value, setValue] = useState<string | undefined>("");
 
   return (
     <div>
-      {/* Button to open the modal (visible only on small screens) */}
       <Button
         className="py-2 capitalize w-full bg-custom-gradient text-white rounded-none hover:bg-yellow-500 transition duration-300 font-segoe fixed top-16 right-0 z-40 md:hidden"
         onClick={() => setIsModalOpen(true)}
@@ -79,7 +90,6 @@ export default function BookingForm() {
         Open Booking Form
       </Button>
 
-      {/* Modal containing the booking form */}
       <Modal
         open={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -94,27 +104,24 @@ export default function BookingForm() {
               </h1>
 
               <form className="space-y-6">
-                {/* Location Dropdown */}
                 <Dropdown
                   items={locations}
                   selectedItem={location}
-                  onSelect={(item) => setLocation(item)}
+                  onSelect={setLocation}
                   placeholder="Where"
                   isDropdownOpen={isLocationDropdownOpen}
                   setIsDropdownOpen={setIsLocationDropdownOpen}
                 />
 
-                {/* Month Dropdown */}
                 <Dropdown
                   items={months}
                   selectedItem={month}
-                  onSelect={(item) => setMonth(item)}
+                  onSelect={setMonth}
                   placeholder="Select month"
                   isDropdownOpen={isMonthDropdownOpen}
                   setIsDropdownOpen={setIsMonthDropdownOpen}
                 />
 
-                {/* Input fields */}
                 <div className="relative flex items-center">
                   <PhoneInput
                     placeholder="Enter Your Number"
@@ -143,14 +150,12 @@ export default function BookingForm() {
                   <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 </div>
 
-                {/* Textarea for additional details */}
                 <textarea
                   placeholder="Tell us More Details"
                   className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   rows={4}
                 ></textarea>
 
-                {/* Number selection for Adults, Children, and Infants */}
                 <div className="space-y-4">
                   {[
                     { label: "Adults", value: adults, setValue: setAdults },
@@ -187,7 +192,6 @@ export default function BookingForm() {
               </form>
             </div>
 
-            {/* Sticky Button */}
             <div className="pt-4">
               <Button className="w-full p-3 bg-[#986518] text-white rounded-md hover:bg-yellow-700 transition duration-150">
                 Submit
@@ -202,27 +206,24 @@ export default function BookingForm() {
         <h1 className="text-2xl font-bold mb-4 text-gray-800">US $1000</h1>
 
         <form className="space-y-6">
-          {/* Location Dropdown */}
           <Dropdown
             items={locations}
             selectedItem={location}
-            onSelect={(item) => setLocation(item)}
+            onSelect={setLocation}
             placeholder="Where"
             isDropdownOpen={isLocationDropdownOpen}
             setIsDropdownOpen={setIsLocationDropdownOpen}
           />
 
-          {/* Month Dropdown */}
           <Dropdown
             items={months}
             selectedItem={month}
-            onSelect={(item) => setMonth(item)}
+            onSelect={setMonth}
             placeholder="Select month"
             isDropdownOpen={isMonthDropdownOpen}
             setIsDropdownOpen={setIsMonthDropdownOpen}
           />
 
-          {/* Input fields */}
           <div className="relative flex items-center">
             <PhoneInput
               placeholder="Enter Your Number"
@@ -251,14 +252,12 @@ export default function BookingForm() {
             <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
           </div>
 
-          {/* Textarea for additional details */}
           <textarea
             placeholder="Tell us More Details"
             className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             rows={4}
           ></textarea>
 
-          {/* Number selection for Adults, Children, and Infants */}
           <div className="space-y-4">
             {[
               { label: "Adults", value: adults, setValue: setAdults },
@@ -286,10 +285,11 @@ export default function BookingForm() {
             ))}
           </div>
         </form>
-
-        <Button className="w-full p-3 mt-3 bg-[#986518] text-white rounded-md hover:bg-yellow-700 transition duration-150">
-          Submit
-        </Button>
+        <div className="pt-4">
+          <Button className="w-full p-3 bg-[#986518] text-white rounded-md hover:bg-yellow-700 transition duration-150">
+            Submit
+          </Button>
+        </div>
       </div>
     </div>
   );
