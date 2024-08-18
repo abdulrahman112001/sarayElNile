@@ -101,3 +101,11 @@ body {
     background-color: white;
     color: black;
 }
+
+.slick-slide>div {
+    height: 100%;
+}
+
+.slick-list {
+    padding: 0 !important;
+}
