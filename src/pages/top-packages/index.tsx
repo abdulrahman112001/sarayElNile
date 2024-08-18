@@ -1,8 +1,5 @@
-import FilterSidebar from "@/components/atoms/Filters/Filters";
-import SearchInput from "@/components/atoms/Search/Search";
-import TravelPackagePage from "@/components/atoms/TravelCardSearch/TravelCardSearch";
-import Mobile from "./mobile/Mobile";
 import Laptop from "./laptop/Laptop";
+import Mobile from "./mobile/Mobile";
 
 export default function Home() {
   return (
