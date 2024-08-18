@@ -11,7 +11,7 @@ type PricePlan = {
   }[];
 };
 
-// Sample data
+
 const pricePlansData: PricePlan[] = [
   {
     title: "Plan 1",
