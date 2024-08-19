@@ -1,4 +1,3 @@
-// src/components/FilterSection.tsx
 import React, { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
@@ -14,6 +13,7 @@ const FilterSection: React.FC<FilterSectionProps> = ({
   defaultOpen = false,
 }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
+
   return (
     <div className="border-b border-gray-200 py-4">
       <button

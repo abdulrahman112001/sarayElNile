@@ -1,5 +1,5 @@
 import React from "react";
-import BookingForm from "@/components/atoms/BookForm";
+
 import MyPage from "@/components/templates/MyPage";
 import BookingFormModal from "@/components/atoms/BookingFormModal";
 import BookingFormDesktop from "@/components/atoms/BookingFormDesktop";

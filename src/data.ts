@@ -6,6 +6,7 @@ import ImageCard from "../public/assets/Secondimage.jpeg";
 import Try from "../public/assets/Secondimage.jpeg";
 import Roude from "../public/assets/roud.jpeg";
 import Exp from "../public/assets/firstImage.jpeg";
+import blogBg from "../public/assets/bgblogs.png";
 export const blogData = [
 
 
@@ -572,6 +573,7 @@ export const TheexcursionData = [
 ];
 
 export const excursions = [
+
     {
       id: 1,
       imageSrc: Exp,
@@ -602,4 +604,34 @@ export const excursions = [
       imageSrc: Exp,
       recommendation: "Travelers recommend",
     },
-  ];
+];
+  
+
+export const cardDataBlog = [
+  {
+    imageSrc: blogBg,
+    title: "Queen, King, Divine God: The tale of Hatshepsut Temple 1",
+    subtitle: "12/20/2014",
+     id: "1",
+  },
+  {
+    imageSrc: First,
+    title: "Queen, King, Divine God: The tale of Hatshepsut Temple 1",
+    subtitle: "12/20/2014",
+     id: "2",
+  },
+  {
+    imageSrc: blogBg,
+    title: "Queen, King, Divine God: The tale of Hatshepsut Temple 1",
+    subtitle: "12/20/2014",
+     id: "3",
+  },
+  {
+    imageSrc: First,
+    title: "Queen, King, Divine God: The tale of Hatshepsut Temple 1",
+    subtitle: "12/20/2014",
+     id: "4",
+  },
+
+  // Add more card objects as needed
+];

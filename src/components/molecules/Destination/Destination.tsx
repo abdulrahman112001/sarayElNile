@@ -45,11 +45,15 @@ const DestinationRow: React.FC = () => {
     { name: "Dahab", imageUrl: Second },
     { name: "Aswan", imageUrl: Third },
     { name: "Giza", imageUrl: Fisrt },
+    { name: "Giza", imageUrl: Fisrt },
+    { name: "Dahab", imageUrl: Second },
+    { name: "Aswan", imageUrl: Third },
+    { name: "Giza", imageUrl: Fisrt },
   ];
 
   // Carousel settings
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -62,7 +66,7 @@ const DestinationRow: React.FC = () => {
     <div className="p-4">
       {/* Mobile Carousel */}
       <div className="md:hidden">
-        <div className="max-w-sm mx-auto">
+        <div className="max-w-md mx-auto">
           <Slider {...settings}>
             {destinations.map((dest, index) => (
               <DestinationCard

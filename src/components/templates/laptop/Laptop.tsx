@@ -1,8 +1,7 @@
-import FilterSidebar from "@/components/atoms/Filters/FilterSidebar";
-import SearchInput from "@/components/atoms/Search/Search";
-
+import React, { useState } from "react";
+import LargeScreenSidebar from "@/components/atoms/Filters/LargeScreenSidebar";
 import TravelPackagePage from "@/components/molecules/TravelCardSearch/TravelCardSearch";
-import React from "react";
+import SearchInput from "@/components/atoms/Search/Search";
 
 type Props = {};
 
@@ -18,7 +17,19 @@ const Laptop = (props: Props) => {
       <div className="flex flex-col md:flex-row gap-8 mt-8">
         {/* Filters Sidebar */}
         <div className="w-full md:w-1/4">
-          <FilterSidebar />
+          <LargeScreenSidebar
+            price={[0, 1000]}
+            selectedDestination="Spain"
+            selectedStarRating="5 stars"
+            selectedAmenities={["Restaurant"]}
+            selectedAccommodationType="Hotel"
+            handlePriceChange={() => {}}
+            handleClearFilters={() => {}}
+            setSelectedDestination={() => {}}
+            setSelectedStarRating={() => {}}
+            setSelectedAmenities={() => {}}
+            setSelectedAccommodationType={() => {}}
+          />
         </div>
 
         {/* Travel Packages */}

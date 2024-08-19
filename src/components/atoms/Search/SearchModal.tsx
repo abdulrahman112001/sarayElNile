@@ -26,10 +26,10 @@ const SearchModal: React.FC<SearchModalProps> = ({
     <Modal
       open={isModalOpen}
       onClose={() => setIsModalOpen(false)}
-      className="flex items-center justify-center p-4 md:hidden"
+      className="flex items-center justify-center p-4"
     >
       <Slide direction="up" in={isModalOpen} mountOnEnter unmountOnExit>
-        <div className="bg-white rounded-lg p-4 max-w-md w-full h-auto flex flex-col">
+        <div className="bg-white rounded-lg p-4 max-w-md w-full md:max-w-lg md:w-auto h-auto flex flex-col">
           <div className="relative mb-3">
             <input
               type="text"

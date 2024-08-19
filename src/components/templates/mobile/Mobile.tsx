@@ -1,34 +1,57 @@
-import FilterSidebar from "@/components/atoms/Filters/Filters";
+import React, { useState } from "react";
+import MobileSidebar from "@/components/atoms/Filters/MobileSidebar";
 import MobileSearchModal from "@/components/atoms/Search/MobileSearchModal";
-import SearchInput from "@/components/atoms/Search/SearchInput";
 import TravelPackagePage from "@/components/molecules/TravelCardSearch/TravelCardSearch";
-import React from "react";
 
 type Props = {};
 
 const Mobile = (props: Props) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handlePriceChange = (event: Event, newValue: number | number[]) => {};
+  const handleClearFilters = () => {};
+  const setSelectedDestination = (value: string) => {};
+  const setSelectedStarRating = (value: string | null) => {};
+  const setSelectedAmenities = (
+    value: string[] | ((prev: string[]) => string[])
+  ) => {};
+  const setSelectedAccommodationType = (value: string | null) => {};
+
   return (
     <div className="bg-[#FAFAFA] h-screen flex flex-col">
-      {/* Fixed Search Bar and Filter */}
       <div className="fixed top-0 left-0 right-0 bg-[#FAFAFA] p-6 z-10">
         <div className="mt-20 flex justify-center items-center gap-3 w-full">
           <div className="">
             <MobileSearchModal />
           </div>
           <div className="">
-            <FilterSidebar />
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="bg-custom-gradient p-3 text-white rounded-md"
+            >
+              Open Filter
+            </button>
+            <MobileSidebar
+              isModalOpen={isModalOpen}
+              setIsModalOpen={setIsModalOpen}
+              price={[0, 1000]}
+              selectedDestination="Spain"
+              selectedStarRating="5 stars"
+              selectedAmenities={["Restaurant"]}
+              selectedAccommodationType="Hotel"
+              handlePriceChange={handlePriceChange}
+              handleClearFilters={handleClearFilters}
+              setSelectedDestination={setSelectedDestination}
+              setSelectedStarRating={setSelectedStarRating}
+              setSelectedAmenities={setSelectedAmenities}
+              setSelectedAccommodationType={setSelectedAccommodationType}
+            />
           </div>
         </div>
       </div>
-
-      {/* Scrollable Content */}
       <div className="flex-1 overflow-y-auto mt-[calc(50px+6rem)]">
-        {" "}
-        {/* Adjust this value based on the height of your fixed div */}
         <div className="p-6">
-          {/* Main Content Layout: Filters on the left, Cards on the right */}
           <div className="flex flex-col md:flex-row gap-8">
-            {/* Travel Packages */}
             <div className="w-full md:w-3/4">
               <TravelPackagePage />
             </div>
