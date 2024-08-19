@@ -1,5 +1,5 @@
 import React from "react";
-import Destination from "../atoms/Destination/Destination";
+import Destination from "../molecules/Destination/Destination";
 
 type Props = {};
 

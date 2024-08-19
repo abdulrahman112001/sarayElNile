@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 import Try from "../../../public/assets/firstImage.jpeg";
-import OverView from "./OverView";
-import ExcursionsTab from "./ExcursionsTab";
-import PackageDetails from "./PackageTab";
+import OverView from "../../components/templates/OverView";
+import ExcursionsTab from "../../components/templates/ExcursionsTab";
+import PackageDetails from "../../components/templates/PackageTab";
 import Pry from "../../../public/assets/pyr.jpeg";
 
 const PyramidsSection = () => {
@@ -54,12 +54,12 @@ const PyramidsSection = () => {
                   <span className="ml-2 text-sm text-gray-600">4.5</span>
                 </div>
                 <p className="text-gray-700 text-xs sm:text-sm font-segoe">
-                  Once ancient Upper Egypt's capital at Thebes, Luxor's
+                  Once ancient Upper Egypts capital at Thebes, Luxor
                   archaeological heavyweight put it right behind Cairo for
                   visitors keen to peel back the millennia. Hemming the Nile 400
-                  miles (644 kilometers) south of Egypt's capital, its
-                  commercialized trappings don't detract from the emotional
-                  force of its antiquities.
+                  miles (644 kilometers) south of Egypts capital, its
+                  commercialized trappings dont detract from the emotional force
+                  of its antiquities.
                 </p>
               </div>
             </div>

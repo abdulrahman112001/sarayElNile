@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import Image from "next/image";
 import React, { useState } from "react";
 
 type Props = {};
@@ -13,10 +14,12 @@ const Inquire = (props: Props) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         {/* Left Section: Image */}
         <div className="flex items-center justify-center">
-          <img
+          <Image
             src="https://readymadeui.com/signin-image.webp"
             className="w-full h-auto max-w-xs md:max-w-md object-cover"
             alt="Contact Us"
+            width={400} // Set suitable width
+            height={400}
           />
         </div>
 

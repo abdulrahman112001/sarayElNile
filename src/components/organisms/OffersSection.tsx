@@ -1,5 +1,5 @@
 import React from "react";
-import Offer from "../atoms/Offer/Offer";
+import Offer from "../molecules/Offer/Offer";
 import Photo1 from "../../../public/assets/camels.jpeg";
 import Photo2 from "../../../public/assets/pyr.jpeg";
 type Props = {};

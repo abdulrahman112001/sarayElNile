@@ -106,7 +106,7 @@ const SearchExcursios: React.FC = () => {
 
       {/* Search Button for Desktop */}
       <button
-        className=" sm:block bg-[#232323] text-white font-segoe rounded-md px-4 py-2 flex items-center text-center justify-center"
+        className="hidden sm:block bg-[#232323] text-white font-segoe rounded-md px-4 py-2 flex items-center text-center justify-center"
         onClick={() => setOpenModal(true)}
       >
         Search
@@ -117,7 +117,7 @@ const SearchExcursios: React.FC = () => {
         className="fixed top-14 w-full left-0 z-40 sm:hidden bg-white text-gray-400 font-segoe rounded-md px-4 py-4 hover:bg-white"
         onClick={() => setOpenModal(true)}
       >
-        Search For a excursions or activity <Search className="ml-4" />
+        Search For a excursion or activity <Search className="ml-4" />
       </Button>
 
       {/* MUI Modal for Mobile View */}

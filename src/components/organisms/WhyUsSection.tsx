@@ -1,5 +1,5 @@
 import React from "react";
-import WhyUs from "../atoms/WhyUs";
+import WhyUs from "../molecules/WhyUs";
 
 type Props = {};
 

@@ -1,5 +1,5 @@
 import React from "react";
-import PeopleSay from "../atoms/PeaopleSay/PeaopleSay";
+import PeopleSay from "../molecules/PeaopleSay/PeaopleSay";
 
 type Props = {};
 

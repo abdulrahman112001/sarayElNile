@@ -1,5 +1,5 @@
 import React from "react";
-import Excursions from "../atoms/Excursions/Excursions";
+import Excursions from "../molecules/Excursions/Excursions";
 
 type Props = {};
 

@@ -1,5 +1,5 @@
 import React from "react";
-import Attractions from "../atoms/Attractions/Attractions";
+import Attractions from "../molecules/Attractions/Attractions";
 
 type Props = {};
 

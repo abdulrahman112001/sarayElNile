@@ -1,5 +1,5 @@
-import Laptop from "./laptop/Laptop";
-import Mobile from "./mobile/Mobile";
+import Laptop from "@/components/templates/laptop/Laptop";
+import Mobile from "@/components/templates/mobile/Mobile";
 
 export default function Home() {
   return (
