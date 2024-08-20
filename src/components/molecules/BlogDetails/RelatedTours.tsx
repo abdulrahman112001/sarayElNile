@@ -16,8 +16,8 @@ const settings = {
 
 const RelatedTours = () => {
   return (
-    <div className="p-4">
-      <h3 className="font-segoe text-3xl mb-6">Related Tours</h3>
+    <div className="p-0">
+      <h3 className="font-segoe text-3xl ml-2 md:mb-6 mb-6">Related Tours</h3>
 
       {/* Grid Layout for large screens */}
       <div className="hidden lg:grid lg:grid-cols-1 lg:gap-4">
@@ -90,8 +90,8 @@ const RelatedTours = () => {
       <div className="lg:hidden">
         <Slider {...settings}>
           {TheexcursionDataBlogs.map((excursion) => (
-            <div key={excursion.id} className="p-2">
-              <div className="flex flex-col cursor-pointer hover:border border-gray-400 rounded-lg overflow-hidden shadow-lg bg-white h-[500px]">
+            <div key={excursion.id} className="px-2 pb-3">
+              <div className="flex flex-col cursor-pointer hover:border border-gray-400 rounded-lg overflow-hidden shadow-md bg-white h-[500px]">
                 <div className="relative h-2/3">
                   <Image
                     className="w-full h-full object-cover"

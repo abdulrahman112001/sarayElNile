@@ -54,7 +54,7 @@ const sliderSettings = {
 // Define the Blog component
 const Blog: React.FC = () => {
   return (
-    <div className="p-4">
+    <div className="p-0">
       {/* Centered grid container for larger screens */}
       <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-6 justify-center mx-auto max-w-screen-xl">
         {/* Desktop layout with 3 cards per row */}

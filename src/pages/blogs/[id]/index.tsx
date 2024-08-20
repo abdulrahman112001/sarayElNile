@@ -10,7 +10,7 @@ const BlogDetails: React.FC<Props> = (props) => {
     <div className="mt-16 bg-[#FAFAFA]">
       <HeroSectionBlogs />
 
-      <div className="flex flex-col lg:flex-row w-full mt-11 px-5">
+      <div className="flex flex-col lg:flex-row w-full mt-11 px-0">
         <div className="w-full lg:w-2/3 mb-8 lg:mb-0">
           <BLogData />
         </div>

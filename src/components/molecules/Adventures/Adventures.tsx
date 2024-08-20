@@ -36,7 +36,7 @@ export default function Adventures() {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-">
       <Slider {...settings} className="flex justify-center">
         {cardData.map((card) => (
           <div
