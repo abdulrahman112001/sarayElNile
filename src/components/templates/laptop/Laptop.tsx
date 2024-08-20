@@ -32,6 +32,18 @@ const Laptop: React.FC = () => {
     setSelectedAccommodationType("");
   };
 
+  // Apply filters
+  const handleApplyFilters = () => {
+    // Implement filter application logic here
+    console.log("Filters applied:", {
+      price,
+      selectedDestination,
+      selectedStarRating,
+      selectedAmenities,
+      selectedAccommodationType,
+    });
+  };
+
   return (
     <div className="p-6 bg-[#FAFAFA]">
       {/* Search Bar */}
@@ -55,6 +67,7 @@ const Laptop: React.FC = () => {
             setSelectedStarRating={setSelectedStarRating}
             setSelectedAmenities={setSelectedAmenities}
             setSelectedAccommodationType={setSelectedAccommodationType}
+            handleApplyFilters={handleApplyFilters} // Added this prop
           />
         </div>
 

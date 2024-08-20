@@ -1,15 +1,14 @@
 import React from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 
 interface CardProps {
-  imageSrc: StaticImageData;
+  imageSrc: string;
   title: string;
-  subtitle: string;
   id: string;
 }
 
-const Card: React.FC<CardProps> = ({ imageSrc, title, subtitle, id }) => {
+const Card: React.FC<CardProps> = ({ imageSrc, title, id }) => {
   return (
     <div className="flex-shrink-0 max-w-md mx-2 rounded-sm overflow-hidden shadow-lg bg-[#FAFAFA]">
       <Link href={`/blogs/${id}`}>
@@ -24,7 +23,6 @@ const Card: React.FC<CardProps> = ({ imageSrc, title, subtitle, id }) => {
           <div className="absolute bottom-0 left-0 font-segoe right-0 h-32 bg-white/30 backdrop-blur-md">
             <div className="absolute bottom-0 left-0 p-4 text-white">
               <h2 className="text-lg md:text-2xl font-sego">{title}</h2>
-              <p className="text-sm md:text-lg font-segoe">{subtitle}</p>
             </div>
           </div>
         </div>
