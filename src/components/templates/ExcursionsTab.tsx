@@ -1,17 +1,36 @@
 import React, { useState } from "react";
 import TravelPackagePage from "@/components/molecules/TravelCardSearch/TravelCardSearch";
-
 import MobileSidebar from "../atoms/Filters/MobileSidebar";
 import { useMediaQuery } from "@mui/material";
 import LargeScreenSidebar from "../atoms/Filters/LargeScreenSidebar";
 
-type Props = {};
-
-const ExcursionsTab = (props: Props) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const ExcursionsTab: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [price, setPrice] = useState<[number, number]>([0, 1000]);
+  const [selectedDestination, setSelectedDestination] =
+    useState<string>("Spain");
+  const [selectedStarRating, setSelectedStarRating] =
+    useState<string>("5 stars");
+  const [selectedAmenities, setSelectedAmenities] = useState<string[]>([
+    "Restaurant",
+  ]);
+  const [selectedAccommodationType, setSelectedAccommodationType] =
+    useState<string>("Hotel");
 
   // Media query to determine if the screen size is 'md' or larger
   const isLargeScreen = useMediaQuery("(min-width: 768px)");
+
+  const handlePriceChange = (event: Event, newValue: number | number[]) => {
+    setPrice(newValue as [number, number]); // Ensure newValue is typed correctly
+  };
+
+  const handleClearFilters = () => {
+    setPrice([0, 1000]);
+    setSelectedDestination("");
+    setSelectedStarRating("5 stars"); // Default value if null is not a valid state
+    setSelectedAmenities([]);
+    setSelectedAccommodationType("");
+  };
 
   return (
     <div className="flex flex-col md:flex-row gap-8 mt-8 px-6">
@@ -19,17 +38,17 @@ const ExcursionsTab = (props: Props) => {
       {isLargeScreen ? (
         <div className="w-full md:w-1/4">
           <LargeScreenSidebar
-            price={[0, 1000]}
-            selectedDestination="Spain"
-            selectedStarRating="5 stars"
-            selectedAmenities={["Restaurant"]}
-            selectedAccommodationType="Hotel"
-            handlePriceChange={() => {}}
-            handleClearFilters={() => {}}
-            setSelectedDestination={() => {}}
-            setSelectedStarRating={() => {}}
-            setSelectedAmenities={() => {}}
-            setSelectedAccommodationType={() => {}}
+            price={price}
+            selectedDestination={selectedDestination}
+            selectedStarRating={selectedStarRating}
+            selectedAmenities={selectedAmenities}
+            selectedAccommodationType={selectedAccommodationType}
+            handlePriceChange={handlePriceChange}
+            handleClearFilters={handleClearFilters}
+            setSelectedDestination={setSelectedDestination}
+            setSelectedStarRating={setSelectedStarRating}
+            setSelectedAmenities={setSelectedAmenities}
+            setSelectedAccommodationType={setSelectedAccommodationType}
           />
         </div>
       ) : (
@@ -53,29 +72,17 @@ const ExcursionsTab = (props: Props) => {
       <MobileSidebar
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
-        price={[0, 1000]} // Replace with actual default value or state
-        selectedDestination="" // Replace with actual default value or state
-        selectedStarRating={null} // Replace with actual default value or state
-        selectedAmenities={[]} // Replace with actual default value or state
-        selectedAccommodationType={null} // Replace with actual default value or state
-        handlePriceChange={(event, newValue) => {
-          /* handle price change */
-        }}
-        handleClearFilters={() => {
-          /* handle clear filters */
-        }}
-        setSelectedDestination={(value) => {
-          /* set destination */
-        }}
-        setSelectedStarRating={(value) => {
-          /* set star rating */
-        }}
-        setSelectedAmenities={(value) => {
-          /* set amenities */
-        }}
-        setSelectedAccommodationType={(value) => {
-          /* set accommodation type */
-        }}
+        price={price}
+        selectedDestination={selectedDestination}
+        selectedStarRating={selectedStarRating}
+        selectedAmenities={selectedAmenities}
+        selectedAccommodationType={selectedAccommodationType}
+        handlePriceChange={handlePriceChange}
+        handleClearFilters={handleClearFilters}
+        setSelectedDestination={setSelectedDestination}
+        setSelectedStarRating={setSelectedStarRating}
+        setSelectedAmenities={setSelectedAmenities}
+        setSelectedAccommodationType={setSelectedAccommodationType}
       />
     </div>
   );

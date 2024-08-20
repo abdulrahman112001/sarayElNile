@@ -3,9 +3,35 @@ import LargeScreenSidebar from "@/components/atoms/Filters/LargeScreenSidebar";
 import TravelPackagePage from "@/components/molecules/TravelCardSearch/TravelCardSearch";
 import SearchInput from "@/components/atoms/Search/Search";
 
-type Props = {};
+const Laptop: React.FC = () => {
+  // State management for filters
+  const [price, setPrice] = useState<[number, number]>([0, 1000]);
+  const [selectedDestination, setSelectedDestination] =
+    useState<string>("Spain");
+  const [selectedStarRating, setSelectedStarRating] =
+    useState<string>("5 stars");
+  const [selectedAmenities, setSelectedAmenities] = useState<string[]>([
+    "Restaurant",
+  ]);
+  const [selectedAccommodationType, setSelectedAccommodationType] =
+    useState<string>("Hotel");
 
-const Laptop = (props: Props) => {
+  // Handle price change
+  const handlePriceChange = (event: Event, newValue: number | number[]) => {
+    if (Array.isArray(newValue)) {
+      setPrice(newValue as [number, number]); // Ensure newValue is typed correctly
+    }
+  };
+
+  // Clear all filters
+  const handleClearFilters = () => {
+    setPrice([0, 1000]);
+    setSelectedDestination("");
+    setSelectedStarRating("");
+    setSelectedAmenities([]);
+    setSelectedAccommodationType("");
+  };
+
   return (
     <div className="p-6 bg-[#FAFAFA]">
       {/* Search Bar */}
@@ -18,17 +44,17 @@ const Laptop = (props: Props) => {
         {/* Filters Sidebar */}
         <div className="w-full md:w-1/4">
           <LargeScreenSidebar
-            price={[0, 1000]}
-            selectedDestination="Spain"
-            selectedStarRating="5 stars"
-            selectedAmenities={["Restaurant"]}
-            selectedAccommodationType="Hotel"
-            handlePriceChange={() => {}}
-            handleClearFilters={() => {}}
-            setSelectedDestination={() => {}}
-            setSelectedStarRating={() => {}}
-            setSelectedAmenities={() => {}}
-            setSelectedAccommodationType={() => {}}
+            price={price}
+            selectedDestination={selectedDestination}
+            selectedStarRating={selectedStarRating}
+            selectedAmenities={selectedAmenities}
+            selectedAccommodationType={selectedAccommodationType}
+            handlePriceChange={handlePriceChange}
+            handleClearFilters={handleClearFilters}
+            setSelectedDestination={setSelectedDestination}
+            setSelectedStarRating={setSelectedStarRating}
+            setSelectedAmenities={setSelectedAmenities}
+            setSelectedAccommodationType={setSelectedAccommodationType}
           />
         </div>
 

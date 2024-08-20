@@ -1,21 +1,20 @@
 import React from "react";
-import { Button, Radio, Checkbox, Slider } from "@mui/material";
+import { Radio, Checkbox, Slider, Button } from "@mui/material";
 import FilterSection from "./FilterSection";
 
+// Define the types for your props
 interface LargeScreenSidebarProps {
-  price: number[];
+  price: [number, number]; // price is a tuple representing the range
   selectedDestination: string;
-  selectedStarRating: string | null;
+  selectedStarRating: string;
   selectedAmenities: string[];
-  selectedAccommodationType: string | null;
+  selectedAccommodationType: string;
   handlePriceChange: (event: Event, newValue: number | number[]) => void;
   handleClearFilters: () => void;
-  setSelectedDestination: (value: string) => void;
-  setSelectedStarRating: (value: string | null) => void;
-  setSelectedAmenities: (
-    value: string[] | ((prev: string[]) => string[])
-  ) => void;
-  setSelectedAccommodationType: (value: string | null) => void;
+  setSelectedDestination: (destination: string) => void;
+  setSelectedStarRating: (rating: string) => void;
+  setSelectedAmenities: React.Dispatch<React.SetStateAction<string[]>>;
+  setSelectedAccommodationType: (type: string) => void;
 }
 
 const LargeScreenSidebar: React.FC<LargeScreenSidebarProps> = ({
@@ -32,8 +31,9 @@ const LargeScreenSidebar: React.FC<LargeScreenSidebarProps> = ({
   setSelectedAccommodationType,
 }) => {
   return (
-    <div className="hidden md:block p-4 h-full overflow-y-auto rounded-md">
-      <div className="flex justify-between items-center mb-4">
+    <div className="bg-white p-6 rounded-md shadow-md">
+      {/* Filters Header */}
+      <div className="flex justify-start gap-x-3 items-center mb-4">
         <h2 className="text-xl font-segoe">Applied filters</h2>
         <Button
           className="text-red-600 hover:text-red-500 font-segoe"
@@ -43,6 +43,7 @@ const LargeScreenSidebar: React.FC<LargeScreenSidebarProps> = ({
         </Button>
       </div>
 
+      {/* Destination Filter */}
       <FilterSection title="Destinations" defaultOpen={true}>
         <div className="space-y-2">
           {["Spain", "Italy", "Greece", "Turkey", "Croatia"].map((country) => (
@@ -63,6 +64,7 @@ const LargeScreenSidebar: React.FC<LargeScreenSidebarProps> = ({
         </div>
       </FilterSection>
 
+      {/* Price Filter */}
       <FilterSection title="Price">
         <div className="px-2">
           <Slider
@@ -88,6 +90,7 @@ const LargeScreenSidebar: React.FC<LargeScreenSidebarProps> = ({
         </div>
       </FilterSection>
 
+      {/* Star Rating Filter */}
       <FilterSection title="Star rating">
         <div className="space-y-2">
           {["5 stars", "4 stars", "3 stars", "2 stars", "1 star"].map(
@@ -110,6 +113,7 @@ const LargeScreenSidebar: React.FC<LargeScreenSidebarProps> = ({
         </div>
       </FilterSection>
 
+      {/* Amenities Filter */}
       <FilterSection title="Amenities">
         <div className="space-y-2">
           {[
@@ -142,6 +146,7 @@ const LargeScreenSidebar: React.FC<LargeScreenSidebarProps> = ({
         </div>
       </FilterSection>
 
+      {/* Accommodation Type Filter */}
       <FilterSection title="Accommodation Type">
         <div className="space-y-2">
           {["Hotel", "Apartment", "Resort", "Villa", "Bed & Breakfast"].map(
@@ -163,12 +168,6 @@ const LargeScreenSidebar: React.FC<LargeScreenSidebarProps> = ({
           )}
         </div>
       </FilterSection>
-
-      <div className="flex justify-center mt-4">
-        <Button className="p-4 w-full bg-custom-gradient text-white rounded-md hover:bg-yellow-500 transition duration-300 font-segoe">
-          Apply
-        </Button>
-      </div>
     </div>
   );
 };

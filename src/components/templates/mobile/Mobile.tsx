@@ -1,21 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, SyntheticEvent } from "react";
 import MobileSidebar from "@/components/atoms/Filters/MobileSidebar";
 import MobileSearchModal from "@/components/atoms/Search/MobileSearchModal";
 import TravelPackagePage from "@/components/molecules/TravelCardSearch/TravelCardSearch";
 
-type Props = {};
+const Mobile: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-const Mobile = (props: Props) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // State management for filters
+  const [price, setPrice] = useState<[number, number]>([0, 1000]);
+  const [selectedDestination, setSelectedDestination] =
+    useState<string>("Spain");
+  const [selectedStarRating, setSelectedStarRating] =
+    useState<string>("5 stars");
+  const [selectedAmenities, setSelectedAmenities] = useState<string[]>([
+    "Restaurant",
+  ]);
+  const [selectedAccommodationType, setSelectedAccommodationType] =
+    useState<string>("Hotel");
 
-  const handlePriceChange = (event: Event, newValue: number | number[]) => {};
-  const handleClearFilters = () => {};
-  const setSelectedDestination = (value: string) => {};
-  const setSelectedStarRating = (value: string | null) => {};
-  const setSelectedAmenities = (
-    value: string[] | ((prev: string[]) => string[])
-  ) => {};
-  const setSelectedAccommodationType = (value: string | null) => {};
+  // Handle price change
+  const handlePriceChange = (event: Event, newValue: number | number[]) => {
+    if (Array.isArray(newValue)) {
+      setPrice(newValue as [number, number]);
+    }
+  };
+
+  // Clear all filters
+  const handleClearFilters = () => {
+    setPrice([0, 1000]);
+    setSelectedDestination("");
+    setSelectedStarRating("");
+    setSelectedAmenities([]);
+    setSelectedAccommodationType("");
+  };
 
   return (
     <div className="bg-[#FAFAFA] h-screen flex flex-col">
@@ -34,11 +51,11 @@ const Mobile = (props: Props) => {
             <MobileSidebar
               isModalOpen={isModalOpen}
               setIsModalOpen={setIsModalOpen}
-              price={[0, 1000]}
-              selectedDestination="Spain"
-              selectedStarRating="5 stars"
-              selectedAmenities={["Restaurant"]}
-              selectedAccommodationType="Hotel"
+              price={price}
+              selectedDestination={selectedDestination}
+              selectedStarRating={selectedStarRating}
+              selectedAmenities={selectedAmenities}
+              selectedAccommodationType={selectedAccommodationType}
               handlePriceChange={handlePriceChange}
               handleClearFilters={handleClearFilters}
               setSelectedDestination={setSelectedDestination}

@@ -11,22 +11,21 @@ import {
 import { Close as CloseIcon } from "@mui/icons-material";
 import FilterSection from "./FilterSection";
 
+// Define the types for your props
 interface MobileSidebarProps {
   isModalOpen: boolean;
-  setIsModalOpen: (value: boolean) => void;
-  price: number[];
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  price: [number, number]; // price is a tuple representing the range
   selectedDestination: string;
-  selectedStarRating: string | null;
+  selectedStarRating: string;
   selectedAmenities: string[];
-  selectedAccommodationType: string | null;
+  selectedAccommodationType: string;
   handlePriceChange: (event: Event, newValue: number | number[]) => void;
   handleClearFilters: () => void;
-  setSelectedDestination: (value: string) => void;
-  setSelectedStarRating: (value: string | null) => void;
-  setSelectedAmenities: (
-    value: string[] | ((prev: string[]) => string[])
-  ) => void;
-  setSelectedAccommodationType: (value: string | null) => void;
+  setSelectedDestination: (destination: string) => void;
+  setSelectedStarRating: (rating: string) => void;
+  setSelectedAmenities: React.Dispatch<React.SetStateAction<string[]>>;
+  setSelectedAccommodationType: (type: string) => void;
 }
 
 const MobileSidebar: React.FC<MobileSidebarProps> = ({
@@ -73,6 +72,7 @@ const MobileSidebar: React.FC<MobileSidebarProps> = ({
 
           {/* Filters Content */}
           <div className="overflow-y-auto flex-grow">
+            {/* Destination Filter */}
             <FilterSection title="Destinations" defaultOpen={true}>
               <div className="space-y-2">
                 {["Spain", "Italy", "Greece", "Turkey", "Croatia"].map(
@@ -95,6 +95,7 @@ const MobileSidebar: React.FC<MobileSidebarProps> = ({
               </div>
             </FilterSection>
 
+            {/* Price Filter */}
             <FilterSection title="Price">
               <div className="px-2">
                 <Slider
@@ -120,6 +121,7 @@ const MobileSidebar: React.FC<MobileSidebarProps> = ({
               </div>
             </FilterSection>
 
+            {/* Star Rating Filter */}
             <FilterSection title="Star rating">
               <div className="space-y-2">
                 {["5 stars", "4 stars", "3 stars", "2 stars", "1 star"].map(
@@ -142,6 +144,7 @@ const MobileSidebar: React.FC<MobileSidebarProps> = ({
               </div>
             </FilterSection>
 
+            {/* Amenities Filter */}
             <FilterSection title="Amenities">
               <div className="space-y-2">
                 {[
@@ -174,6 +177,7 @@ const MobileSidebar: React.FC<MobileSidebarProps> = ({
               </div>
             </FilterSection>
 
+            {/* Accommodation Type Filter */}
             <FilterSection title="Accommodation Type">
               <div className="space-y-2">
                 {[
@@ -201,14 +205,14 @@ const MobileSidebar: React.FC<MobileSidebarProps> = ({
             </FilterSection>
           </div>
 
-          {/* Apply Button */}
-          <div className="flex justify-center mt-4">
-            <Button
+          {/* Apply Filters Button */}
+          <div className="mt-4">
+            <button
               onClick={() => setIsModalOpen(false)}
-              className="p-4 w-full bg-custom-gradient text-white rounded-md hover:bg-yellow-500 transition duration-300 font-segoe"
+              className="bg-custom-gradient p-3 text-white rounded-md w-full"
             >
-              Apply
-            </Button>
+              Apply Filters
+            </button>
           </div>
         </div>
       </Slide>
