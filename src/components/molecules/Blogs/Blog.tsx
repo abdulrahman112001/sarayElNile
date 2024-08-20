@@ -1,20 +1,13 @@
 import React from "react";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 import Card from "./Card";
-import fetchData from "@/helper/FetchData";
 
 type Blog = {
   id: number;
   title: string;
   image: string;
-};
-
-type Props = {
-  blogData: {
-    data: Blog[];
-  };
 };
 
 const sliderSettings = {
@@ -28,6 +21,7 @@ const sliderSettings = {
   autoplaySpeed: 3000,
   centerMode: true,
 };
+
 
 const Blog: React.FC<Props> = ({ blogData }) => {
   return (
@@ -61,14 +55,5 @@ const Blog: React.FC<Props> = ({ blogData }) => {
 };
 
 // Fetch data with SSR
-export async function getServerSideProps() {
-  const blogData = await fetchData("blogs"); // Ensure this endpoint is correct
-
-  return {
-    props: {
-      blogData,
-    },
-  };
-}
 
 export default Blog;
