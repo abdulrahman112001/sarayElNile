@@ -1,15 +1,15 @@
 import React from "react";
 import Slider from "react-slick";
-import { TheexcursionData } from "@/data";
+import { TheexcursionDataBlogs } from "@/data";
 import Image from "next/image";
 import { BsClock, BsFillCircleFill, BsHeart, BsMap } from "react-icons/bs";
 
 // Slider settings for mobile
 const settings = {
-  dots: true,
-  infinite: true,
+  dots: false,
+  infinite: false,
   speed: 500,
-  slidesToShow: 1,
+  slidesToShow: 1.1,
   slidesToScroll: 1,
   arrows: false,
 };
@@ -21,7 +21,7 @@ const RelatedTours = () => {
 
       {/* Grid Layout for large screens */}
       <div className="hidden lg:grid lg:grid-cols-1 lg:gap-4">
-        {TheexcursionData.map((excursion) => (
+        {TheexcursionDataBlogs.map((excursion) => (
           <div key={excursion.id} className="p-2">
             <div className="flex flex-col cursor-pointer hover:border border-gray-400 rounded-lg  shadow-lg bg-white h-[550px]">
               <div className="relative h-2/3">
@@ -89,7 +89,7 @@ const RelatedTours = () => {
       {/* Carousel for mobile devices */}
       <div className="lg:hidden">
         <Slider {...settings}>
-          {TheexcursionData.map((excursion) => (
+          {TheexcursionDataBlogs.map((excursion) => (
             <div key={excursion.id} className="p-2">
               <div className="flex flex-col cursor-pointer hover:border border-gray-400 rounded-lg overflow-hidden shadow-lg bg-white h-[500px]">
                 <div className="relative h-2/3">

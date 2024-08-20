@@ -46,12 +46,12 @@ export default function Excursions() {
   };
 
   return (
-    <div className="relative p-2 pb-4">
+    <div className="relative">
       {" "}
       {/* Adjusted padding for more space */}
-      <Slider {...settings} ref={sliderRef} className="mb-4">
+      <Slider {...settings} ref={sliderRef} className="">
         {excursionData.map((excursion) => (
-          <div key={excursion.id} className="px-[9px] mb-3">
+          <div key={excursion.id} className="px-[3px] md:px-[9px] mb-3">
             {" "}
             {/* Increased padding */}
             <Link href="/top-excursions">

@@ -16,7 +16,7 @@ const AttractionCard: React.FC<Attraction> = ({
   toursCount,
 }) => {
   return (
-    <div className="flex items-center cursor-pointer rounded-lg overflow-hidden w-80 h-24 transition-transform duration-300 ease-in-out hover:shadow-lg hover:border border-gray-200 hover:bg-white">
+    <div className="flex items-center cursor-pointer rounded-lg overflow-hidden md:w-80 w-72 md:mx-0 ml-28 h-24 transition-transform duration-300 ease-in-out hover:shadow-lg hover:border border-gray-200 hover:bg-white">
       <div className="w-24 h-24 relative flex-shrink-0 overflow-hidden">
         <Image
           src={imageSrc}
@@ -94,17 +94,17 @@ const Attractions: React.FC = () => {
   }, []);
 
   const sliderSettings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 1.1, // Show 1 card at a time
+    slidesToShow: 1.3, // Show 1 card at a time
     slidesToScroll: 1,
     rows: 2, // Display 2 rows of cards
     // Scroll 2 cards at a time
   };
 
   return (
-    <div className="p-8">
+    <div className="p-0">
       {isMobile ? (
         <Slider {...sliderSettings} className="w-full">
           {sampleAttractions.map((attraction) => (

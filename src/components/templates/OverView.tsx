@@ -1,5 +1,5 @@
 import Drops from "@/components/atoms/drops";
-import ExcursionList from "@/components/molecules/EgyptExcursions";
+import Excursions from "../../components/templates/Excursions";
 import React from "react";
 
 type Props = {};
@@ -12,7 +12,7 @@ const OverView = (props: Props) => {
       </h2>
       <Drops />
 
-      <ExcursionList />
+      <Excursions />
     </div>
   );
 };

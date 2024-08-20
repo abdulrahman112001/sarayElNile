@@ -26,14 +26,14 @@ const Tours: React.FC = () => {
           slidesToShow: 1.1,
           slidesToScroll: 1,
           centerMode: true, // Center the single item on mobile
-          centerPadding: "20px", // Adjust padding for centered card
+          centerPadding: "0px", // Adjust padding for centered card
         },
       },
     ],
   };
 
   return (
-    <div className="relative">
+    <div className="relative m-0 md:p-2">
       <Slider {...settings} className="w-full">
         {ToursAttractions.map((attraction) => (
           <AttractionCard

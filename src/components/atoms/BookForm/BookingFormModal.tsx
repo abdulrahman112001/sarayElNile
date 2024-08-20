@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Button, Modal, Slide } from "@mui/material";
+import { Button, Modal, Slide, IconButton } from "@mui/material";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import Dropdown from "./Dropdown";
-import { ChevronDown, Plus, Minus } from "lucide-react";
+import { ChevronDown, Plus, Minus, X } from "lucide-react";
 
 const locations: string[] = ["New York", "London", "Paris", "Tokyo"];
 const months: string[] = [
@@ -46,10 +46,18 @@ export default function BookingFormModal() {
       <Modal
         open={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        className="flex items-center justify-center p-4 md:hidden"
+        className="flex  w-full h-full"
       >
         <Slide direction="up" in={isModalOpen} mountOnEnter unmountOnExit>
-          <div className="bg-white rounded-lg p-6 max-w-3xl w-full h-full flex flex-col">
+          <div className="bg-white w-full h-full flex flex-col p-6 relative">
+            {/* Close Icon */}
+            <IconButton
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-4 right-4"
+            >
+              <X size={24} />
+            </IconButton>
+
             <div className="flex-1 overflow-y-auto">
               <h2 className="text-sm text-gray-500 mb-2">From $2000</h2>
               <h1 className="text-2xl font-bold mb-4 text-gray-800">

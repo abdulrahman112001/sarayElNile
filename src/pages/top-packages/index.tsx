@@ -3,7 +3,7 @@ import Mobile from "@/components/templates/mobile/Mobile";
 
 export default function Home() {
   return (
-    <div className="p-6 bg-[#FAFAFA]">
+    <div className="md:p-6 p-0 bg-[#FAFAFA]">
       {/* Mobile view */}
       <div className="block lg:hidden">
         <Mobile />

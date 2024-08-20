@@ -73,7 +73,7 @@ const Blog: React.FC = () => {
       <div className="block md:hidden">
         <Slider {...sliderSettings}>
           {cardDataBlog.map((card) => (
-            <div key={card.id} className="px-1">
+            <div key={card.id} className="px-0">
               <Card
                 imageSrc={card.imageSrc}
                 title={card.title}

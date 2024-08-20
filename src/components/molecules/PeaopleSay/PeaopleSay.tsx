@@ -1,5 +1,6 @@
+import React, { useEffect, useState } from "react";
 import ProfileCard from "@/components/templates/ProfileCard";
-import React from "react";
+import Slider from "react-slick";
 import { FaApple, FaFacebook, FaGoogle, FaTwitter } from "react-icons/fa";
 
 type ProfileCardProps = {
@@ -42,17 +43,62 @@ const cardData: ProfileCardProps[] = [
 ];
 
 const ProfileCardsContainer: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Check screen size on initial render
+    handleResize();
+
+    // Add event listener to handle screen resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1.2, // Show 1 card at a time on mobile
+    slidesToScroll: 1,
+  };
+
   return (
-    <div className="flex flex-wrap justify-center gap-4 p-2">
-      {cardData.map((card) => (
-        <ProfileCard
-          key={card.id}
-          name={card.name}
-          imgSrc={card.imgSrc}
-          alt={card.alt}
-          id={card.id}
-        />
-      ))}
+    <div className="md:p-2 p-0">
+      {isMobile ? (
+        <Slider {...settings}>
+          {cardData.map((card) => (
+            <div key={card.id} className="">
+              <ProfileCard
+                key={card.id}
+                name={card.name}
+                imgSrc={card.imgSrc}
+                alt={card.alt}
+                id={card.id}
+              />
+            </div>
+          ))}
+        </Slider>
+      ) : (
+        <div className="flex flex-wrap justify-center gap-4">
+          {cardData.map((card) => (
+            <ProfileCard
+              key={card.id}
+              name={card.name}
+              imgSrc={card.imgSrc}
+              alt={card.alt}
+              id={card.id}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

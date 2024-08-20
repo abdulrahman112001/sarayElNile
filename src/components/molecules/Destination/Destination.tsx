@@ -16,7 +16,7 @@ const DestinationCard: React.FC<DestinationCardProps> = ({
   name,
   imageUrl,
 }) => (
-  <div className="relative rounded-lg overflow-hidden group w-72 h-60 mx-auto my-2">
+  <div className="relative rounded-lg overflow-hidden group md:w-[310px] w-[301px] h-60 ml-20  md:mx-2 my-2">
     <Image
       src={imageUrl}
       alt={name}
@@ -56,17 +56,17 @@ const DestinationRow: React.FC = () => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 1,
+    slidesToShow: 1.2,
     slidesToScroll: 1,
     centerMode: true,
     centerPadding: "0px",
   };
 
   return (
-    <div className="p-4">
+    <div className="p-0">
       {/* Mobile Carousel */}
       <div className="md:hidden">
-        <div className="max-w-md mx-auto">
+        <div className="max-w-md ">
           <Slider {...settings}>
             {destinations.map((dest, index) => (
               <DestinationCard
@@ -79,7 +79,7 @@ const DestinationRow: React.FC = () => {
         </div>
       </div>
       {/* Desktop Grid */}
-      <div className="hidden md:flex flex-wrap justify-center p-5">
+      <div className="hidden md:flex flex-wrap justify-center p-1">
         {destinations.map((dest, index) => (
           <DestinationCard
             key={`${dest.name}-${index}`}

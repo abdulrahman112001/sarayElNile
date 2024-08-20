@@ -1,7 +1,5 @@
 // File: pages/index.tsx or wherever Home component is used
 import React from "react";
-import ExcursionList from "@/components/molecules/EgyptExcursions"; // Update path as necessary
-
 import SearchExcursios from "@/components/atoms/SearchExcursions/SearchExcursios"; // Check path and filename
 import Drops from "@/components/atoms/drops";
 import Excursions from "../../components/templates/Excursions";

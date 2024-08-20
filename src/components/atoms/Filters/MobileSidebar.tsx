@@ -1,5 +1,14 @@
 import React from "react";
-import { Modal, Slide, Radio, Checkbox, Slider, Button } from "@mui/material";
+import {
+  Modal,
+  Slide,
+  Radio,
+  Checkbox,
+  Slider,
+  IconButton,
+  Button,
+} from "@mui/material";
+import { Close as CloseIcon } from "@mui/icons-material";
 import FilterSection from "./FilterSection";
 
 interface MobileSidebarProps {
@@ -39,11 +48,20 @@ const MobileSidebar: React.FC<MobileSidebarProps> = ({
     <Modal
       open={isModalOpen}
       onClose={() => setIsModalOpen(false)}
-      className="flex items-center justify-center p-4 md:hidden"
+      className="flex items-center justify-center md:hidden"
     >
       <Slide direction="up" in={isModalOpen} mountOnEnter unmountOnExit>
-        <div className="bg-white rounded-lg p-4 max-w-md w-full h-full flex flex-col">
-          <div className="flex justify-between items-center mb-4">
+        <div className="bg-white w-full h-full p-4 flex flex-col relative">
+          {/* Close Button */}
+          <IconButton
+            onClick={() => setIsModalOpen(false)}
+            className="absolute top-2 right-4"
+          >
+            <CloseIcon fontSize="large" className="text-red-600" />
+          </IconButton>
+
+          {/* Filters Header */}
+          <div className="flex justify-start gap-x-3 items-center mb-4">
             <h2 className="text-xl font-segoe">Applied filters</h2>
             <Button
               className="text-red-600 hover:text-red-500 font-segoe"
@@ -53,7 +71,8 @@ const MobileSidebar: React.FC<MobileSidebarProps> = ({
             </Button>
           </div>
 
-          <div className="overflow-y-auto">
+          {/* Filters Content */}
+          <div className="overflow-y-auto flex-grow">
             <FilterSection title="Destinations" defaultOpen={true}>
               <div className="space-y-2">
                 {["Spain", "Italy", "Greece", "Turkey", "Croatia"].map(
@@ -182,6 +201,7 @@ const MobileSidebar: React.FC<MobileSidebarProps> = ({
             </FilterSection>
           </div>
 
+          {/* Apply Button */}
           <div className="flex justify-center mt-4">
             <Button
               onClick={() => setIsModalOpen(false)}

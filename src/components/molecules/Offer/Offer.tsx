@@ -32,7 +32,7 @@ export default function Offer({
         {/* Overlay Layer */}
         <div className="absolute inset-0 flex items-center bg-black bg-opacity-20">
           <div className="w-full p-6 text-left text-white">
-            <h2 className="text-2xl mb-2 font-segoe">{title}</h2>
+            <h2 className="md:text-2xl text-xl mb-2 font-segoe">{title}</h2>
             <p className="mb-4 font-segoe">{description}</p>
             <Button>
               <Link

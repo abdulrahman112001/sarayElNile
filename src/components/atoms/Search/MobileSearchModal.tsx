@@ -22,7 +22,7 @@ const MobileSearchModal: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   return (
-    <div className="mt-3">
+    <div className="mt-0">
       <SearchInput setIsModalOpen={setIsModalOpen} />
       <SearchModal
         isModalOpen={isModalOpen}

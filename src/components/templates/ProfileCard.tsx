@@ -12,7 +12,7 @@ type ProfileCardProps = {
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ name, imgSrc, alt }) => {
   return (
-    <div className="relative max-w-xs mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+    <div className="relative md:max-w-xs md:mx-auto mx-3 bg-white rounded-lg shadow-md overflow-hidden">
       {/* Icon positioned in the top-right corner */}
       <div className="absolute top-4 right-4 bg-white rounded-full shadow-md">
         <Image

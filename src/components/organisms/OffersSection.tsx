@@ -6,13 +6,13 @@ type Props = {};
 
 const OffersSection = (props: Props) => {
   return (
-    <div className="p-4">
-      <div className="text-center text-black font-segoe sm:font-semi-bold font-medium text-2xl md:text-special-offer md:p-10 p-5">
+    <div className="p-4 pb-0">
+      <div className="text-center text-black font-segoe sm:font-semi-bold font-medium text-2xl md:text-special-offer md:p-10 pt-1 pb-3">
         Special Offers
       </div>
 
       <div className="flex flex-wrap justify-center">
-        <div className="w-full sm:w-1/2 md:w-1/2 lg:w-3/6 p-5">
+        <div className="w-full sm:w-1/2 md:w-1/2 lg:w-3/6 md:p-2 py-1 px-0">
           <Offer
             imageSrc={Photo1}
             title="Planning a trip to the 2024 Summer Games?"
@@ -20,7 +20,7 @@ const OffersSection = (props: Props) => {
             linkHref="#"
           />
         </div>
-        <div className="w-full sm:w-1/2 md:w-1/2 lg:w-3/6 p-5">
+        <div className="w-full sm:w-1/2 md:w-1/2 lg:w-3/6 md:p-2 py-1 px-0">
           <Offer
             imageSrc={Photo2}
             title="Explore the Pyramids Egypt!"

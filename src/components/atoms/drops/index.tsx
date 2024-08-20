@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { SelectChangeEvent, useMediaQuery, useTheme } from "@mui/material";
-import MobileFilter from "../MobileFilter";
-import DropdownMenu from "../DropdownMenu";
-import FilterModal from "../FilterModal";
+import MobileFilter from "./MobileFilter";
+import DropdownMenu from "./DropdownMenu";
+import FilterModal from "./FilterModal";
 
 const filterOptions = [
   { label: "Popular filter", options: ["Option 1", "Option 2", "Option 3"] },

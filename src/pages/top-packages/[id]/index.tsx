@@ -1,8 +1,8 @@
 import React from "react";
 
 import MyPage from "@/components/templates/MyPage";
-import BookingFormModal from "@/components/atoms/BookingFormModal";
-import BookingFormDesktop from "@/components/atoms/BookingFormDesktop";
+import BookingFormModal from "@/components/atoms/BookForm/BookingFormModal";
+import BookingFormDesktop from "@/components/atoms/BookForm/BookingFormDesktop";
 
 const ImageGallery: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ const ImageGallery: React.FC = () => {
       </div>
 
       {/* Main Content Area */}
-      <div className="w-full md:w-2/3 p-2 md:pl-12 md:pt-28 order-2 md:order-1">
+      <div className="w-full md:w-2/3 md:mt-0 mt-3 p-2 md:pl-12 md:pt-28 order-2 md:order-1">
         <MyPage />
       </div>
     </div>
