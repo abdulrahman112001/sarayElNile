@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import ProfileCard from "@/components/templates/ProfileCard";
 import Slider from "react-slick";
 import { FaApple, FaFacebook, FaGoogle, FaTwitter } from "react-icons/fa";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 type ProfileCardProps = {
   name: string;
@@ -66,16 +68,30 @@ const ProfileCardsContainer: React.FC = () => {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 1.2, // Show 1 card at a time on mobile
+    slidesToShow: 1,
     slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: "0",
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1.1,
+          slidesToScroll: 1,
+          centerMode: false,
+        },
+      },
+    ],
   };
 
   return (
-    <div className="md:p-2 p-0">
+    <div className="slider-container w-full overflow-hidden">
+      {" "}
+      {/* Adjust container width and overflow */}
       {isMobile ? (
         <Slider {...settings}>
           {cardData.map((card) => (
-            <div key={card.id} className="">
+            <div key={card.id} className="slick-slide-custom">
               <ProfileCard
                 key={card.id}
                 name={card.name}
@@ -87,7 +103,7 @@ const ProfileCardsContainer: React.FC = () => {
           ))}
         </Slider>
       ) : (
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className="flex flex-wrap justify-center gap-4 mb-4 mx-2">
           {cardData.map((card) => (
             <ProfileCard
               key={card.id}

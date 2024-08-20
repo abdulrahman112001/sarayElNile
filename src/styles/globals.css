@@ -109,3 +109,16 @@ body {
 .slick-list {
     padding: 0 !important;
 }
+
+.slick-slider {
+    margin-right: 0 !important;
+}
+
+.slick-list {
+    margin-right: 0 !important;
+}
+
+.slick-slide {
+    padding: 0 !important;
+    margin: 0 !important;
+}

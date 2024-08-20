@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Image, { StaticImageData } from "next/image";
 import Slider from "react-slick";
 import ImageCard from "../../../../public/assets/Secondimage.jpeg";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 type Attraction = {
   id: number;
@@ -97,16 +99,29 @@ const Attractions: React.FC = () => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 1.3, // Show 1 card at a time
+    slidesToShow: 1,
     slidesToScroll: 1,
-    rows: 2, // Display 2 rows of cards
-    // Scroll 2 cards at a time
+    centerMode: true,
+    centerPadding: "0",
+    rows: 2,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1.3,
+          slidesToScroll: 1,
+          centerMode: false,
+        },
+      },
+    ],
   };
 
   return (
-    <div className="p-0">
+    <div className="slider-container w-full overflow-hidden p-0">
+      {" "}
+      {/* Adjust container width and overflow */}
       {isMobile ? (
-        <Slider {...sliderSettings} className="w-full">
+        <Slider {...sliderSettings}>
           {sampleAttractions.map((attraction) => (
             <div className="flex justify-center" key={attraction.id}>
               <AttractionCard {...attraction} />

@@ -2,8 +2,9 @@
 import React from "react";
 import SearchExcursios from "@/components/atoms/SearchExcursions/SearchExcursios"; // Check path and filename
 import Drops from "@/components/atoms/drops";
-import Excursions from "../../components/templates/Excursions";
+
 import Explore from "@/components/molecules/ExploreExcursios";
+import Excursions from "@/components/molecules/Excursions/Excursions";
 
 const Home: React.FC = () => {
   return (

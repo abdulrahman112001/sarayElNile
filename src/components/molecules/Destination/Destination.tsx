@@ -4,6 +4,8 @@ import Image, { StaticImageData } from "next/image";
 import Fisrt from "../../../../public/assets/firstImage.jpeg";
 import Second from "../../../../public/assets/Secondimage.jpeg";
 import Third from "../../../../public/assets/roud.jpeg";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 // Define the type for the DestinationCard props
 interface DestinationCardProps {
@@ -16,7 +18,7 @@ const DestinationCard: React.FC<DestinationCardProps> = ({
   name,
   imageUrl,
 }) => (
-  <div className="relative rounded-lg overflow-hidden group md:w-[310px] w-[301px] h-60 ml-20  md:mx-2 my-2">
+  <div className="relative rounded-lg overflow-hidden group md:w-[310px] w-[320px] h-60 ml-12 md:mx-2 my-2">
     <Image
       src={imageUrl}
       alt={name}
@@ -35,7 +37,7 @@ const DestinationCard: React.FC<DestinationCardProps> = ({
 // Define the type for the destination array
 interface Destination {
   name: string;
-  imageUrl: any;
+  imageUrl: StaticImageData;
 }
 
 // DestinationRow component
@@ -56,24 +58,37 @@ const DestinationRow: React.FC = () => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 1.2,
+    slidesToShow: 1,
     slidesToScroll: 1,
     centerMode: true,
     centerPadding: "0px",
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1.1,
+          slidesToScroll: 1,
+          centerMode: false,
+        },
+      },
+    ],
   };
 
   return (
     <div className="p-0">
       {/* Mobile Carousel */}
       <div className="md:hidden">
-        <div className="max-w-md ">
+        <div className="max-w-md w-full overflow-hidden">
+          {" "}
+          {/* Adjust container width and overflow */}
           <Slider {...settings}>
             {destinations.map((dest, index) => (
-              <DestinationCard
+              <div
+                className="flex justify-center"
                 key={`${dest.name}-${index}`}
-                name={dest.name}
-                imageUrl={dest.imageUrl}
-              />
+              >
+                <DestinationCard name={dest.name} imageUrl={dest.imageUrl} />
+              </div>
             ))}
           </Slider>
         </div>

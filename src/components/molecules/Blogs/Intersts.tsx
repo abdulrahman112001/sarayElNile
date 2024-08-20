@@ -11,8 +11,6 @@ import {
   FaMusic,
   FaHeart,
   FaShip,
-  FaPlane,
-  FaLightbulb,
 } from "react-icons/fa";
 
 const interests = [
@@ -52,7 +50,7 @@ const interests = [
   { name: "Shore", icon: <FaShip size={32} className="text-yellow-700" /> },
 ];
 
-const InterestsSection = () => {
+const InterestsSection: React.FC = () => {
   const settings = {
     dots: false,
     infinite: true,
@@ -60,14 +58,14 @@ const InterestsSection = () => {
     slidesToShow: 2,
     slidesToScroll: 1,
     centerMode: true,
-    // Adds padding around the center slide
+    centerPadding: "0px",
     responsive: [
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 3, // Show 2 items on mobile
           slidesToScroll: 1,
-          centerMode: false,
+          centerMode: false, // Center mode off for mobile
         },
       },
     ],
@@ -75,19 +73,22 @@ const InterestsSection = () => {
 
   return (
     <section className="py-8 bg-[#FAFAFA]">
-      <div className=" mx-auto text-center">
-        <h2 className="text-center text-black font-segoe sm:font-semi-bold font-medium text-2xl md:text-special-offer md:p-5 p-5">
+      <div className="container mx-auto text-center px-4">
+        <h2 className="text-black font-segoe sm:font-semibold font-medium text-2xl md:text-3xl md:p-5 p-5">
           Interests
         </h2>
         {/* Mobile carousel */}
         <div className="block lg:hidden">
-          <Slider {...settings}>
+          <Slider {...settings} className="overflow-hidden">
             {interests.map((interest, index) => (
-              <div key={index} className="flex flex-col items-center p-4">
+              <div
+                key={index}
+                className="flex flex-col items-center p-4 space-y-4"
+              >
                 <div className="w-24 h-24 flex items-center justify-center rounded-full border border-yellow-600 bg-white">
                   {interest.icon}
                 </div>
-                <p className="mt-4 text-sm font-segoe text-center ml-4">
+                <p className="text-sm font-segoe text-center">
                   {interest.name}
                 </p>
               </div>

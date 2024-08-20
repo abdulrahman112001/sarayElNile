@@ -10,7 +10,7 @@ const ExcursionCard: React.FC<ExcursionCardProps> = ({
   imageSrc,
   recommendation,
 }) => (
-  <div className="rounded-lg overflow-hidden shadow-md border border-transparent hover:border-yellow-500 transition-border duration-300 ease-in-out">
+  <div className="rounded-lg  md:mx-0 mx-2 overflow-hidden shadow-md border border-transparent hover:border-yellow-500 transition-border duration-300 ease-in-out">
     <div className="relative">
       <Image
         src={imageSrc}

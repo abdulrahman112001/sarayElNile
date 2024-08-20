@@ -12,7 +12,7 @@ const OffersSection = (props: Props) => {
       </div>
 
       <div className="flex flex-wrap justify-center">
-        <div className="w-full sm:w-1/2 md:w-1/2 lg:w-3/6 md:p-2 py-1 px-0">
+        <div className="w-full sm:w-1/2 md:w-1/2 lg:w-3/6 md:p-2 py-1 px-0 md:mb-0 mb-2">
           <Offer
             imageSrc={Photo1}
             title="Planning a trip to the 2024 Summer Games?"
