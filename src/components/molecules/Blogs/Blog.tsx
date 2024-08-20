@@ -10,6 +10,12 @@ type Blog = {
   image: string;
 };
 
+type Props = {
+  blogData: {
+    data: Blog[];
+  };
+};
+
 const sliderSettings = {
   dots: false,
   infinite: false,
@@ -22,38 +28,43 @@ const sliderSettings = {
   centerMode: true,
 };
 
-
 const Blog: React.FC<Props> = ({ blogData }) => {
   return (
     <div className="p-0">
       <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-6 justify-center mx-auto max-w-screen-xl">
-        {blogData?.data?.map((blog) => (
-          <Card
-            key={blog.id}
-            imageSrc={blog.image}
-            title={blog.title}
-            id={blog.id.toString()}
-          />
-        ))}
+        {blogData?.data?.length > 0 ? (
+          blogData.data.map((blog) => (
+            <Card
+              key={blog.id}
+              imageSrc={blog.image}
+              title={blog.title}
+              id={blog.id.toString()}
+            />
+          ))
+        ) : (
+          <p>No blogs available</p>
+        )}
       </div>
 
       <div className="block md:hidden">
         <Slider {...sliderSettings}>
-          {blogData?.data?.map((blog) => (
-            <div key={blog.id} className="px-0">
-              <Card
-                imageSrc={blog.image}
-                title={blog.title}
-                id={blog.id.toString()}
-              />
-            </div>
-          ))}
+          {blogData?.data?.length > 0 ? (
+            blogData.data.map((blog) => (
+              <div key={blog.id} className="px-0">
+                <Card
+                  imageSrc={blog.image}
+                  title={blog.title}
+                  id={blog.id.toString()}
+                />
+              </div>
+            ))
+          ) : (
+            <p>No blogs available</p>
+          )}
         </Slider>
       </div>
     </div>
   );
 };
-
-// Fetch data with SSR
 
 export default Blog;
