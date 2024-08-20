@@ -38,7 +38,7 @@ export default function Excursions() {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 1.2, // Show 1 full card and part of the 2nd on mobile
+          slidesToShow: 1.1, // Show 1 full card and part of the 2nd on mobile
           slidesToScroll: 1,
         },
       },
@@ -51,11 +51,11 @@ export default function Excursions() {
       {/* Adjusted padding for more space */}
       <Slider {...settings} ref={sliderRef}>
         {excursionData.map((excursion) => (
-          <div key={excursion.id} className="px-[3px] md:px-[9px] mb-3">
+          <div key={excursion.id} className="px-[5px] md:px-[9px] mb-3">
             {" "}
             {/* Increased padding */}
             <Link href="/top-excursions">
-              <div key={excursion.id} className="px-[9px] mb-3">
+              <div key={excursion.id} className="px-[4px] mb-3">
                 {" "}
                 {/* Increased padding */}
                 <div className="flex flex-col max-w-lg mx-auto cursor-pointer hover:border border-gray-400 rounded-lg overflow-hidden shadow-lg bg-white h-[500px]">
