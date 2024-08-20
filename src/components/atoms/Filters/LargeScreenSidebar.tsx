@@ -11,6 +11,7 @@ interface LargeScreenSidebarProps {
   selectedAccommodationType: string;
   handlePriceChange: (event: Event, newValue: number | number[]) => void;
   handleClearFilters: () => void;
+  handleApplyFilters: () => void; // New prop for apply filters button
   setSelectedDestination: (destination: string) => void;
   setSelectedStarRating: (rating: string) => void;
   setSelectedAmenities: React.Dispatch<React.SetStateAction<string[]>>;
@@ -25,15 +26,16 @@ const LargeScreenSidebar: React.FC<LargeScreenSidebarProps> = ({
   selectedAccommodationType,
   handlePriceChange,
   handleClearFilters,
+  handleApplyFilters, // Destructure the new prop
   setSelectedDestination,
   setSelectedStarRating,
   setSelectedAmenities,
   setSelectedAccommodationType,
 }) => {
   return (
-    <div className="bg-white p-6 rounded-md shadow-md">
+    <div className="p-6 rounded-md shadow-sm">
       {/* Filters Header */}
-      <div className="flex justify-start gap-x-3 items-center mb-4">
+      <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-segoe">Applied filters</h2>
         <Button
           className="text-red-600 hover:text-red-500 font-segoe"
@@ -168,6 +170,16 @@ const LargeScreenSidebar: React.FC<LargeScreenSidebarProps> = ({
           )}
         </div>
       </FilterSection>
+
+      {/* Apply Filters Button */}
+      <div className="mt-4">
+        <Button
+          className="bg-custom-gradient text-white w-full"
+          onClick={handleApplyFilters}
+        >
+          Apply Filters
+        </Button>
+      </div>
     </div>
   );
 };

@@ -32,6 +32,12 @@ const ExcursionsTab: React.FC = () => {
     setSelectedAccommodationType("");
   };
 
+  // Define the handleApplyFilters function
+  const handleApplyFilters = () => {
+    console.log("Filters Applied");
+    // Implement the logic to apply filters
+  };
+
   return (
     <div className="flex flex-col md:flex-row gap-8 mt-8 px-6">
       {/* Large Screen Sidebar (Visible on large screens) */}
@@ -45,6 +51,7 @@ const ExcursionsTab: React.FC = () => {
             selectedAccommodationType={selectedAccommodationType}
             handlePriceChange={handlePriceChange}
             handleClearFilters={handleClearFilters}
+            handleApplyFilters={handleApplyFilters} // Pass the new prop
             setSelectedDestination={setSelectedDestination}
             setSelectedStarRating={setSelectedStarRating}
             setSelectedAmenities={setSelectedAmenities}
