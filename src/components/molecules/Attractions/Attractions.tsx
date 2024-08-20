@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import ImageCard from "../../../../public/assets/Secondimage.jpeg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { sampleAttractions } from "@/data";
 
 type Attraction = {
   id: number;
@@ -40,44 +41,7 @@ const AttractionCard: React.FC<Attraction> = ({
   );
 };
 
-const sampleAttractions: Attraction[] = [
-  {
-    id: 1,
-    name: "Scenic Lakeside",
-    imageSrc: ImageCard,
-    toursCount: 1230,
-  },
-  {
-    id: 2,
-    name: "Mountain Adventure",
-    imageSrc: ImageCard,
-    toursCount: 850,
-  },
-  {
-    id: 3,
-    name: "City Exploration",
-    imageSrc: ImageCard,
-    toursCount: 1500,
-  },
-  {
-    id: 4,
-    name: "Scenic Lakeside",
-    imageSrc: ImageCard,
-    toursCount: 1230,
-  },
-  {
-    id: 5,
-    name: "Mountain Adventure",
-    imageSrc: ImageCard,
-    toursCount: 850,
-  },
-  {
-    id: 6,
-    name: "City Exploration",
-    imageSrc: ImageCard,
-    toursCount: 1500,
-  },
-];
+
 
 const Attractions: React.FC = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);

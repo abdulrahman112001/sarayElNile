@@ -8,7 +8,7 @@ import { Search } from "lucide-react";
 type DateRange = [Date | null, Date | null];
 
 const SearchExcursions: React.FC = () => {
-  const [location, setLocation] = useState<string>("Where");
+  const [location, setLocation] = useState<string>("");
   const [dateRange, setDateRange] = useState<DateRange>([null, null]);
   const [openModal, setOpenModal] = useState<boolean>(false);
 

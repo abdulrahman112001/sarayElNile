@@ -1,6 +1,7 @@
 import BLogData from "@/components/molecules/BlogDetails/BLogData";
 import HeroSectionBlogs from "@/components/molecules/BlogDetails/HeroBlogDetails";
 import RelatedTours from "@/components/molecules/BlogDetails/RelatedTours";
+import Blog from "@/components/molecules/Blogs/Blog";
 import React from "react";
 
 type Props = {};
@@ -18,6 +19,10 @@ const BlogDetails: React.FC<Props> = (props) => {
           <RelatedTours />
         </div>
       </div>
+      <h3 className="font-segoe text-3xl ml-5 md:mb-6 mb-6">
+        Related Articles
+      </h3>
+      <Blog />
     </div>
   );
 };

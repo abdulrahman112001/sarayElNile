@@ -685,3 +685,88 @@ export const cardDataBlog = [
 
   // Add more card objects as needed
 ];
+
+
+export const sampleAttractions = [
+  {
+    id: 1,
+    name: "Scenic Lakeside",
+    imageSrc: ImageCard,
+    toursCount: 1230,
+  },
+  {
+    id: 2,
+    name: "Mountain Adventure",
+    imageSrc: ImageCard,
+    toursCount: 850,
+  },
+  {
+    id: 3,
+    name: "City Exploration",
+    imageSrc: ImageCard,
+    toursCount: 1500,
+  },
+  {
+    id: 4,
+    name: "Scenic Lakeside",
+    imageSrc: ImageCard,
+    toursCount: 1230,
+  },
+  {
+    id: 5,
+    name: "Mountain Adventure",
+    imageSrc: ImageCard,
+    toursCount: 850,
+  },
+  {
+    id: 6,
+    name: "City Exploration",
+    imageSrc: ImageCard,
+    toursCount: 1500,
+  },
+];
+
+
+export const blogsData = [
+  {
+    title: "Queen, King, Divine God: The tale of Hatshepsut Temple",
+    content:
+      "In this comprehensive guide, I'll take you on a journey to explore the captivating world of Christmas in Thailand. From traditional customs to vibrant festivities, we'll uncover the hidden gems that make this time of year so special in the Land of Smiles.",
+  },
+  {
+    title: "Thai Christmas Traditions and Customs",
+    content:
+      "Although Thailand is not a Christian-majority country, the Thai people have embraced certain Christmas traditions with their own unique twist. One of the most notable traditions is the use of the iconic 'Loi Krathong' or Thai floating lanterns during the holiday season.",
+  },
+  {
+    title: "Festive Decorations",
+    content:
+      "These stunning trees are adorned with colorful flowers, ornaments, and intricate paper decorations, creating a mesmerizing display that's quintessentially Thai. Families gather to decorate their homes with these beautiful trees, infusing the holiday season with a touch of local flair.",
+  },
+  {
+    title: "Gift-Giving Customs",
+    content:
+      "Another cherished tradition is the exchange of 'Khob Khun' or 'Thank You' cards during the Christmas season. These cards are often adorned with Thai motifs and are given to express gratitude and well wishes to friends, family, and colleagues.",
+  },
+  {
+    title: "Queen, King, Divine God: The tale of Hatshepsut Temple",
+    content:
+      "In this comprehensive guide, I'll take you on a journey to explore the captivating world of Christmas in Thailand. From traditional customs to vibrant festivities, we'll uncover the hidden gems that make this time of year so special in the Land of Smiles.",
+  },
+  {
+    title: "Thai Christmas Traditions and Customs",
+    content:
+      "Although Thailand is not a Christian-majority country, the Thai people have embraced certain Christmas traditions with their own unique twist. One of the most notable traditions is the use of the iconic 'Loi Krathong' or Thai floating lanterns during the holiday season.",
+  },
+  {
+    title: "Festive Decorations",
+    content:
+      "These stunning trees are adorned with colorful flowers, ornaments, and intricate paper decorations, creating a mesmerizing display that's quintessentially Thai. Families gather to decorate their homes with these beautiful trees, infusing the holiday season with a touch of local flair.",
+  },
+  {
+    title: "Gift-Giving Customs",
+    content:
+      "Another cherished tradition is the exchange of 'Khob Khun' or 'Thank You' cards during the Christmas season. These cards are often adorned with Thai motifs and are given to express gratitude and well wishes to friends, family, and colleagues.",
+  },
+];
+

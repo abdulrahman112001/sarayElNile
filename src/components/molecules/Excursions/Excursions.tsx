@@ -48,6 +48,9 @@ export default function Excursions() {
   return (
     <div className="relative">
       {" "}
+      <h2 className="md:text-3xl text-xl font-segoe ml-5 mb-6 text-start">
+        Tours and Tickets to Experience Giza Pyramids
+      </h2>
       {/* Adjusted padding for more space */}
       <Slider {...settings} ref={sliderRef}>
         {excursionData.map((excursion) => (
