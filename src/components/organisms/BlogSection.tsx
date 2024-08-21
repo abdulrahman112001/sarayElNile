@@ -1,9 +1,17 @@
 import React from "react";
 import Blog from "../molecules/Blogs/Blog";
 
+type BlogData = {
+  id: number;
+  title: string;
+  content: string;
+  created_at: string;
+  image: string;
+};
+
 type Props = {
   blogData: {
-    data: Blog[];
+    data: BlogData[];
   };
 };
 
@@ -14,7 +22,11 @@ const BlogSection: React.FC<Props> = ({ blogData }) => {
         All Articles
       </div>
       <div>
-        <Blog blogData={blogData} />
+        {blogData.data.length > 0 ? (
+          <Blog blogData={blogData} />
+        ) : (
+          <p>No blogs available</p>
+        )}
       </div>
     </div>
   );

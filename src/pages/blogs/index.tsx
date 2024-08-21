@@ -1,13 +1,15 @@
-import React from "react";
 import HeroBlog from "@/components/molecules/Blogs/HeroBlog";
 import InterestsSection from "@/components/molecules/Blogs/Intersts";
 import { DestinationSection } from "@/components/organisms";
 import BlogSection from "@/components/organisms/BlogSection";
 import fetchData from "@/helper/FetchData";
+import React from "react";
 
 type Blog = {
   id: number;
   title: string;
+  content: string;
+  created_at: string;
   image: string;
 };
 
@@ -18,7 +20,6 @@ type Props = {
 };
 
 const BLogs: React.FC<Props> = ({ blogData }) => {
-  console.log("🚀 ~ BLogs ~ blogData:", blogData); // Check the data here
   return (
     <div>
       <HeroBlog />
@@ -30,21 +31,13 @@ const BLogs: React.FC<Props> = ({ blogData }) => {
 };
 
 export async function getServerSideProps() {
-  try {
-    const blogData = await fetchData("blogs"); // Ensure this endpoint is correct
-    return {
-      props: {
-        blogData,
-      },
-    };
-  } catch (error) {
-    console.error("Error in getServerSideProps:", error);
-    return {
-      props: {
-        blogData: { data: [] }, // Return empty data to prevent breaking the page
-      },
-    };
-  }
+  const blogData = await fetchData("blogs");
+
+  return {
+    props: {
+      blogData,
+    },
+  };
 }
 
 export default BLogs;
