@@ -8,7 +8,7 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  output: "export", // متفعلهاش سيبها كدا
+  //   output: "export", // متفعلهاش سيبها كدا
 
   images: {
     unoptimized: true,

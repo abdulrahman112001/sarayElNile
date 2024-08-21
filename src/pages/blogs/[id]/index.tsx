@@ -1,12 +1,24 @@
+import React from "react";
 import BLogData from "@/components/molecules/BlogDetails/BLogData";
 import HeroSectionBlogs from "@/components/molecules/BlogDetails/HeroBlogDetails";
 import RelatedTours from "@/components/molecules/BlogDetails/RelatedTours";
 import Blog from "@/components/molecules/Blogs/Blog";
-import React from "react";
 
-type Props = {};
+type BlogData = {
+  id: number;
+  title: string;
+  content: string;
+  created_at: string;
+  image: string;
+};
 
-const BlogDetails: React.FC<Props> = (props) => {
+type Props = {
+  blogData: {
+    data: BlogData[];
+  };
+};
+
+const BlogDetails: React.FC<Props> = ({ blogData }) => {
   return (
     <div className="mt-16 bg-[#FAFAFA]">
       <HeroSectionBlogs />
@@ -22,7 +34,7 @@ const BlogDetails: React.FC<Props> = (props) => {
       <h3 className="font-segoe text-3xl ml-5 md:mb-6 mb-6">
         Related Articles
       </h3>
-      <Blog />
+      <Blog blogData={blogData} />
     </div>
   );
 };
