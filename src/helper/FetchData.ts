@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const FetchData = async (endpoint: string, language: 'ar' | 'en' = 'en') => {
+const fetchData = async (endpoint: string, language: 'ar' | 'en' = 'en') => {
   const config = {
     headers: {
       "Accept-Language": language,
@@ -21,4 +21,4 @@ const FetchData = async (endpoint: string, language: 'ar' | 'en' = 'en') => {
   }
 };
 
-export default FetchData;
+export default fetchData;
