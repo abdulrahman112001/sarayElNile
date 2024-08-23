@@ -1,22 +1,15 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Modal,
-  Slide,
-  IconButton,
-  TextField,
-  Input,
-} from "@mui/material";
+import { Button, Modal, Slide, IconButton, Input } from "@mui/material";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import Dropdown from "./Dropdown";
 import { ChevronDown, Plus, Minus, X } from "lucide-react";
-
 import { Dayjs } from "dayjs";
 import DatePickerModal from "@/components/molecules/dataPicker";
+import Thanks from "@/components/molecules/Thanks";
 
-const locations: string[] = ["New York", "London", "Paris", "Tokyo"];
-const months: string[] = [
+const locations = ["New York", "London", "Paris", "Tokyo"];
+const months = [
   "January",
   "February",
   "March",
@@ -32,25 +25,33 @@ const months: string[] = [
 ];
 
 export default function BookingFormModal() {
-  const [adults, setAdults] = useState<number>(1);
-  const [children, setChildren] = useState<number>(1);
-  const [infants, setInfants] = useState<number>(0);
-  const [location, setLocation] = useState<string>("Where");
-  const [month, setMonth] = useState<string>("");
-  const [isLocationDropdownOpen, setIsLocationDropdownOpen] =
-    useState<boolean>(false);
-  const [isMonthDropdownOpen, setIsMonthDropdownOpen] =
-    useState<boolean>(false);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [value, setValue] = useState<string | undefined>("");
-  const [isDatePickerModalOpen, setIsDatePickerModalOpen] =
-    useState<boolean>(false);
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(1);
+  const [infants, setInfants] = useState(0);
+  const [location, setLocation] = useState("Where");
+  const [month, setMonth] = useState("");
+  const [isLocationDropdownOpen, setIsLocationDropdownOpen] = useState(false);
+  const [isMonthDropdownOpen, setIsMonthDropdownOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [value, setValue] = useState("");
+  const [isDatePickerModalOpen, setIsDatePickerModalOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
-  const [rangeDays, setRangeDays] = useState<number>(1);
+  const [rangeDays, setRangeDays] = useState(1);
+  const [showThanks, setShowThanks] = useState(false); // State to control Thanks component
 
   const handleDateChange = (date: Dayjs | null, days: number) => {
     setSelectedDate(date);
     setRangeDays(days);
+  };
+
+  const handleSubmit = () => {
+    // Here, you can also handle form submission logic
+    setShowThanks(true); // Show Thanks component on submit
+    setIsModalOpen(false); // Close the booking form modal
+  };
+
+  const handleCloseThanks = () => {
+    setShowThanks(false); // Hide Thanks component
   };
 
   return (
@@ -182,7 +183,10 @@ export default function BookingFormModal() {
             </div>
 
             <div className="pt-4">
-              <Button className="w-full p-3 bg-[#986518] text-white rounded-md hover:bg-yellow-700 transition duration-150">
+              <Button
+                className="w-full p-3 bg-[#986518] text-white rounded-md hover:bg-yellow-700 transition duration-150"
+                onClick={handleSubmit} // Handle submit to show Thanks component
+              >
                 Submit
               </Button>
             </div>
@@ -196,6 +200,14 @@ export default function BookingFormModal() {
         onClose={() => setIsDatePickerModalOpen(false)}
         onDateChange={handleDateChange}
       />
+
+      {/* Thanks Modal */}
+      {showThanks && (
+        <Thanks
+          onClose={handleCloseThanks}
+          message="Your booking has been successfully submitted."
+        />
+      )}
     </>
   );
 }

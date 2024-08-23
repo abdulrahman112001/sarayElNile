@@ -3,9 +3,6 @@ import Image, { StaticImageData } from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
-import DatePickerComponent from "../molecules/dataPicker";
-import DatePickerComponentMui from "../molecules/dataPicker";
-
 type ImageSource = string | StaticImageData;
 
 interface ImageGalleryProps {

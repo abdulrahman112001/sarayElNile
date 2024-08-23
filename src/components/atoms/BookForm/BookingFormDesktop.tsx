@@ -5,6 +5,7 @@ import Dropdown from "./Dropdown";
 import { ChevronDown, Plus, Minus } from "lucide-react";
 import { Dayjs } from "dayjs";
 import DatePickerModal from "@/components/molecules/dataPicker";
+import Thanks from "@/components/molecules/Thanks";
 
 const locations: string[] = ["New York", "London", "Paris", "Tokyo"];
 const months: string[] = [
@@ -36,12 +37,24 @@ export default function BookingFormDesktop() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
   const [rangeDays, setRangeDays] = useState<number>(1);
+  const [isThanksVisible, setIsThanksVisible] = useState<boolean>(false);
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
+
   const handleDateChange = (date: Dayjs | null, days: number) => {
     setSelectedDate(date);
     setRangeDays(days);
+  };
+
+  const handleSubmit = () => {
+    // Show the Thanks component when the submit button is clicked
+    setIsThanksVisible(true);
+  };
+
+  const handleCloseThanks = () => {
+    // Hide the Thanks component when the close button is clicked
+    setIsThanksVisible(false);
   };
 
   return (
@@ -145,7 +158,11 @@ export default function BookingFormDesktop() {
       </form>
 
       <div className="pt-4">
-        <button className="w-full p-3 bg-[#986518] text-white rounded-md hover:bg-yellow-700 transition duration-150">
+        <button
+          type="button"
+          onClick={handleSubmit}
+          className="w-full p-3 bg-[#986518] text-white rounded-md hover:bg-yellow-700 transition duration-150"
+        >
           Submit
         </button>
       </div>
@@ -155,6 +172,13 @@ export default function BookingFormDesktop() {
         onClose={handleCloseModal}
         onDateChange={handleDateChange}
       />
+
+      {isThanksVisible && (
+        <Thanks
+          onClose={handleCloseThanks}
+          message="Thank you for your submission!"
+        />
+      )}
     </div>
   );
 }
