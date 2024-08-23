@@ -3,6 +3,8 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import Dropdown from "./Dropdown";
 import { ChevronDown, Plus, Minus } from "lucide-react";
+import { Dayjs } from "dayjs";
+import DatePickerModal from "@/components/molecules/dataPicker";
 
 const locations: string[] = ["New York", "London", "Paris", "Tokyo"];
 const months: string[] = [
@@ -30,7 +32,17 @@ export default function BookingFormDesktop() {
     useState<boolean>(false);
   const [isMonthDropdownOpen, setIsMonthDropdownOpen] =
     useState<boolean>(false);
-  const [value, setValue] = useState<string | undefined>("");
+  const [phoneNumber, setPhoneNumber] = useState<string | undefined>("");
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
+  const [rangeDays, setRangeDays] = useState<number>(1);
+
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
+  const handleDateChange = (date: Dayjs | null, days: number) => {
+    setSelectedDate(date);
+    setRangeDays(days);
+  };
 
   return (
     <div className="hidden md:block p-6 bg-white rounded-lg shadow-lg">
@@ -59,8 +71,8 @@ export default function BookingFormDesktop() {
         <div className="relative flex items-center">
           <PhoneInput
             placeholder="Enter Your Number"
-            value={value}
-            onChange={setValue}
+            value={phoneNumber}
+            onChange={setPhoneNumber}
             defaultCountry="US"
             className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
@@ -71,8 +83,20 @@ export default function BookingFormDesktop() {
             type="text"
             placeholder="Start Date"
             className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            readOnly
+            value={
+              selectedDate
+                ? `${selectedDate.format("YYYY-MM-DD")} to ${selectedDate
+                    .add(rangeDays - 1, "day")
+                    .format("YYYY-MM-DD")}`
+                : "Select a date range"
+            }
+            onClick={handleOpenModal}
           />
-          <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          <ChevronDown
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer"
+            onClick={handleOpenModal}
+          />
         </div>
 
         <div className="relative">
@@ -125,6 +149,12 @@ export default function BookingFormDesktop() {
           Submit
         </button>
       </div>
+
+      <DatePickerModal
+        open={isModalOpen}
+        onClose={handleCloseModal}
+        onDateChange={handleDateChange}
+      />
     </div>
   );
 }

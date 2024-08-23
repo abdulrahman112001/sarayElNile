@@ -113,7 +113,6 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
       </div>
 
       <p className="font-segoe mt-5 text-xl">{mainContent}</p>
-      <div>{/* <DatePickerComponentMui /> */}</div>
     </div>
   );
 };

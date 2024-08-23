@@ -1,9 +1,19 @@
 import React, { useState } from "react";
-import { Button, Modal, Slide, IconButton } from "@mui/material";
+import {
+  Button,
+  Modal,
+  Slide,
+  IconButton,
+  TextField,
+  Input,
+} from "@mui/material";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import Dropdown from "./Dropdown";
 import { ChevronDown, Plus, Minus, X } from "lucide-react";
+
+import { Dayjs } from "dayjs";
+import DatePickerModal from "@/components/molecules/dataPicker";
 
 const locations: string[] = ["New York", "London", "Paris", "Tokyo"];
 const months: string[] = [
@@ -33,6 +43,15 @@ export default function BookingFormModal() {
     useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [value, setValue] = useState<string | undefined>("");
+  const [isDatePickerModalOpen, setIsDatePickerModalOpen] =
+    useState<boolean>(false);
+  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
+  const [rangeDays, setRangeDays] = useState<number>(1);
+
+  const handleDateChange = (date: Dayjs | null, days: number) => {
+    setSelectedDate(date);
+    setRangeDays(days);
+  };
 
   return (
     <>
@@ -46,7 +65,7 @@ export default function BookingFormModal() {
       <Modal
         open={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        className="flex  w-full h-full"
+        className="flex w-full h-full"
       >
         <Slide direction="up" in={isModalOpen} mountOnEnter unmountOnExit>
           <div className="bg-white w-full h-full flex flex-col p-6 relative">
@@ -93,13 +112,22 @@ export default function BookingFormModal() {
                   />
                 </div>
 
-                <div className="relative">
-                  <input
+                <div className="relative ">
+                  <Input
                     type="text"
                     placeholder="Start Date"
-                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    value={
+                      selectedDate
+                        ? `${selectedDate.format(
+                            "YYYY-MM-DD"
+                          )} to ${selectedDate
+                            .add(rangeDays - 1, "day")
+                            .format("YYYY-MM-DD")}`
+                        : "Select a date range"
+                    }
+                    onClick={() => setIsDatePickerModalOpen(true)}
+                    className="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 </div>
 
                 <div className="relative">
@@ -161,6 +189,13 @@ export default function BookingFormModal() {
           </div>
         </Slide>
       </Modal>
+
+      {/* Date Picker Modal */}
+      <DatePickerModal
+        open={isDatePickerModalOpen}
+        onClose={() => setIsDatePickerModalOpen(false)}
+        onDateChange={handleDateChange}
+      />
     </>
   );
 }
