@@ -61,12 +61,11 @@ export default function Excursions() {
               <div key={excursion.id} className="px-[4px] mb-3">
                 {" "}
                 {/* Increased padding */}
-                <div className="flex flex-col max-w-lg mx-auto cursor-pointer hover:border border-gray-400 rounded-lg overflow-hidden shadow-lg bg-white h-[500px]">
-                  {" "}
+                <div className="flex flex-col max-w-lg mx-auto cursor-pointer border hover:border-yellow-500 border-gray-400 rounded-lg overflow-hidden shadow-lg bg-white h-[500px] transition-all duration-300 ease-in-out">
                   {/* Increased card width */}
-                  <div className="relative h-72">
+                  <div className="relative h-72 overflow-hidden">
                     <Image
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-300 ease-in-out transform hover:scale-105"
                       src={excursion.image}
                       alt={excursion.title}
                     />

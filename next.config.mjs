@@ -1,5 +1,4 @@
 /** @type {import('next').NextConfig} */
-
 const nextConfig = {
   reactStrictMode: false,
   eslint: {
@@ -8,10 +7,12 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  // output: "export", // متفعلهاش سيبها كدا 
+
+  // output: "export",
 
   images: {
     unoptimized: true,
   },
 };
+
 export default nextConfig;

@@ -18,10 +18,10 @@ export default function Home() {
       <OffersSection />
       <WhyUsSection />
       <ToursSection />
-      <DestinationSection />
+      {/* <DestinationSection />
       <AttractionsSection />
-      <ExcursionsSection />
-      <AdventuresSection />
+      <ExcursionsSection /> */}
+      {/* <AdventuresSection /> */}
       <PeaopleSaySection />
     </>
   );
