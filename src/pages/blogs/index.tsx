@@ -18,7 +18,6 @@ type Props = {
 };
 
 const BLogs = ({ blogData }: Props) => {
-  console.log("🚀 ~ BLogs ~ blogData:", blogData);
   return (
     <div>
       <HeroBlog />
@@ -29,7 +28,7 @@ const BLogs = ({ blogData }: Props) => {
   );
 };
 export async function getServerSideProps() {
-  const blogData = await fetchData("blogs"); // Ensure this endpoint is correct
+  const blogData = await fetchData("blogs");
 
   return {
     props: {
