@@ -41,7 +41,7 @@ interface Destination {
 }
 
 // DestinationRow component
-const DestinationRow: React.FC = () => {
+const DestinationRow: React.FC = ({Destinations}) => {
   const destinations: Destination[] = [
     { name: "Giza", imageUrl: Fisrt },
     { name: "Dahab", imageUrl: Second },
@@ -82,12 +82,12 @@ const DestinationRow: React.FC = () => {
           {" "}
           {/* Adjust container width and overflow */}
           <Slider {...settings}>
-            {destinations.map((dest, index) => (
+            {Destinations?.data?.map((dest, index) => (
               <div
                 className="flex justify-center"
                 key={`${dest.name}-${index}`}
               >
-                <DestinationCard name={dest.name} imageUrl={dest.imageUrl} />
+                <DestinationCard name={dest.name} imageUrl={dest.panar_image} />
               </div>
             ))}
           </Slider>
@@ -95,11 +95,11 @@ const DestinationRow: React.FC = () => {
       </div>
       {/* Desktop Grid */}
       <div className="hidden md:flex flex-wrap justify-center p-1">
-        {destinations.map((dest, index) => (
+        {Destinations?.data?.map((dest, index) => (
           <DestinationCard
             key={`${dest.name}-${index}`}
             name={dest.name}
-            imageUrl={dest.imageUrl}
+            imageUrl={dest.panar_image}
           />
         ))}
       </div>
