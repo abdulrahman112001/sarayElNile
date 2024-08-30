@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DatePicker, DatePickerProps } from "@mui/x-date-pickers/DatePicker";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import {
   TextField,
   Box,
@@ -13,7 +13,6 @@ import {
   DialogActions,
 } from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
-import { TextFieldProps } from "@mui/material/TextField";
 
 interface DatePickerModalProps {
   open: boolean;
@@ -32,13 +31,6 @@ const DatePickerModal: React.FC<DatePickerModalProps> = ({
   useEffect(() => {
     if (selectedDate) {
       const endDate = selectedDate.add(rangeDays - 1, "day");
-      console.log("Selected date:", selectedDate.format("YYYY-MM-DD"));
-      console.log(
-        "Date range:",
-        selectedDate.format("YYYY-MM-DD"),
-        "to",
-        endDate.format("YYYY-MM-DD")
-      );
       onDateChange(selectedDate, rangeDays);
     }
   }, [selectedDate, rangeDays, onDateChange]);
@@ -54,13 +46,12 @@ const DatePickerModal: React.FC<DatePickerModalProps> = ({
               label="Select Date"
               value={selectedDate}
               onChange={(newValue) => setSelectedDate(newValue)}
-              renderInput={(params: TextFieldProps) => (
-                <TextField {...params} />
-              )} // Ensure proper typing
+              renderInput={(params) => <TextField {...params} />}
             />
-
             <Box sx={{ mt: 2 }}>
-              <Typography variant="h6">Select Number of Days</Typography>
+              <Typography variant="h6" className="mb-5">
+                Select Number of Days
+              </Typography>
               <TextField
                 type="number"
                 label="Number of Days"
@@ -70,7 +61,6 @@ const DatePickerModal: React.FC<DatePickerModalProps> = ({
                 fullWidth
               />
             </Box>
-
             <Typography variant="body1" sx={{ mt: 2 }}>
               Selected date:{" "}
               {selectedDate ? selectedDate.format("YYYY-MM-DD") : "None"}
@@ -85,7 +75,19 @@ const DatePickerModal: React.FC<DatePickerModalProps> = ({
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose}>Close</Button>
+          <Button
+            onClick={() => {
+              if (selectedDate) {
+                const endDate = selectedDate.add(rangeDays - 1, "day");
+                onDateChange(selectedDate, rangeDays);
+                onClose();
+              }
+            }}
+            variant="contained"
+            className="bg-custom-gradient"
+          >
+            Apply
+          </Button>
         </DialogActions>
       </Dialog>
     </LocalizationProvider>

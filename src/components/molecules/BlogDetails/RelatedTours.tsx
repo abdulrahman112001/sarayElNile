@@ -23,17 +23,17 @@ const RelatedTours = () => {
       <div className="hidden lg:grid lg:grid-cols-1 lg:gap-4">
         {TheexcursionDataBlogs.map((excursion) => (
           <div key={excursion.id} className="p-2">
-            <div className="flex flex-col cursor-pointer hover:border border-gray-400 rounded-lg  shadow-lg bg-white h-[550px]">
-              <div className="relative h-2/3">
+            <div className="flex flex-col cursor-pointer hover:shadow-lg transition-all duration-300 ease-in-out border border-transparent hover:border-yellow-500 rounded-lg bg-white h-[550px]">
+              <div className="relative h-2/3 overflow-hidden rounded-t-lg">
                 <Image
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-300 ease-in-out transform hover:scale-105"
                   src={excursion.image}
                   alt={excursion.title}
                 />
                 <div className="absolute top-2 left-2 bg-[#FFF1BA] text-[#232323] text-xs font-segoe font-medium px-2 py-1 rounded">
                   Top Rated
                 </div>
-                <button className="absolute top-2 right-2 text-white hover:text-red-500">
+                <button className="absolute top-2 right-2 text-white hover:text-red-500 transition-colors duration-300 ease-in-out">
                   <BsHeart size={24} />
                 </button>
               </div>
@@ -91,17 +91,17 @@ const RelatedTours = () => {
         <Slider {...settings}>
           {TheexcursionDataBlogs.map((excursion) => (
             <div key={excursion.id} className="px-2 pb-3">
-              <div className="flex flex-col cursor-pointer hover:border border-gray-400 rounded-lg overflow-hidden shadow-md bg-white h-[500px]">
-                <div className="relative h-2/3">
+              <div className="flex flex-col cursor-pointer hover:shadow-lg transition-all duration-300 ease-in-out border border-transparent hover:border-yellow-500 rounded-lg overflow-hidden bg-white h-[500px]">
+                <div className="relative h-2/3 overflow-hidden rounded-t-lg">
                   <Image
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-300 ease-in-out transform hover:scale-105"
                     src={excursion.image}
                     alt={excursion.title}
                   />
                   <div className="absolute top-2 left-2 bg-[#FFF1BA] text-[#232323] text-xs font-segoe font-medium px-2 py-1 rounded">
                     Top Rated
                   </div>
-                  <button className="absolute top-2 right-2 text-white hover:text-red-500">
+                  <button className="absolute top-2 right-2 text-white hover:text-red-500 transition-colors duration-300 ease-in-out">
                     <BsHeart size={24} />
                   </button>
                 </div>

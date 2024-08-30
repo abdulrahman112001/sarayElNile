@@ -12,35 +12,38 @@ const filterOptions = [
   { label: "Price", options: ["$0-$50", "$50-$100", "$100+"] },
   { label: "Adventure Type", options: ["Hiking", "Water sports", "City tour"] },
   { label: "Age Range", options: ["All ages", "18+", "21+"] },
-  { label: "Maximum Group Size", options: ["1-5", "6-10", "11+"] },
+  { label: "Max Group Size", options: ["1-5", "6-10", "11+"] },
 ];
 
 const Drops: React.FC = () => {
-  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [openModal, setOpenModal] = useState(false);
   const [openDropdowns, setOpenDropdowns] = useState<{
     [key: string]: boolean;
+  }>({});
+  const [selectedOptions, setSelectedOptions] = useState<{
+    [key: string]: string;
   }>({});
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const handleOpenModal = (): void => setOpenModal(true);
+  const handleOpenModal = () => setOpenModal(true);
+  const handleCloseModal = () => setOpenModal(false);
 
-  const handleCloseModal = (): void => setOpenModal(false);
-
-  const handleOptionClick = (option: string): void => {
-    console.log("Selected option:", option);
-  };
-
-  const toggleDropdown = (label: string): void => {
+  const toggleDropdown = (label: string) => {
     setOpenDropdowns((prev) => ({
       ...prev,
       [label]: !prev[label],
     }));
   };
 
-  const handleSelectChange = (event: SelectChangeEvent<string>): void => {
-    handleOptionClick(event.target.value);
-  };
+  const handleSelectChange =
+    (label: string) => (event: SelectChangeEvent<string>) => {
+      const value = event.target.value;
+      setSelectedOptions((prev) => ({
+        ...prev,
+        [label]: value,
+      }));
+    };
 
   return (
     <div className="flex sm:flex-row flex-wrap items-center gap-3 p-3 px-5">
@@ -56,9 +59,10 @@ const Drops: React.FC = () => {
             key={filter.label}
             label={filter.label}
             options={filter.options}
+            selectedOption={selectedOptions[filter.label] || ""}
             openDropdown={openDropdowns[filter.label] || false}
             onClick={() => toggleDropdown(filter.label)}
-            onSelectChange={handleSelectChange}
+            onSelectChange={handleSelectChange(filter.label)}
           />
         ))
       )}
@@ -67,7 +71,7 @@ const Drops: React.FC = () => {
         open={openModal}
         onClose={handleCloseModal}
         options={filterOptions}
-        onOptionClick={handleOptionClick}
+        onOptionClick={(option) => console.log("Selected option:", option)}
       />
     </div>
   );
