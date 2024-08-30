@@ -20,7 +20,7 @@ const AttractionCard: React.FC<AttractionCardProps> = ({
 }) => {
   return (
     <Link href="top-packages">
-      <div className="flex transition-all border border-gray-200 ease-in-out flex-col cursor-pointer shadow-md rounded-lg hover:border hover:border-yellow-400 overflow-hidden bg-white md:w-11/12 w-[340px] sm:mx-2  ml-3 my-2 sm:my-4 lg:my-6">
+      <div className="flex transition-all border border-gray-200 ease-in-out flex-col cursor-pointer shadow-md rounded-lg hover:border hover:border-yellow-400 overflow-hidden bg-white md:w-11/12 max-w-sm sm:mx-2  ml-3 my-2 sm:my-4 lg:my-6">
         <div className="relative h-60 w-full">
           <Image
             src={image}

@@ -1,6 +1,6 @@
 import HeroBlog from "@/components/molecules/Blogs/HeroBlog";
 import InterestsSection from "@/components/molecules/Blogs/Intersts";
-import { DestinationSection } from "@/components/organisms";
+import DestinationSection from "@/components/organisms/DestinationSection"; // Ensure the correct path
 import BlogSection from "@/components/organisms/BlogSection";
 import fetchData from "@/helper/FetchData";
 import React from "react";
@@ -13,19 +13,28 @@ type Blog = {
   image: string;
 };
 
+type Destination = {
+  id: number;
+  name: string;
+  country: string;
+  image: string;
+};
+
 type Props = {
   blogData: {
     data: Blog[];
   };
+  Destinations: Destination[];
 };
 
-const BLogs: React.FC<Props> = ({ blogData , Destinations }) => {
-  console.log("🚀 ~ Destinations:", Destinations)
+const BLogs: React.FC<Props> = ({ blogData, Destinations }) => {
+  console.log("🚀 ~ Destinations:", Destinations);
   return (
     <div>
       <HeroBlog />
       <InterestsSection />
-      <DestinationSection Destinations={Destinations}/>
+      <DestinationSection Destinations={Destinations} />{" "}
+      {/* Correctly pass props */}
       <BlogSection blogData={blogData} />
     </div>
   );
@@ -35,11 +44,10 @@ export async function getServerSideProps() {
   const blogData = await fetchData("blogs");
   const Destinations = await fetchData("countries");
 
-
   return {
     props: {
       blogData,
-      Destinations
+      Destinations,
     },
   };
 }

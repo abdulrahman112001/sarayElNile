@@ -1,16 +1,13 @@
 import React from "react";
 import Slider from "react-slick";
 import Image, { StaticImageData } from "next/image";
-import Fisrt from "../../../../public/assets/firstImage.jpeg";
-import Second from "../../../../public/assets/Secondimage.jpeg";
-import Third from "../../../../public/assets/roud.jpeg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 // Define the type for the DestinationCard props
 interface DestinationCardProps {
   name: string;
-  imageUrl: StaticImageData; // StaticImageData is the type for images imported via next/image
+  imageUrl: StaticImageData | string;
 }
 
 // DestinationCard component with typed props
@@ -34,25 +31,16 @@ const DestinationCard: React.FC<DestinationCardProps> = ({
   </div>
 );
 
-// Define the type for the destination array
-interface Destination {
-  name: string;
-  imageUrl: StaticImageData;
+// Adjust the prop type to accept an array directly
+interface DestinationRowProps {
+  Destinations: {
+    name: string;
+    panar_image: StaticImageData | string;
+  }[];
 }
 
 // DestinationRow component
-const DestinationRow: React.FC = ({Destinations}) => {
-  const destinations: Destination[] = [
-    { name: "Giza", imageUrl: Fisrt },
-    { name: "Dahab", imageUrl: Second },
-    { name: "Aswan", imageUrl: Third },
-    { name: "Giza", imageUrl: Fisrt },
-    { name: "Giza", imageUrl: Fisrt },
-    { name: "Dahab", imageUrl: Second },
-    { name: "Aswan", imageUrl: Third },
-    { name: "Giza", imageUrl: Fisrt },
-  ];
-
+const DestinationRow: React.FC<DestinationRowProps> = ({ Destinations }) => {
   // Carousel settings
   const settings = {
     dots: false,
@@ -79,10 +67,8 @@ const DestinationRow: React.FC = ({Destinations}) => {
       {/* Mobile Carousel */}
       <div className="md:hidden">
         <div className="max-w-md w-full overflow-hidden">
-          {" "}
-          {/* Adjust container width and overflow */}
           <Slider {...settings}>
-            {Destinations?.data?.map((dest, index) => (
+            {Destinations.map((dest, index) => (
               <div
                 className="flex justify-center"
                 key={`${dest.name}-${index}`}
@@ -95,7 +81,7 @@ const DestinationRow: React.FC = ({Destinations}) => {
       </div>
       {/* Desktop Grid */}
       <div className="hidden md:flex flex-wrap justify-center p-1">
-        {Destinations?.data?.map((dest, index) => (
+        {Destinations.map((dest, index) => (
           <DestinationCard
             key={`${dest.name}-${index}`}
             name={dest.name}
