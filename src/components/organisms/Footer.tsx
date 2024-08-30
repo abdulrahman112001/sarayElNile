@@ -14,7 +14,7 @@ type Props = {};
 
 const Footer = (props: Props) => {
   return (
-    <footer className="bg-white py-10 px-10 font-sans tracking-wide">
+    <footer className="bg-white py-10 px-10 font-sans tracking-wide mt-4">
       <div className="max-w-2xl mx-auto text-center">
         <Link href="/" className="inline-block">
           <Image src={Logo} alt="logo" className="w-48" />

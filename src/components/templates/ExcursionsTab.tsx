@@ -39,7 +39,7 @@ const ExcursionsTab: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row gap-8 mt-8 px-6">
+    <div className="flex flex-col md:flex-row gap-8 mt-8 px-6 ">
       {/* Large Screen Sidebar (Visible on large screens) */}
       {isLargeScreen ? (
         <div className="w-full md:w-1/4">
@@ -71,7 +71,7 @@ const ExcursionsTab: React.FC = () => {
       )}
 
       {/* Travel Packages */}
-      <div className="w-full md:w-3/4">
+      <div className="w-full md:w-3/4 mb-5 lg:mb-0">
         <TravelPackagePage />
       </div>
 
