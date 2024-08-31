@@ -9,22 +9,17 @@ interface ImageGalleryProps {
   title: string;
   breadcrumb: string[];
   mainContent: string;
+  images: string[];
 }
 
 const ImageGallery: React.FC<ImageGalleryProps> = ({
   title,
   breadcrumb,
   mainContent,
+  images,
 }) => {
-  const images: ImageSource[] = [
-    "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-    "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-    "https://images.unsplash.com/photo-1521747116042-5a810fda9664?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-    "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-    "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-  ];
-
   const [mainImage, setMainImage] = useState<number>(0);
+  const [showAllImages, setShowAllImages] = useState<boolean>(false);
 
   // Initialize Fancybox
   useEffect(() => {
@@ -37,6 +32,15 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
       Fancybox.destroy();
     };
   }, []);
+
+  const openGallery = () => {
+    Fancybox.show(
+      images.map((img) => ({
+        src: img,
+        type: "image",
+      }))
+    );
+  };
 
   return (
     <div className="flex flex-col">
@@ -54,27 +58,84 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
       <div className="flex flex-col md:flex-row">
         {/* Thumbnails Column for Larger Screens */}
         <div className="hidden md:flex flex-col w-1/6 space-y-2 pr-2">
-          {images.map((img, index) => (
-            <a key={index} href={img.toString()} data-fancybox="gallery">
-              <div className="relative">
+          {images.length > 0 && (
+            <>
+              {/* عرض الصورة الأولى دائمًا */}
+              <a href={images[0].toString()} data-fancybox="gallery">
                 <Image
-                  src={img}
-                  alt={`Thumbnail ${index + 1}`}
+                  src={images[0]}
+                  alt="First Thumbnail"
                   width={100}
                   height={64}
                   className={`w-full h-16 object-cover rounded-md cursor-pointer ${
-                    index === mainImage ? "ring-1 ring-yellow-500" : ""
+                    mainImage === 0 ? "ring-1 ring-yellow-500" : ""
                   }`}
-                  onClick={() => setMainImage(index)}
+                  onClick={() => setMainImage(0)}
                 />
-                {index === images.length - 1 && (
-                  <div className="absolute font-segoe inset-0 rounded-md cursor-pointer bg-black bg-opacity-50 flex items-center justify-center text-white  text-base">
-                    See More
-                  </div>
-                )}
-              </div>
-            </a>
-          ))}
+              </a>
+
+              {showAllImages ? (
+                // عرض جميع الصور إذا تم الضغط على "See More"
+                images.slice(1, -1).map((img, index) => (
+                  <a key={index + 1} href={img.toString()} data-fancybox="gallery">
+                    <Image
+                      src={img}
+                      alt={`Thumbnail ${index + 2}`}
+                      width={100}
+                      height={64}
+                      className={`w-full h-16 object-cover rounded-md cursor-pointer ${
+                        mainImage === index + 1 ? "ring-1 ring-yellow-500" : ""
+                      }`}
+                      onClick={() => setMainImage(index + 1)}
+                    />
+                  </a>
+                ))
+              ) : (
+                images.slice(-3).map((img, index) => (
+                  <a key={index + images.length - 3} href={img.toString()} data-fancybox="gallery">
+                    <Image
+                      src={img}
+                      alt={`Thumbnail ${images.length - 3 + index + 1}`}
+                      width={100}
+                      height={64}
+                      className={`w-full h-16 object-cover rounded-md cursor-pointer ${
+                        mainImage === images.length - 3 + index ? "ring-1 ring-yellow-500" : ""
+                      }`}
+                      onClick={() => setMainImage(images.length - 3 + index)}
+                    />
+                  </a>
+                ))
+              )}
+
+              <a
+                href={images[images.length - 1].toString()}
+                data-fancybox="gallery"
+              >
+                <div className="relative">
+                  <Image
+                    src={images[images.length - 1]}
+                    alt="Last Thumbnail"
+                    width={100}
+                    height={64}
+                    className={`w-full h-16 object-cover rounded-md cursor-pointer ${
+                      mainImage === images.length - 1
+                        ? "ring-1 ring-yellow-500"
+                        : ""
+                    }`}
+                    onClick={() => setMainImage(images.length - 1)}
+                  />
+                  {!showAllImages && images.length > 5 && (
+                    <div
+                      className="absolute font-segoe inset-0 rounded-md cursor-pointer bg-black bg-opacity-50 flex items-center justify-center text-white text-base"
+                      onClick={openGallery} // فتح الـ Gallery عند الضغط على "See More"
+                    >
+                      See More
+                    </div>
+                  )}
+                </div>
+              </a>
+            </>
+          )}
         </div>
 
         {/* Main Image Container */}
@@ -109,7 +170,10 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
         </div>
       </div>
 
-      <p className="font-segoe mt-5 text-xl">{mainContent}</p>
+      <div
+        className="font-segoe mt-5 text-xl"
+        dangerouslySetInnerHTML={{ __html: mainContent }}
+      />
     </div>
   );
 };

@@ -3,7 +3,7 @@ import LargeScreenSidebar from "@/components/atoms/Filters/LargeScreenSidebar";
 import TravelPackagePage from "@/components/molecules/TravelCardSearch/TravelCardSearch";
 import SearchInput from "@/components/atoms/Search/Search";
 
-const Laptop: React.FC = () => {
+const Laptop: React.FC = ({toursData}) => {
   // State management for filters
   const [price, setPrice] = useState<[number, number]>([0, 1000]);
   const [selectedDestination, setSelectedDestination] =
@@ -73,7 +73,10 @@ const Laptop: React.FC = () => {
 
         {/* Travel Packages */}
         <div className="w-full md:w-3/4">
-          <TravelPackagePage />
+       
+        
+          <TravelPackagePage  toursData={toursData}/>
+      
         </div>
       </div>
     </div>

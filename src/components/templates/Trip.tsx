@@ -5,26 +5,31 @@ import {
   FaCalendarAlt,
 } from "react-icons/fa";
 
-const TripInfo = () => {
+const TripInfo = ({ DetailTour }) => {
   const items = [
-    { icon: FaClock, title: "Duration", value: "8 Days", subvalue: "7 Nights" },
+    {
+      icon: FaClock,
+      title: "Duration",
+      value: `${DetailTour?.duration} Days`,
+      subvalue: `${DetailTour?.duration - 1} Nights`,
+    },
     {
       icon: FaGlobeAmericas,
       title: "Destination",
-      value: "1 Country",
-      subvalue: "3 Places",
+      value: `${DetailTour?.num_of_cities} cities`,
+      subvalue: `${DetailTour?.num_of_places} places`,
     },
     {
       icon: FaLock,
       title: "Type",
-      value: "Private Tour",
+      value: DetailTour?.category?.name,
       subvalue: "English Speaking Guide",
     },
     {
       icon: FaCalendarAlt,
       title: "Run",
-      value: "Sunday - Thursday",
-      subvalue: "Sunday - Thursday",
+      value: DetailTour?.run,
+      // subvalue: "Sunday - Thursday",
     },
   ];
 

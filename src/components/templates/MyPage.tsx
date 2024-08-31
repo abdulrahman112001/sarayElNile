@@ -9,22 +9,23 @@ import RandomButtons from "./RandomButtons";
 import UserProfilePage from "./Travelers";
 import PricePlans from "./PriceSection";
 
-const MyPage: React.FC = () => {
+const MyPage: React.FC = ({DetailTour}) => {
   return (
     <div>
       <ImageGallery
-        title="Luxury Beach Resort"
+        title={DetailTour?.title}
         breadcrumb={["Home", "Destinations", "Luxury Beach Resort"]}
-        mainContent="Experience the ultimate luxury at our beach resort with stunning ocean views, world-class amenities, and personalized service."
+        mainContent={DetailTour?.description}
+        images={DetailTour?.images}
       />
-      <TripInfo />
-      <Included />
-      <TourItinerary />
-      <PricePlans />
+      <TripInfo DetailTour={DetailTour}/>
+      <Included DetailTour={DetailTour}/>
+      <TourItinerary DetailTour={DetailTour}/>
+      <PricePlans DetailTour={DetailTour}/>
       <UserProfilePage />
-      <FAQ />
+      <FAQ DetailTour={DetailTour} />
       <Reviews />
-      <RandomButtons />
+      <RandomButtons DetailTour={DetailTour}/>
     </div>
   );
 };

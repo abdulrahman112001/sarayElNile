@@ -10,7 +10,7 @@ interface FAQItem {
 // Sample FAQ data
 
 // FAQ component
-const FAQ: React.FC = () => {
+const FAQ: React.FC = ({DetailTour}) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleItem = (index: number) => {
@@ -25,7 +25,7 @@ const FAQ: React.FC = () => {
       <div className="relative w-full mt-8 sm:mx-auto sm:max-w-2xl sm:px-10">
         <div className="mx-auto px-5">
           <div className="mx-auto mt-8 grid max-w-xl divide-y divide-neutral-200">
-            {faqs.map((faq, index) => (
+            {DetailTour?.tour_frequently_questions?.map((faq, index) => (
               <div key={index} className="py-5">
                 <div className="group">
                   <div

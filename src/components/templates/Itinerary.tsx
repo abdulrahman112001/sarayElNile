@@ -5,7 +5,7 @@ import { FaDownload } from "react-icons/fa";
 import { Button } from "@mui/material";
 import { itineraryItems } from "@/data";
 
-const TourItinerary = () => {
+const TourItinerary = ({DetailTour}) => {
   return (
     <div className="p-4">
       <h2 className="text-3xl font-segoe text-start mt-9 mb-6">Itinerary</h2>
@@ -25,13 +25,13 @@ const TourItinerary = () => {
         {/* Right side - Scrollable Itinerary with Stepper */}
         <div className="w-full md:w-1/2 p-6 overflow-y-auto max-h-[600px] relative">
           <div className="absolute left-8 top-8 bottom-8 w-[2px] bg-[#A16207]"></div>
-          {itineraryItems.map((item, index) => (
+          {DetailTour?.tour_itineraries?.map((item, index) => (
             <div key={index} className="mb-10 relative pl-12">
               <div className="absolute left-0 -ml-[5px] mt-1.5 w-7 h-7 bg-[#A16207] rounded-full flex items-center justify-center text-white text-sm">
                 {index + 1}
               </div>
               <h3 className="text-lg font-segoe text-[#A16207] flex items-center">
-                {item.day}
+              Day {index + 1} : {item.title}
               </h3>
               <p className="mt-2 font-segoe text-gray-700">
                 {item.description}

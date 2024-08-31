@@ -13,7 +13,7 @@ export default function Home({toursData}) {
 
       {/* Laptop view */}
       <div className="hidden lg:block">
-        <Laptop />
+        <Laptop toursData={toursData}/>
       </div>
     </div>
   );
