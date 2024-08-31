@@ -56,7 +56,7 @@ const TermsSection: React.FC = () => {
       </div>
       <div className="bg-white sm:px-6 p-4 font-segoe ">
         <div className="">
-          <div className="grid gap-16">
+          <div className="grid gap-10">
             {contentItems.map((item, index) => (
               <div key={index}>
                 <h3 className="text-2xl font-segoe text-gray-800">

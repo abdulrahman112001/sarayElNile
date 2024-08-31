@@ -61,11 +61,11 @@ const PrivacyPolicySection: React.FC = () => {
       </div>
 
       <div className="bg-white px-6 font-segoe mt-2">
-        <div className="grid gap-14">
+        <div className="grid gap-10">
           {privacyPolicyItems.map((item, index) => (
             <div key={index}>
-              <h3 className="text-xl font-segoe text-[#333]">{item.title}</h3>
-              <p className="text-base text-[#333] mt-4">{item.content}</p>
+              <h3 className="text-2xl font-segoe text-[#333]">{item.title}</h3>
+              <p className="text-sm text-[#333] mt-4">{item.content}</p>
             </div>
           ))}
         </div>
