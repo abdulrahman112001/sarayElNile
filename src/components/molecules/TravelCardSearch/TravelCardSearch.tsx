@@ -11,6 +11,7 @@ interface TravelPackagePageProps {
 }
 
 const TravelPackagePage: React.FC<TravelPackagePageProps> = ({ toursData }) => {
+  console.log("🚀 ~ toursData:", toursData)
   const [currentPage, setCurrentPage] = useState<number>(0);
   const toursPerPage = 6;
 
@@ -95,9 +96,9 @@ const TravelPackagePage: React.FC<TravelPackagePageProps> = ({ toursData }) => {
                   </div>
                   <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
                     <div className="text-center sm:text-left">
-                      <p className="text-sm text-gray-600">From ${pkg.price}</p>
+                      <p className="text-sm text-gray-600">From ${pkg.min_price}</p>
                       <p className="text-green-600 font-segoe text-3xl">
-                        ${pkg.price}
+                        ${pkg.min_price}
                       </p>
                       <p className="text-sm text-gray-600">Per Person</p>
                     </div>

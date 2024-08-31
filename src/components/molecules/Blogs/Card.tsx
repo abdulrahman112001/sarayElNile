@@ -28,10 +28,10 @@ const  Card: React.FC<CardProps> = ({
             height={320}
             className="w-full h-80 object-cover"
           />
-          <div className="absolute bottom-0 left-0 font-segoe right-0 h-32 bg-white/30 backdrop-blur-md">
+          <div className="absolute bottom-0 left-0 font-segoe right-0 h-20 bg-white/30 backdrop-blur-md">
             <div className="absolute bottom-0 left-0 p-4 text-white">
               <h2 className="text-lg md:text-2xl font-sego">{title}</h2>
-              <p className="text-sm">{content}</p>
+              {/* <p className="text-sm">{content}</p> */}
               <p className="text-xs">
                 {new Date(created_at).toLocaleDateString()}
               </p>

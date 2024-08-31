@@ -31,6 +31,7 @@ type Props = {
 };
 
 const Blog: React.FC<Props> = ({ blogData }) => {
+  console.log("🚀 ~ blogData:", blogData)
   if (!blogData || blogData.data.length === 0) {
     return <p>No blogs available</p>; // Fallback UI if no data is available
   }
