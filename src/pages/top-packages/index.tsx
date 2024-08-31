@@ -2,8 +2,7 @@ import Laptop from "@/components/templates/laptop/Laptop";
 import Mobile from "@/components/templates/mobile/Mobile";
 import fetchData from "@/helper/FetchData";
 
-export default function Home({}) {
-  console.log("🚀 ~ Home ~ toursData:")
+export default function Home({toursData}) {
   return (
     <div className="md:p-6 p-0 bg-[#FAFAFA]">
       {/* Mobile view */}
@@ -19,12 +18,12 @@ export default function Home({}) {
   );
 }
 
-// export async function getServerSideProps() {
-//   const toursData = await fetchData("tours");
+export async function getServerSideProps() {
+  const toursData = await fetchData("tours?type=tour_package");
 
-//   return {
-//     props: {
-//       toursData,
-//     },
-//   };
-// }
+  return {
+    props: {
+      toursData,
+    },
+  };
+}

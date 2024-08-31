@@ -28,27 +28,26 @@ type Props = {
 };
 
 const BLogs: React.FC<Props> = ({ blogData, Destinations }) => {
-  console.log("🚀 ~ Destinations:", Destinations);
   return (
     <div>
-      {/* <HeroBlog />
+      <HeroBlog />
       <InterestsSection />
       <DestinationSection Destinations={Destinations} />{" "}
-      <BlogSection blogData={blogData} /> */}
+      <BlogSection blogData={blogData} />
     </div>
   );
 };
 
-// export async function getServerSideProps() {
-//   const blogData = await fetchData("blogs");
-//   const Destinations = await fetchData("countries");
+export async function getServerSideProps() {
+  const blogData = await fetchData("blogs");
+  const Destinations = await fetchData("countries");
 
-//   return {
-//     props: {
-//       blogData,
-//       Destinations,
-//     },
-//   };
-// }
+  return {
+    props: {
+      blogData,
+      Destinations,
+    },
+  };
+}
 
 export default BLogs;

@@ -22,7 +22,7 @@ const BlogSection: React.FC<Props> = ({ blogData }) => {
         All Articles
       </div>
       <div>
-        {blogData.data.length > 0 ? (
+        {blogData?.data?.length > 0 ? (
           <Blog blogData={blogData} />
         ) : (
           <p>No blogs available</p>

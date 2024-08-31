@@ -4,22 +4,19 @@ import DestinationRow from "../molecules/Destination/Destination";
 type Destination = {
   id: number;
   name: string;
-  country: string;
+  panar_image: string;
   image: string;
 };
 
 type Props = {
-  Destinations: Destination[] | undefined; // Allow undefined in case of missing data
+  Destinations: Destination[];
 };
 
 const DestinationSection: React.FC<Props> = ({ Destinations }) => {
-  // Ensure Destinations is an array, or provide an empty array as a fallback
-  const mappedDestinations = Array.isArray(Destinations)
-    ? Destinations.map((dest) => ({
-        name: dest.name,
-        panar_image: dest.image, // Map the image to panar_image
-      }))
-    : [];
+  const mappedDestinations = Destinations?.data?.map((dest) => ({
+    name: dest.name,
+    panar_image: dest.panar_image,
+  }));
 
   return (
     <div className="bg-[#FAFAFA]">
