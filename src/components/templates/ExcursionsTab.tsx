@@ -3,8 +3,13 @@ import TravelPackagePage from "@/components/molecules/TravelCardSearch/TravelCar
 import MobileSidebar from "../atoms/Filters/MobileSidebar";
 import { useMediaQuery } from "@mui/material";
 import LargeScreenSidebar from "../atoms/Filters/LargeScreenSidebar";
+import { ToursData, TourPackage } from "@/types/tour";
 
-const ExcursionsTab: React.FC = () => {
+interface ExcursionsTabProps {
+  toursData: ToursData; // Define props type to include toursData
+}
+
+const ExcursionsTab: React.FC<ExcursionsTabProps> = ({ toursData }) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [price, setPrice] = useState<[number, number]>([0, 1000]);
   const [selectedDestination, setSelectedDestination] =
@@ -17,7 +22,6 @@ const ExcursionsTab: React.FC = () => {
   const [selectedAccommodationType, setSelectedAccommodationType] =
     useState<string>("Hotel");
 
-  // Media query to determine if the screen size is 'md' or larger
   const isLargeScreen = useMediaQuery("(min-width: 768px)");
 
   const handlePriceChange = (event: Event, newValue: number | number[]) => {
@@ -27,20 +31,18 @@ const ExcursionsTab: React.FC = () => {
   const handleClearFilters = () => {
     setPrice([0, 1000]);
     setSelectedDestination("");
-    setSelectedStarRating("5 stars"); // Default value if null is not a valid state
+    setSelectedStarRating("5 stars");
     setSelectedAmenities([]);
     setSelectedAccommodationType("");
   };
 
-  // Define the handleApplyFilters function
   const handleApplyFilters = () => {
     console.log("Filters Applied");
     // Implement the logic to apply filters
   };
 
   return (
-    <div className="flex flex-col md:flex-row gap-8 mt-8 px-6 ">
-      {/* Large Screen Sidebar (Visible on large screens) */}
+    <div className="flex flex-col md:flex-row gap-8 mt-8 px-6">
       {isLargeScreen ? (
         <div className="w-full md:w-1/4">
           <LargeScreenSidebar
@@ -51,7 +53,7 @@ const ExcursionsTab: React.FC = () => {
             selectedAccommodationType={selectedAccommodationType}
             handlePriceChange={handlePriceChange}
             handleClearFilters={handleClearFilters}
-            handleApplyFilters={handleApplyFilters} // Pass the new prop
+            handleApplyFilters={handleApplyFilters}
             setSelectedDestination={setSelectedDestination}
             setSelectedStarRating={setSelectedStarRating}
             setSelectedAmenities={setSelectedAmenities}
@@ -59,7 +61,6 @@ const ExcursionsTab: React.FC = () => {
           />
         </div>
       ) : (
-        // Mobile Filter Button (Visible on small screens)
         <div className="w-full md:hidden flex justify-center mb-4">
           <button
             onClick={() => setIsModalOpen(true)}
@@ -70,12 +71,10 @@ const ExcursionsTab: React.FC = () => {
         </div>
       )}
 
-      {/* Travel Packages */}
       <div className="w-full md:w-3/4 mb-5 lg:mb-0">
-        <TravelPackagePage />
+        <TravelPackagePage toursData={toursData} />
       </div>
 
-      {/* Mobile Sidebar (Visible on small screens) */}
       <MobileSidebar
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}

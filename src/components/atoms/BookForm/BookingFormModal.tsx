@@ -24,6 +24,9 @@ const months = [
   "December",
 ];
 
+// Define E164Number type if not imported
+type E164Number = string;
+
 export default function BookingFormModal() {
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(1);
@@ -33,7 +36,7 @@ export default function BookingFormModal() {
   const [isLocationDropdownOpen, setIsLocationDropdownOpen] = useState(false);
   const [isMonthDropdownOpen, setIsMonthDropdownOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState<E164Number>(""); // Use E164Number type for phone input
   const [isDatePickerModalOpen, setIsDatePickerModalOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
   const [rangeDays, setRangeDays] = useState(1);
@@ -45,7 +48,6 @@ export default function BookingFormModal() {
   };
 
   const handleSubmit = () => {
-    // Here, you can also handle form submission logic
     setShowThanks(true); // Show Thanks component on submit
     setIsModalOpen(false); // Close the booking form modal
   };
@@ -107,7 +109,7 @@ export default function BookingFormModal() {
                   <PhoneInput
                     placeholder="Enter Your Number"
                     value={value}
-                    onChange={setValue}
+                    onChange={(newValue) => setValue(newValue || "")} // Handle the E164Number type
                     defaultCountry="US"
                     className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />

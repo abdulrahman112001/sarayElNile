@@ -1,34 +1,40 @@
+import React from "react";
 import {
   FaClock,
   FaGlobeAmericas,
   FaLock,
   FaCalendarAlt,
 } from "react-icons/fa";
+import { TourDetail } from "@/types/tour"; // Import the TourDetail interface
 
-const TripInfo = ({ DetailTour }) => {
+interface TripInfoProps {
+  DetailTour: TourDetail; // Use the TourDetail interface for typing
+}
+
+const TripInfo: React.FC<TripInfoProps> = ({ DetailTour }) => {
   const items = [
     {
       icon: FaClock,
       title: "Duration",
-      value: `${DetailTour?.duration} Days`,
-      subvalue: `${DetailTour?.duration - 1} Nights`,
+      value: `${DetailTour.duration} Days`,
+      subvalue: `${DetailTour.duration - 1} Nights`,
     },
     {
       icon: FaGlobeAmericas,
       title: "Destination",
-      value: `${DetailTour?.num_of_cities} cities`,
-      subvalue: `${DetailTour?.num_of_places} places`,
+      value: `${DetailTour.num_of_cities ?? "N/A"} cities`, // Handle optional property
+      subvalue: `${DetailTour.num_of_places ?? "N/A"} places`, // Handle optional property
     },
     {
       icon: FaLock,
       title: "Type",
-      value: DetailTour?.category?.name,
+      value: DetailTour.category?.name ?? "N/A", // Handle optional property
       subvalue: "English Speaking Guide",
     },
     {
       icon: FaCalendarAlt,
       title: "Run",
-      value: DetailTour?.run,
+      value: DetailTour.run ?? "N/A", // Handle optional property
       // subvalue: "Sunday - Thursday",
     },
   ];

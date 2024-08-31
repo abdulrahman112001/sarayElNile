@@ -2,8 +2,14 @@ import React, { useState } from "react";
 import LargeScreenSidebar from "@/components/atoms/Filters/LargeScreenSidebar";
 import TravelPackagePage from "@/components/molecules/TravelCardSearch/TravelCardSearch";
 import SearchInput from "@/components/atoms/Search/Search";
+import { ToursData } from "@/types/tour";
+import PaginationExample from "@/components/molecules/Pagination";
 
-const Laptop: React.FC = ({toursData}) => {
+interface LaptopProps {
+  toursData: ToursData;
+}
+
+const Laptop: React.FC<LaptopProps> = ({ toursData }) => {
   // State management for filters
   const [price, setPrice] = useState<[number, number]>([0, 1000]);
   const [selectedDestination, setSelectedDestination] =
@@ -19,7 +25,7 @@ const Laptop: React.FC = ({toursData}) => {
   // Handle price change
   const handlePriceChange = (event: Event, newValue: number | number[]) => {
     if (Array.isArray(newValue)) {
-      setPrice(newValue as [number, number]); // Ensure newValue is typed correctly
+      setPrice(newValue as [number, number]);
     }
   };
 
@@ -34,7 +40,6 @@ const Laptop: React.FC = ({toursData}) => {
 
   // Apply filters
   const handleApplyFilters = () => {
-    // Implement filter application logic here
     console.log("Filters applied:", {
       price,
       selectedDestination,
@@ -67,16 +72,13 @@ const Laptop: React.FC = ({toursData}) => {
             setSelectedStarRating={setSelectedStarRating}
             setSelectedAmenities={setSelectedAmenities}
             setSelectedAccommodationType={setSelectedAccommodationType}
-            handleApplyFilters={handleApplyFilters} // Added this prop
+            handleApplyFilters={handleApplyFilters}
           />
         </div>
 
         {/* Travel Packages */}
         <div className="w-full md:w-3/4">
-       
-        
-          <TravelPackagePage  toursData={toursData}/>
-      
+          <TravelPackagePage toursData={toursData} />
         </div>
       </div>
     </div>

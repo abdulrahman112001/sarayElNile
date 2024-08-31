@@ -1,8 +1,15 @@
-import { places } from "@/data";
+import React from "react";
 
-const RandomButtons = ({DetailTour}) => {
+// Define the props type for RandomButtons
+interface RandomButtonsProps {
+  DetailTour: {
+    tags?: string[]; // Adjust this to match the actual DetailTour interface
+  };
+}
+
+const RandomButtons: React.FC<RandomButtonsProps> = ({ DetailTour }) => {
   return (
-    <div className=" mx-auto p-4 mt-4">
+    <div className="mx-auto p-4 mt-4">
       <div className="flex flex-wrap gap-4 justify-center">
         {DetailTour?.tags?.map((place, index) => (
           <div

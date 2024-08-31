@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Search, ChevronDown, ChevronRight } from "lucide-react";
+import { Search, ChevronDown } from "lucide-react";
+import Slider from "react-slick";
+import Loader from "@/components/molecules/Loader";
 
 interface FaqQuestion {
   question: string;
@@ -124,7 +126,6 @@ const faqData: FaqSection[] = [
     ],
   },
 ];
-
 const Faq: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [activeTab, setActiveTab] = useState<number>(0);
@@ -138,11 +139,46 @@ const Faq: React.FC = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  // Slick settings for mobile carousel
+  const slickSettings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1.8,
+    slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: "0",
+  };
+
   return (
     <div className="flex flex-col md:flex-row bg-gray-50 min-h-screen mt-16 lg:mt-24">
       <aside className="w-full md:w-1/4 bg-white p-6 shadow-lg">
         <h2 className="text-2xl font-segoe text-gray-800 mb-6">FAQ Topics</h2>
-        <ul className="space-y-2">
+
+        {/* Mobile Carousel */}
+        <div className="md:hidden">
+          <Slider {...slickSettings}>
+            {faqData.map((section, index) => (
+              <div
+                key={index}
+                className={`cursor-pointer p-2  rounded-lg flex items-center space-x-0 transition-colors duration-200 ${
+                  activeTab === index
+                    ? "bg-yellow-100 text-yellow-700"
+                    : "text-gray-600 hover:bg-gray-100"
+                }`}
+                onClick={() => setActiveTab(index)}
+              >
+                <div className="flex flex-row justify-center items-center gap-4 text-center">
+                  <div className="text-sm ">{section.icon}</div>
+                  <span className="font-segoe text-sm">{section.title}</span>
+                </div>
+              </div>
+            ))}
+          </Slider>
+        </div>
+
+        {/* Desktop Tabs */}
+        <ul className="hidden md:block space-y-2">
           {faqData.map((section, index) => (
             <li
               key={index}

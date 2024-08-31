@@ -1,4 +1,3 @@
-import { faqs } from "@/data";
 import React, { useState } from "react";
 
 // Define the FAQ item type
@@ -7,10 +6,13 @@ interface FAQItem {
   answer: string;
 }
 
-// Sample FAQ data
+// Define the type for DetailTour including FAQs
+interface DetailTour {
+  tour_frequently_questions?: FAQItem[];
+}
 
-// FAQ component
-const FAQ: React.FC = ({DetailTour}) => {
+// Define the FAQ component with typed props
+const FAQ: React.FC<{ DetailTour: DetailTour }> = ({ DetailTour }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleItem = (index: number) => {

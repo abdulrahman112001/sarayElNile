@@ -1,9 +1,14 @@
-import React, { useState, SyntheticEvent } from "react";
+import React, { useState } from "react";
 import MobileSidebar from "@/components/atoms/Filters/MobileSidebar";
 import MobileSearchModal from "@/components/atoms/Search/MobileSearchModal";
 import TravelPackagePage from "@/components/molecules/TravelCardSearch/TravelCardSearch";
+import { ToursData } from "@/types/tour";
 
-const Mobile: React.FC = () => {
+interface MobileProps {
+  toursData: ToursData;
+}
+
+const Mobile: React.FC<MobileProps> = ({ toursData }) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   // State management for filters
@@ -70,7 +75,7 @@ const Mobile: React.FC = () => {
         <div className="p-6">
           <div className="flex flex-col md:flex-row gap-8">
             <div className="w-full md:w-3/4">
-              <TravelPackagePage />
+              <TravelPackagePage toursData={toursData} />
             </div>
           </div>
         </div>

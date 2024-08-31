@@ -36,6 +36,7 @@ const Drops: React.FC = () => {
     }));
   };
 
+  // Updated handler for dropdown changes
   const handleSelectChange =
     (label: string) => (event: SelectChangeEvent<string>) => {
       const value = event.target.value;
@@ -45,12 +46,22 @@ const Drops: React.FC = () => {
       }));
     };
 
+  // Wrapper function to handle select changes for MobileFilter
+  const handleMobileSelectChange = (event: SelectChangeEvent<string>) => {
+    // Extract the label or handle change based on your logic
+    const label = "Your Logic to Determine the Label"; // Adjust as needed
+    setSelectedOptions((prev) => ({
+      ...prev,
+      [label]: event.target.value,
+    }));
+  };
+
   return (
     <div className="flex sm:flex-row flex-wrap items-center gap-3 p-3 px-5">
       {isMobile ? (
         <MobileFilter
           options={filterOptions}
-          onSelectChange={handleSelectChange}
+          onSelectChange={handleMobileSelectChange} // Use the updated handler
           onOpenModal={handleOpenModal}
         />
       ) : (
@@ -62,7 +73,7 @@ const Drops: React.FC = () => {
             selectedOption={selectedOptions[filter.label] || ""}
             openDropdown={openDropdowns[filter.label] || false}
             onClick={() => toggleDropdown(filter.label)}
-            onSelectChange={handleSelectChange(filter.label)}
+            onSelectChange={handleSelectChange(filter.label)} // Ensure this is a function
           />
         ))
       )}
