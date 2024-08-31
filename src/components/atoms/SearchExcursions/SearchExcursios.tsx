@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import LocationDropdown from "./LocationDropdown";
-import DatePickerComponent from "./DatePickerComponent";
 import SearchModal from "./SearchModal";
 import Button from "@mui/material/Button";
 import { Search } from "lucide-react";
+
+import dayjs from "dayjs";
+import DatePickerModal from "@/components/molecules/dataPicker";
 
 type DateRange = [Date | null, Date | null];
 
@@ -11,8 +13,23 @@ const SearchExcursions: React.FC = () => {
   const [location, setLocation] = useState<string>("");
   const [dateRange, setDateRange] = useState<DateRange>([null, null]);
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const [openDatePickerModal, setOpenDatePickerModal] =
+    useState<boolean>(false);
 
   const locations: string[] = ["New York", "London", "Paris", "Tokyo"];
+
+  const handleDateChange = (date: dayjs.Dayjs | null, rangeDays: number) => {
+    const endDate = date ? date.add(rangeDays - 1, "day").toDate() : null;
+    setDateRange([date?.toDate() || null, endDate]);
+  };
+
+  const formatDateRange = () => {
+    const [start, end] = dateRange;
+    if (start && end) {
+      return `${start.toLocaleDateString()} to ${end.toLocaleDateString()}`;
+    }
+    return "Select dates";
+  };
 
   return (
     <div>
@@ -34,9 +51,13 @@ const SearchExcursions: React.FC = () => {
 
         <div className="w-px bg-gray-300 h-8 hidden sm:block"></div>
 
-        <DatePickerComponent
-          dateRange={dateRange}
-          setDateRange={setDateRange}
+        {/* Input to trigger DatePickerModal */}
+        <input
+          type="text"
+          readOnly
+          value={formatDateRange()}
+          onClick={() => setOpenDatePickerModal(true)}
+          className="border border-gray-300 rounded-md px-3 py-2 w-full sm:w-[200px] cursor-pointer"
         />
 
         <button className="hidden sm:block bg-[#232323] text-white font-segoe rounded-md px-4 py-2 flex items-center text-center justify-center">
@@ -53,6 +74,14 @@ const SearchExcursions: React.FC = () => {
         locations={locations}
         dateRange={dateRange}
         setDateRange={setDateRange}
+        setOpenDatePickerModal={setOpenDatePickerModal} // Pass function to open DatePickerModal
+      />
+
+      {/* Date Picker Modal */}
+      <DatePickerModal
+        open={openDatePickerModal}
+        onClose={() => setOpenDatePickerModal(false)}
+        onDateChange={handleDateChange}
       />
     </div>
   );

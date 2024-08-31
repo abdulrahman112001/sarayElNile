@@ -10,7 +10,7 @@ interface CardProps {
   id: string;
 }
 
-const Card: React.FC<CardProps> = ({
+const  Card: React.FC<CardProps> = ({
   imageSrc,
   title,
   content,

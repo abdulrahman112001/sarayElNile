@@ -18,7 +18,7 @@ const TravelPackagePage = ({toursData}) => {
                     alt={pkg?.title}
                     layout="fill"
                     objectFit="cover"
-                    className="transition-transform duration-700 hover:scale-110"
+                    className="transition-transform duration-300 hover:scale-105"
                   />
                   <div className="absolute top-3 left-3 bg-green-500 text-white px-3 py-1 text-sm font-segoe rounded-sm shadow-md">
                     {pkg?.title}
