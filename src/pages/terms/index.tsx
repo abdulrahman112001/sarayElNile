@@ -1,7 +1,8 @@
 // components/TermsSection.tsx
 
+import Image from "next/image";
 import React from "react";
-
+import PrivacyImage from "../../../public/assets/egys.jpeg";
 type ContentItem = {
   title: string;
   description: string;
@@ -32,33 +33,44 @@ const contentItems: ContentItem[] = [
 
 const TermsSection: React.FC = () => {
   return (
-    <div className="bg-white sm:px-6 p-4 font-segoe mt-20 lg:mt-28">
-      <div className="">
-        <div>
-          <h2 className="lg:text-4xl text-2xl font-segoe text-gray-800 mb-4">
-            Explore Our Content Section
-          </h2>
-          <p className="text-gray-500 text-sm mt-4">
-            Discover inspiring articles that ignite your imagination and
-            creativity. Duis accumsan, nunc et tempus blandit, metus mi
-            consectetur felis turpis vitae ligula.
+    <>
+      <div className="relative bg-gradient-to-r mt-16 lg:mt-24 from-purple-900 to-indigo-800 py-16 font-[sans-serif]">
+        <div className="absolute inset-0">
+          <Image
+            src={PrivacyImage}
+            alt="Background Image"
+            className="w-full h-full object-cover opacity-50"
+            width={100}
+            height={100}
+          />
+        </div>
+        <div className="relative max-w-screen-xl mx-auto px-8 z-10 text-center text-white">
+          <h1 className="text-4xl md:text-5xl font-segoe leading-tight mb-6">
+            Terms Condation
+          </h1>
+          <p className="text-lg md:text-xl mb-12 font-segoe">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor
+            auctor arcu, at fermentum dui. Maecenas.
           </p>
         </div>
-        <hr className="my-10" />
-        <div className="grid gap-16">
-          {contentItems.map((item, index) => (
-            <div key={index}>
-              <h3 className="text-2xl font-segoe text-gray-800">
-                {item.title}
-              </h3>
-              <div className="mt-4">
-                <p className="text-gray-500 text-sm">{item.description}</p>
+      </div>
+      <div className="bg-white sm:px-6 p-4 font-segoe ">
+        <div className="">
+          <div className="grid gap-16">
+            {contentItems.map((item, index) => (
+              <div key={index}>
+                <h3 className="text-2xl font-segoe text-gray-800">
+                  {item.title}
+                </h3>
+                <div className="mt-4">
+                  <p className="text-gray-500 text-sm">{item.description}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
