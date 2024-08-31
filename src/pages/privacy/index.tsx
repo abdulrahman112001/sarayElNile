@@ -39,12 +39,12 @@ const privacyPolicyItems: PrivacyPolicyItem[] = [
 const PrivacyPolicySection: React.FC = () => {
   return (
     <>
-      <div className="relative bg-gradient-to-r mt-16 lg:mt-24 from-purple-900 to-indigo-800 py-16 font-[sans-serif]">
+      <div className="relative bg-gradient-to-r mt-16 lg:mt-24 from-gray-900 to-gray-800 py-16 font-[sans-serif]">
         <div className="absolute inset-0">
           <Image
             src={PrivacyImage}
             alt="Background Image"
-            className="w-full h-full object-cover opacity-50"
+            className="w-full h-full object-cover opacity-20"
             width={100}
             height={100}
           />
