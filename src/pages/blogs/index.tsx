@@ -1,9 +1,10 @@
+import React from "react";
 import HeroBlog from "@/components/molecules/Blogs/HeroBlog";
-import InterestsSection from "@/components/molecules/Blogs/Intersts";
-import DestinationSection from "@/components/organisms/DestinationSection"; // Ensure the correct path
+
+import DestinationSection from "@/components/organisms/DestinationSection";
 import BlogSection from "@/components/organisms/BlogSection";
 import fetchData from "@/helper/FetchData";
-import React from "react";
+import InterestsSection from "@/components/molecules/Blogs/Intersts";
 
 type Blog = {
   id: number;
@@ -16,23 +17,30 @@ type Blog = {
 type Destination = {
   id: number;
   name: string;
-  country: string;
-  image: string;
+  panar_image: string;
+  image?: string; // Add optional property if it's sometimes missing
 };
 
 type Props = {
   blogData: {
     data: Blog[];
   };
-  Destinations: Destination[];
+  Destinations: {
+    status: number;
+    message: string;
+    data: Destination[];
+  };
 };
 
 const BLogs: React.FC<Props> = ({ blogData, Destinations }) => {
+  // Extract Destinations data from API response
+  const destinationsData = Destinations.data;
+
   return (
     <div>
       <HeroBlog />
       <InterestsSection />
-      <DestinationSection Destinations={Destinations} />{" "}
+      <DestinationSection Destinations={destinationsData} />
       <BlogSection blogData={blogData} />
     </div>
   );

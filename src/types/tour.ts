@@ -13,6 +13,7 @@ export interface TourPackage {
   duration: number;
   age_range: string;
   language: string;
+  min_price?: number;
   // Add any other properties that are used in the components
 }
 

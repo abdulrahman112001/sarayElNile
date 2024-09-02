@@ -1,21 +1,24 @@
 import React from "react";
 import DestinationRow from "../molecules/Destination/Destination";
 
+// Define the Destination type with all required properties
 type Destination = {
   id: number;
   name: string;
   panar_image: string;
-  image: string;
+  image?: string; // Add optional property if it's sometimes missing
 };
 
+// Define the props type for DestinationSection
 type Props = {
   Destinations: Destination[];
 };
 
 const DestinationSection: React.FC<Props> = ({ Destinations }) => {
-  const mappedDestinations = Destinations?.data?.map((dest) => ({
+  // Map Destinations directly, as Destinations is already an array
+  const mappedDestinations = Destinations.map((dest) => ({
     name: dest.name,
-    panar_image: dest.panar_image,
+    panar_image: dest.panar_image, // Ensure the correct property name
   }));
 
   return (

@@ -1,18 +1,24 @@
+// pages/index.tsx (or the appropriate page file)
 import React, { useState } from "react";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 import Try from "../../../public/assets/firstImage.jpeg";
-import OverView from "../../components/templates/OverView";
-import ExcursionsTab from "../../components/templates/ExcursionsTab";
-import PackageDetails from "../../components/templates/PackageTab";
 import Pry from "../../../public/assets/pyr.jpeg";
+import { ToursData } from "@/types/tour";
+import fetchData from "@/helper/FetchData";
+import PackageDetails from "@/components/templates/PackageTab";
+import ExcursionsTab from "@/components/templates/ExcursionsTab";
+import OverView from "@/components/templates/OverView";
 
-const PyramidsSection = () => {
-  const [activeTab, setActiveTab] = useState("Overview");
+interface HomeProps {
+  toursData: ToursData;
+}
+
+const PyramidsSection: React.FC<HomeProps> = ({ toursData }) => {
+  const [activeTab, setActiveTab] = useState<string>("Overview");
 
   return (
     <div className="relative h-auto w-full bg-gray-100">
-      {/* Background Image */}
       <div className="relative h-96">
         <div className="absolute inset-0">
           <Image
@@ -23,12 +29,9 @@ const PyramidsSection = () => {
             className="brightness-50"
           />
         </div>
-
-        {/* Card */}
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/4 w-full max-w-3xl px-4 sm:px-6 md:px-8">
           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
             <div className="flex flex-col sm:flex-row">
-              {/* Left side - Image */}
               <div className="w-full sm:w-5/12 relative h-48 sm:h-64">
                 <Image
                   src={Pry}
@@ -37,7 +40,6 @@ const PyramidsSection = () => {
                   objectFit="cover"
                 />
               </div>
-              {/* Right side - Content */}
               <div className="w-full sm:w-7/12 p-4">
                 <h2 className="text-lg sm:text-xl font-segoe mb-2">
                   Pyramids of Giza
@@ -54,20 +56,18 @@ const PyramidsSection = () => {
                   <span className="ml-2 text-sm text-gray-600">4.5</span>
                 </div>
                 <p className="text-gray-700 text-xs sm:text-sm font-segoe">
-                  Once ancient Upper Egypts capital at Thebes, Luxor
-                  archaeological heavyweight put it right behind Cairo for
+                  Once ancient Upper Egypts capital at Thebes, Luxors
+                  archaeological heavyweight puts it right behind Cairo for
                   visitors keen to peel back the millennia. Hemming the Nile 400
                   miles (644 kilometers) south of Egypts capital, its
-                  commercialized trappings dont detract from the emotional force
-                  of its antiquities.
+                  commercialized trappings don’t detract from the emotional
+                  force of its antiquities.
                 </p>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Tabs Section */}
       <div className="flex flex-wrap justify-center mt-28 sm:mt-36 md:mt-20 px-4 py-6 sm:px-6 overflow-x-auto">
         <div className="flex space-x-2 sm:space-x-4">
           {["Overview", "Packages", "Excursions"].map((tab) => (
@@ -85,16 +85,26 @@ const PyramidsSection = () => {
           ))}
         </div>
       </div>
-
       <div className="mt-4">
         <div className="rounded-md">
           {activeTab === "Overview" && <PackageDetails />}
-          {activeTab === "Packages" && <ExcursionsTab />}
+          {activeTab === "Packages" && <ExcursionsTab toursData={toursData} />}
           {activeTab === "Excursions" && <OverView />}
         </div>
       </div>
     </div>
   );
+};
+
+// Define getServerSideProps
+export const getServerSideProps = async () => {
+  const data: ToursData = await fetchData("tours?type=tour_package");
+
+  return {
+    props: {
+      toursData: data,
+    },
+  };
 };
 
 export default PyramidsSection;

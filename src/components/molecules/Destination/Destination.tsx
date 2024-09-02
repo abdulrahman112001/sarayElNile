@@ -1,13 +1,13 @@
 import React from "react";
 import Slider from "react-slick";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 // Define the type for the DestinationCard props
 interface DestinationCardProps {
   name: string;
-  imageUrl: StaticImageData | string;
+  imageUrl: string; // Use string for URL
 }
 
 // DestinationCard component with typed props
@@ -35,7 +35,7 @@ const DestinationCard: React.FC<DestinationCardProps> = ({
 interface DestinationRowProps {
   Destinations: {
     name: string;
-    panar_image: StaticImageData | string;
+    panar_image: string; // Use string for URL
   }[];
 }
 
@@ -44,19 +44,26 @@ const DestinationRow: React.FC<DestinationRowProps> = ({ Destinations }) => {
   // Carousel settings
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
-    slidesToShow: 1,
+    slidesToShow: 4,
     slidesToScroll: 1,
-    centerMode: true,
-    centerPadding: "0px",
+    arrows: false,
     responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 1.1,
+          slidesToShow: 1,
           slidesToScroll: 1,
-          centerMode: false,
+          centerMode: true, // Center the single item on mobile
+          centerPadding: "0px", // Adjust padding for centered card
         },
       },
     ],
@@ -66,18 +73,15 @@ const DestinationRow: React.FC<DestinationRowProps> = ({ Destinations }) => {
     <div className="p-0">
       {/* Mobile Carousel */}
       <div className="md:hidden">
-        <div className="max-w-md w-full overflow-hidden">
-          <Slider {...settings}>
-            {Destinations.map((dest, index) => (
-              <div
-                className="flex justify-center"
-                key={`${dest.name}-${index}`}
-              >
-                <DestinationCard name={dest.name} imageUrl={dest.panar_image} />
-              </div>
-            ))}
-          </Slider>
-        </div>
+        <Slider {...settings}>
+          {Destinations.map((dest, index) => (
+            <DestinationCard
+              key={`${dest.name}-${index}`}
+              name={dest.name}
+              imageUrl={dest.panar_image}
+            />
+          ))}
+        </Slider>
       </div>
       {/* Desktop Grid */}
       <div className="hidden md:flex flex-wrap justify-center p-1">

@@ -182,17 +182,7 @@ export const excursionData = [
   },
   {
     id: 1,
-    image: Second,
-    location: "Alexandria, Egypt",
-    title: "Doubletree by Hilton Egypt Alexandria",
-    duration: "2-3 hours • Pickup Available",
-    price: "$320",
-    rating: 4.5,
-    reviews: 30,
-  },
-  {
-    id: 1,
-    image: Third,
+    image: First,
     location: "Alexandria, Egypt",
     title: "Doubletree by Hilton Egypt Alexandria",
     duration: "2-3 hours • Pickup Available",
@@ -220,6 +210,8 @@ export const excursionData = [
     rating: 4.5,
     reviews: 30,
   },
+  
+
  
   // Add more excursion objects here
 ];
