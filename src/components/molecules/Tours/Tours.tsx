@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import { ToursAttractions } from "@/data";
 import AttractionCard from "@/components/templates/AttractionCard";
 
-const Tours: React.FC = () => {
+const Tours: React.FC = ({toursData}) => {
   const settings = {
     dots: false,
     infinite: false,
@@ -35,14 +35,15 @@ const Tours: React.FC = () => {
   return (
     <div className="relative m-0 md:p-2">
       <Slider {...settings} className="w-full">
-        {ToursAttractions.map((attraction) => (
+        {toursData?.data.map((attraction) => (
+          attraction?.is_best_deal == 1 &&
           <AttractionCard
             key={attraction.title}
             title={attraction.title}
             location={attraction.location}
-            price={attraction.price}
+            price={attraction.min_price}
             rating={attraction.rating}
-            image={attraction.image}
+            image={attraction.main_image}
           />
         ))}
       </Slider>

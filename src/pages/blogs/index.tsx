@@ -28,6 +28,7 @@ type Props = {
 };
 
 const BLogs: React.FC<Props> = ({ blogData, Destinations }) => {
+  console.log("🚀 ~ blogData:", blogData)
   return (
     <div>
       <HeroBlog />
