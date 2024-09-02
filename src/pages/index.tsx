@@ -10,14 +10,17 @@ import {
   ToursSection,
   WhyUsSection,
 } from "@/components/organisms";
+import fetchData from "../helper/FetchData";
+import { ToursData } from "@/types/tour";
 
-export default function Home() {
+export default function Home({toursData}) {
+  console.log("🚀 ~ Home ~ toursData:", toursData)
   return (
     <>
       <HeroSection />
       <OffersSection />
       <WhyUsSection />
-      <ToursSection />
+      <ToursSection  toursData={toursData}/>
       {/* <DestinationSection />
       <AttractionsSection />
       <ExcursionsSection /> */}
@@ -25,4 +28,12 @@ export default function Home() {
       <PeaopleSaySection />
     </>
   );
+}
+export async function getServerSideProps() {
+  const data: ToursData = await fetchData("tours");
+  return {
+    props: {
+      toursData: data,
+    },
+  };
 }

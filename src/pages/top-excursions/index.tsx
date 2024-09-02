@@ -5,8 +5,10 @@ import Drops from "@/components/atoms/drops";
 
 import Explore from "@/components/molecules/ExploreExcursios";
 import Excursions from "@/components/molecules/Excursions/Excursions";
+import fetchData from "@/helper/FetchData";
+import { ToursData } from "@/types/tour";
 
-const Home: React.FC = () => {
+const Home: React.FC = ({toursData}) => {
   return (
     <div>
       <div className="mt-28">
@@ -26,3 +28,12 @@ const Home: React.FC = () => {
 };
 
 export default Home;
+export async function getServerSideProps() {
+  const data: ToursData = await fetchData("tours?type=excursion");
+
+  return {
+    props: {
+      toursData: data,
+    },
+  };
+}

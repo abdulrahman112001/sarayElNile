@@ -24,6 +24,9 @@ const AttractionCard: React.FC<AttractionCardProps> = ({
         <div className="relative h-60 w-full">
           <Image
             src={image}
+            width={0}
+            height={0}
+            
             alt={title}
             className="w-full h-full object-cover transition-transform duration-300 ease-in-out transform hover:scale-105"
           />
@@ -34,7 +37,7 @@ const AttractionCard: React.FC<AttractionCardProps> = ({
         <div className="flex-1 p-4 flex flex-col h-64">
           <h3 className="text-lg font-segoe text-black mb-1">{title}</h3>
           <p className="text-gray-600 text-sm mb-2 font-segoe">{location}</p>
-          <div className="flex items-center mb-2">
+          {/* <div className="flex items-center mb-2">
             {[...Array(5)].map((_, i) => (
               <FaStar
                 key={i}
@@ -46,7 +49,7 @@ const AttractionCard: React.FC<AttractionCardProps> = ({
             <span className="text-gray-500 text-sm ml-2 font-segoe">
               ({rating})
             </span>
-          </div>
+          </div> */}
           <div className="mt-auto text-right">
             <p className="text-black font-semibold text-lg font-segoe">
               From ${price}

@@ -33,9 +33,6 @@ type Props = {
 };
 
 const BLogs: React.FC<Props> = ({ blogData, Destinations }) => {
-  // Extract Destinations data from API response
-  const destinationsData = Destinations.data;
-
   return (
     <div>
       <HeroBlog />

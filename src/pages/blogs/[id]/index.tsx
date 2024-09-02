@@ -3,6 +3,8 @@ import BLogData from "@/components/molecules/BlogDetails/BLogData";
 import HeroSectionBlogs from "@/components/molecules/BlogDetails/HeroBlogDetails";
 import RelatedTours from "@/components/molecules/BlogDetails/RelatedTours";
 import Blog from "@/components/molecules/Blogs/Blog";
+import fetchData from "@/helper/FetchData";
+import { GetServerSidePropsContext } from "next";
 
 type BlogData = {
   id: number;
@@ -18,14 +20,16 @@ type Props = {
   };
 };
 
-const BlogDetails: React.FC<Props> = ({ blogData }) => {
+const BlogDetails: React.FC<Props> = ({ blogData , DetailBlogs }) => {
+  console.log("🚀 ~ blogData:", blogData)
+  console.log("🚀 ~ DetailBlogs:", DetailBlogs)
   return (
     <div className="mt-16 bg-[#FAFAFA]">
-      <HeroSectionBlogs />
+      <HeroSectionBlogs DetailBlogs={DetailBlogs} />
 
       <div className="flex flex-col lg:flex-row w-full mt-11 px-0">
         <div className="w-full lg:w-2/3 mb-8 lg:mb-0">
-          <BLogData />
+          <BLogData DetailBlogs={DetailBlogs}/>
         </div>
         <div className="w-full lg:w-1/3">
           <RelatedTours />
@@ -40,3 +44,13 @@ const BlogDetails: React.FC<Props> = ({ blogData }) => {
 };
 
 export default BlogDetails;
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const { id } = context.params as { id: string };
+  const DetailBlogs = await fetchData(`blogs/${id}`);
+
+  return {
+    props: {
+      DetailBlogs: DetailBlogs.data, // Ensure the data structure matches TourDetail
+    },
+  };
+}
