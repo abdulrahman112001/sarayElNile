@@ -1,20 +1,23 @@
-// pages/index.tsx (or the appropriate page file)
 import React, { useState } from "react";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 import Try from "../../../public/assets/firstImage.jpeg";
 import Pry from "../../../public/assets/pyr.jpeg";
-import { ToursData } from "@/types/tour";
+import { ToursData, TourPackage } from "@/types/tour";
 import fetchData from "@/helper/FetchData";
 import PackageDetails from "@/components/templates/PackageTab";
 import ExcursionsTab from "@/components/templates/ExcursionsTab";
 import OverView from "@/components/templates/OverView";
 
-interface HomeProps {
+interface PyramidsSectionProps {
   toursData: ToursData;
+  excursionsData: TourPackage[];
 }
 
-const PyramidsSection: React.FC<HomeProps> = ({ toursData }) => {
+const PyramidsSection: React.FC<PyramidsSectionProps> = ({
+  toursData,
+  excursionsData,
+}) => {
   const [activeTab, setActiveTab] = useState<string>("Overview");
 
   return (
@@ -89,22 +92,48 @@ const PyramidsSection: React.FC<HomeProps> = ({ toursData }) => {
         <div className="rounded-md">
           {activeTab === "Overview" && <PackageDetails />}
           {activeTab === "Packages" && <ExcursionsTab toursData={toursData} />}
-          {activeTab === "Excursions" && <OverView />}
+          {activeTab === "Excursions" && (
+            <OverView toursData={excursionsData} />
+          )}
         </div>
       </div>
     </div>
   );
 };
 
-// Define getServerSideProps
 export const getServerSideProps = async () => {
-  const data: ToursData = await fetchData("tours?type=tour_package");
+  try {
+    // Fetch tour packages
+    const tourPackagesResponse = await fetchData("tours?type=tour_package");
+    const tourPackages = tourPackagesResponse.data || [];
 
-  return {
-    props: {
-      toursData: data,
-    },
-  };
+    // Fetch excursions
+    const excursionsResponse = await fetchData("tours?type=excursion");
+    const excursions = excursionsResponse.data || [];
+
+    // Prepare the data structure
+    const toursData: ToursData = {
+      data: tourPackages,
+    };
+
+    // Return both as props
+    return {
+      props: {
+        toursData,
+        excursionsData: excursions,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching tour data:", error);
+
+    // Provide default empty arrays if there's an error
+    return {
+      props: {
+        toursData: { data: [] },
+        excursionsData: [],
+      },
+    };
+  }
 };
 
 export default PyramidsSection;

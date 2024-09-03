@@ -6,39 +6,37 @@ import {
   BsMap,
   BsClock,
   BsFillCircleFill,
-  BsChevronLeft,
-  BsChevronRight,
 } from "react-icons/bs";
-
 import { Button } from "@mui/material";
 import Link from "next/link";
-import { excursionData } from "@/data";
+import { ToursData, TourPackage } from "@/types/tour";
 
-// Sample Excursion Data
+interface ExcursionsProps {
+  toursData: TourPackage[]; // Adjusted to use TourPackage[]
+}
 
-
-export default function Excursions() {
+export default function Excursions({ toursData }: ExcursionsProps) {
   const sliderRef = React.useRef<Slider>(null);
 
   const settings = {
     dots: false,
     infinite: false,
     speed: 300,
-    slidesToShow: 4, // Adjusted to show full cards
+    slidesToShow: 4,
     slidesToScroll: 1,
-    arrows: false, // Hide default arrows
+    arrows: false,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2.5, // Show 2 full cards and part of the 3rd on tablet
+          slidesToShow: 2.5,
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 1.1, // Show 1 full card and part of the 2nd on mobile
+          slidesToShow: 1.1,
           slidesToScroll: 1,
         },
       },
@@ -47,26 +45,19 @@ export default function Excursions() {
 
   return (
     <div className="relative">
-      {" "}
       <h2 className="md:text-3xl text-xl font-segoe ml-5 mb-6 text-start">
         Tours and Tickets to Experience Giza Pyramids
       </h2>
-      {/* Adjusted padding for more space */}
       <Slider {...settings} ref={sliderRef}>
-        {excursionData.map((excursion) => (
+        {toursData.map((excursion: TourPackage) => (
           <div key={excursion.id} className="px-[5px] md:px-[9px] mb-3">
-            {" "}
-            {/* Increased padding */}
             <Link href="/top-excursions">
-              <div key={excursion.id} className="px-[4px] mb-3">
-                {" "}
-                {/* Increased padding */}
+              <div className="px-[4px] mb-3">
                 <div className="flex flex-col max-w-lg mx-auto cursor-pointer border hover:border-yellow-500 border-gray-200 rounded-lg overflow-hidden shadow-lg bg-white h-[500px] transition-all duration-300 ease-in-out">
-                  {/* Increased card width */}
                   <div className="relative h-72 overflow-hidden">
                     <Image
                       className="w-full h-full object-cover transition-transform duration-300 ease-in-out transform hover:scale-105"
-                      src={excursion.image}
+                      src={excursion.main_image}
                       alt={excursion.title}
                     />
                     <div className="absolute top-2 left-2 bg-[#FFF1BA] text-[#232323] text-xs font-segoe font-medium px-2 py-1 rounded">
@@ -79,14 +70,14 @@ export default function Excursions() {
                   <div className="flex flex-col flex-grow px-4 py-4">
                     <div className="flex items-center text-gray-600 text-sm mb-2 font-segoe">
                       <BsMap size={16} className="mr-1" />
-                      <span className="font-segoe">{excursion.location}</span>
+                      <span className="font-segoe">{excursion.destination}</span>
                     </div>
                     <h2 className="font-segoe text-xl mb-2 truncate">
                       {excursion.title}
                     </h2>
                     <div className="flex items-center text-gray-600 text-sm mb-4">
                       <BsClock size={16} className="mr-1" />
-                      <span>{excursion.duration}</span>
+                      <span>{excursion.duration} days</span>
                     </div>
                     <div className="flex items-center mb-4">
                       <div className="flex-1">
@@ -97,25 +88,20 @@ export default function Excursions() {
                               className="text-green-500 w-4 h-4 ml-1"
                             />
                           ))}
-                          {excursion.rating % 1 !== 0 && (
-                            <div className="w-4 h-4 ml-1 relative">
-                              <div className="absolute top-0 left-0 w-full h-full bg-green-500 rounded-full clip-half"></div>
-                            </div>
-                          )}
                           <span className="m-2 text-gray-600 text-sm">
-                            {excursion.rating} ({excursion.reviews})
+                            {excursion.starRating} stars
                           </span>
                         </div>
                       </div>
                     </div>
                     <div className="text-sm">
                       <span className="line-through text-gray-500">
-                        From {parseInt(excursion.price.replace("$", "")) + 80}
+                        From ${excursion.min_price}
                       </span>
                     </div>
                     <div className="mt-1">
                       <span className="font-segoe text-xl text-yellow-700">
-                        From {excursion.price}
+                        From ${excursion.price}
                       </span>
                       <span className="text-gray-600 text-sm"> / Person</span>
                     </div>

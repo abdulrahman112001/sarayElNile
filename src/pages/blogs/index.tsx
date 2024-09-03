@@ -1,6 +1,5 @@
 import React from "react";
 import HeroBlog from "@/components/molecules/Blogs/HeroBlog";
-
 import DestinationSection from "@/components/organisms/DestinationSection";
 import BlogSection from "@/components/organisms/BlogSection";
 import fetchData from "@/helper/FetchData";
@@ -25,11 +24,7 @@ type Props = {
   blogData: {
     data: Blog[];
   };
-  Destinations: {
-    status: number;
-    message: string;
-    data: Destination[];
-  };
+  Destinations: Destination[]; // Make sure Destinations is an array of Destination
 };
 
 const BLogs: React.FC<Props> = ({ blogData, Destinations }) => {
@@ -37,7 +32,7 @@ const BLogs: React.FC<Props> = ({ blogData, Destinations }) => {
     <div>
       <HeroBlog />
       <InterestsSection />
-      <DestinationSection Destinations={destinationsData} />
+      <DestinationSection Destinations={Destinations} />
       <BlogSection blogData={blogData} />
     </div>
   );
@@ -49,8 +44,8 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      blogData,
-      Destinations,
+      blogData: blogData,
+      Destinations: Destinations.data,
     },
   };
 }

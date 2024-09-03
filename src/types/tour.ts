@@ -13,7 +13,10 @@ export interface TourPackage {
   duration: number;
   age_range: string;
   language: string;
-  min_price?: number;
+  min_price: number;
+  location?: string; // Optional property
+  rating?: number; // Optional property
+  is_best_deal?: number; // Optional property
   // Add any other properties that are used in the components
 }
 
@@ -61,6 +64,7 @@ export interface TourDetail extends TourPackage {
   }[];
 }
 
+// Update ToursData to reflect that it includes `data` property
 export interface ToursData {
   data: TourPackage[];
 }

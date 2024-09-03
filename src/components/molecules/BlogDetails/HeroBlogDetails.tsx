@@ -1,16 +1,32 @@
+// src/components/molecules/BlogDetails/HeroSectionBlogs.tsx
 import React from "react";
 import Image from "next/image";
 import backgroundImage from "../../../../public/assets/pyr.jpeg"; // Replace with your actual image path
 import User from "../../../../public/assets/userbg.jpeg"; // Replace with your card image path
 
+// Define the type for DetailBlogs
+type DetailBlogsType = {
+  image: string;
+  title: string;
+  content: string;
+  user?: {
+    name: string;
+  };
+};
+
+// Define the props type for HeroSectionBlogs
+type HeroSectionBlogsProps = {
+  DetailBlogs: DetailBlogsType;
+};
+
 // Define the HeroSectionBlogs component
-const HeroSectionBlogs: React.FC = ({ DetailBlogs }) => {
+const HeroSectionBlogs: React.FC<HeroSectionBlogsProps> = ({ DetailBlogs }) => {
   return (
     <div className="relative w-full h-[50vh] md:h-[80vh] bg-gray-200">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src={DetailBlogs?.image}
+          src={DetailBlogs?.image || backgroundImage} // Fallback to backgroundImage if DetailBlogs?.image is missing
           alt="Hero Background"
           layout="fill"
           objectFit="cover"
@@ -24,11 +40,11 @@ const HeroSectionBlogs: React.FC = ({ DetailBlogs }) => {
           <h1 className="text-xl md:text-3xl font-segoe text-white mb-1 md:mb-2">
             {DetailBlogs?.title}
           </h1>
-          {/* <p className="text-base md:text-lg mb-2 md:mb-4 font-segoe text-white">
-            Discover amazing experiences with us.
-          </p> */}
-          <p className="text-base md:text-lg mb- md:mb-4 font-segoe text-white"
-            dangerouslySetInnerHTML={{ __html: DetailBlogs?.content?.slice(0,300) }}
+          <p
+            className="text-base md:text-lg mb- md:mb-4 font-segoe text-white"
+            dangerouslySetInnerHTML={{
+              __html: DetailBlogs?.content.slice(0, 300),
+            }}
           />
         </div>
         <div className="flex justify-center items-center gap-2 md:gap-3">

@@ -1,10 +1,14 @@
+// src/components/molecules/Tours/Tours.tsx
 import React from "react";
 import Slider from "react-slick";
-
-import { ToursAttractions } from "@/data";
 import AttractionCard from "@/components/templates/AttractionCard";
+import { ToursData, TourPackage } from "@/types/tour";
 
-const Tours: React.FC = ({toursData}) => {
+interface ToursProps {
+  toursData: ToursData; // Correctly define the expected type here
+}
+
+const Tours: React.FC<ToursProps> = ({ toursData }) => {
   const settings = {
     dots: false,
     infinite: false,
@@ -25,8 +29,8 @@ const Tours: React.FC = ({toursData}) => {
         settings: {
           slidesToShow: 1.1,
           slidesToScroll: 1,
-          centerMode: true, // Center the single item on mobile
-          centerPadding: "0px", // Adjust padding for centered card
+          centerMode: true,
+          centerPadding: "0px",
         },
       },
     ],
@@ -35,17 +39,19 @@ const Tours: React.FC = ({toursData}) => {
   return (
     <div className="relative m-0 md:p-2">
       <Slider {...settings} className="w-full">
-        {toursData?.data.map((attraction) => (
-          attraction?.is_best_deal == 1 &&
-          <AttractionCard
-            key={attraction.title}
-            title={attraction.title}
-            location={attraction.location}
-            price={attraction.min_price}
-            rating={attraction.rating}
-            image={attraction.main_image}
-          />
-        ))}
+        {toursData.data.map(
+          (attraction) =>
+            attraction.is_best_deal === 1 && (
+              <AttractionCard
+                key={attraction.id} // Use a unique key
+                title={attraction.title}
+                location={attraction.location}
+                price={attraction.min_price}
+                rating={attraction.rating}
+                image={attraction.main_image}
+              />
+            )
+        )}
       </Slider>
     </div>
   );
