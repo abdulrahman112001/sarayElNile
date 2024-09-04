@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect } from "react";
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
+import Loader from "@/components/molecules/Loader";
 
 interface AttractionDetailProps {
   attraction: TourDetail | null;
@@ -26,12 +27,16 @@ export default function AttractionDetail({
   }, []);
 
   if (!attraction) {
-    return <div className="text-center">Loading...</div>;
+    return (
+      <div className="text-center">
+        <Loader />
+      </div>
+    );
   }
 
   return (
     <div className="mt-20 lg:mt-28 container mx-auto px-4">
-      <h1 className="lg:text-2xl text-xl font-segoe font-semibold mb-6 text-center border-b-2 border-yellow-800 pb-2">
+      <h1 className="lg:text-2xl text-xl font-segoe font-semibold mb-3 mt-3 text-center pb-2">
         {attraction.title}
       </h1>
       <div className="relative mb-8 w-full mx-auto">
@@ -50,7 +55,7 @@ export default function AttractionDetail({
             />
           </div>
           <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-35 rounded-lg">
-            <span className="text-white text-lg font-segoe">
+            <span className="text-white lg:text-4xl text-lg  capitalize font-segoe">
               Click here for more images
             </span>
           </div>
