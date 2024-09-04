@@ -1,4 +1,3 @@
-// src/components/molecules/BlogDetails/HeroSectionBlogs.tsx
 import React from "react";
 import Image from "next/image";
 import backgroundImage from "../../../../public/assets/pyr.jpeg"; // Replace with your actual image path
@@ -22,7 +21,7 @@ type HeroSectionBlogsProps = {
 // Define the HeroSectionBlogs component
 const HeroSectionBlogs: React.FC<HeroSectionBlogsProps> = ({ DetailBlogs }) => {
   return (
-    <div className="relative w-full h-[50vh] md:h-[80vh] bg-gray-200">
+    <div className="relative w-full h-[50vh] md:h-[80vh] bg-gray-200 ">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
@@ -35,27 +34,28 @@ const HeroSectionBlogs: React.FC<HeroSectionBlogsProps> = ({ DetailBlogs }) => {
       </div>
 
       {/* Blurred Card */}
-      <div className="absolute inset-x-0 bottom-8 mx-auto p-4 md:p-6 bg-white bg-opacity-30 backdrop-blur-md rounded-lg shadow-lg max-w-xs md:max-w-4xl h-[250px] md:h-[300px] flex flex-col items-center justify-center transform translate-x-0 translate-y-14">
-        <div className="flex flex-col items-center p-2 md:p-4 text-center">
-          <h1 className="text-xl md:text-3xl font-segoe text-white mb-1 md:mb-2">
+      <div className="absolute inset-x-4 transform translate-y-16 md:inset-x-8 bottom-8 md:bottom-12 mx-auto p-4 md:p-6 bg-white bg-opacity-40 backdrop-blur-md rounded-lg shadow-lg max-w-xs md:max-w-3xl h-auto flex flex-col items-center justify-between">
+        <div className="flex flex-col items-center text-center">
+          <h1 className="text-xl md:text-2xl font-semibold text-gray-800 mb-2 md:mb-4">
             {DetailBlogs?.title}
           </h1>
           <p
-            className="text-base md:text-lg mb- md:mb-4 font-segoe text-white"
+            className="text-sm md:text-base text-gray-700 mb-4"
             dangerouslySetInnerHTML={{
               __html: DetailBlogs?.content.slice(0, 300),
             }}
           />
         </div>
-        <div className="flex justify-center items-center gap-2 md:gap-3">
+        {/* Author Section */}
+        <div className="flex items-center justify-center gap-3 md:gap-4 mt-4">
           <Image
             src={User}
-            alt="Card Image"
-            className="rounded-full w-10 h-10 md:w-12 md:h-12"
-            width={40}
-            height={40}
+            alt="Author Image"
+            className="rounded-full w-12 h-12"
+            width={56}
+            height={56}
           />
-          <p className="text-sm md:text-base text-white font-segoe">
+          <p className="text-sm md:text-base text-gray-800 font-medium">
             By: {DetailBlogs?.user?.name}
           </p>
         </div>

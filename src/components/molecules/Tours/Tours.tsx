@@ -1,8 +1,7 @@
-// src/components/molecules/Tours/Tours.tsx
 import React from "react";
 import Slider from "react-slick";
 import AttractionCard from "@/components/templates/AttractionCard";
-import { ToursData, TourPackage } from "@/types/tour";
+import { ToursData } from "@/types/tour";
 
 interface ToursProps {
   toursData: ToursData; // Correctly define the expected type here
@@ -44,10 +43,10 @@ const Tours: React.FC<ToursProps> = ({ toursData }) => {
             attraction.is_best_deal === 1 && (
               <AttractionCard
                 key={attraction.id} // Use a unique key
+                id={attraction.id} // Pass the id prop
                 title={attraction.title}
                 location={attraction.location}
                 price={attraction.min_price}
-                rating={attraction.rating}
                 image={attraction.main_image}
               />
             )

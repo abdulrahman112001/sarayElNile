@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import Image from "next/image";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Loader from "../Loader";
 
 // Define the type for the DestinationCard props
 interface DestinationCardProps {
@@ -41,6 +42,11 @@ interface DestinationRowProps {
 
 // DestinationRow component
 const DestinationRow: React.FC<DestinationRowProps> = ({ Destinations }) => {
+  // Check if Destinations array is empty or undefined
+  if (!Destinations || Destinations.length === 0) {
+    return <Loader />; // Display Loader if no data is available
+  }
+
   // Carousel settings
   const settings = {
     dots: false,

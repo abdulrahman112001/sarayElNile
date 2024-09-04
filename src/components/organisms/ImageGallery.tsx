@@ -25,7 +25,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
   useEffect(() => {
     Fancybox.bind("[data-fancybox]", {
       Toolbar: false,
-      closeButton: "top",
+      closeButton: "auto", // or use `true` or `false` based on the actual option available
     });
 
     return () => {

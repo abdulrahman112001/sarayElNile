@@ -1,7 +1,8 @@
 // types/tour.ts
 
 export interface TourPackage {
-  id: string;
+ 
+  id: number;
   name: string;
   title: string;
   destination: string;
@@ -10,6 +11,7 @@ export interface TourPackage {
   amenities: string[];
   accommodationType: string;
   main_image: string;
+  description?: string;
   duration: number;
   age_range: string;
   language: string;
@@ -55,6 +57,7 @@ export interface TourDetail extends TourPackage {
     name?: string;
   };
   run?: string;
+  transportation_mode: string;
   tour_prices: PricePlanDetail[]; // Ensure this is always an array
   tour_includes?: TourIncludeItem[]; // Adjusted to match the component's usage
   tour_itineraries?: TourItineraryItem[]; // Added to match the component's usage

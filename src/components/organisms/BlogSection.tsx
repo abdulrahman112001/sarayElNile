@@ -1,5 +1,6 @@
 import React from "react";
 import Blog from "../molecules/Blogs/Blog";
+import Loader from "../molecules/Loader";
 
 type BlogData = {
   id: number;
@@ -22,11 +23,7 @@ const BlogSection: React.FC<Props> = ({ blogData }) => {
         All Articles
       </div>
       <div>
-        {blogData?.data?.length > 0 ? (
-          <Blog blogData={blogData} />
-        ) : (
-          <p>No blogs available</p>
-        )}
+        {blogData?.data?.length > 0 ? <Blog blogData={blogData} /> : <Loader />}
       </div>
     </div>
   );

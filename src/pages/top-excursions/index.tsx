@@ -1,5 +1,4 @@
 import React from "react";
-
 import Excursions from "@/components/molecules/Excursions/Excursions";
 import fetchData from "@/helper/FetchData";
 import { TourPackage } from "@/types/tour";

@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import Card from "./Card";
+import Loader from "../Loader";
 
 const sliderSettings = {
   dots: false,
@@ -34,7 +35,7 @@ const Blog: React.FC<Props> = ({ blogData }) => {
   console.log("🚀 ~ blogData:", blogData);
 
   if (!blogData || !blogData.data || blogData.data.length === 0) {
-    return <p>No blogs available</p>; // Fallback UI if no data is available
+    return <Loader />;
   }
 
   return (

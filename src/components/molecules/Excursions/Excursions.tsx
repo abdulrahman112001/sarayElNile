@@ -1,18 +1,14 @@
 import React from "react";
 import Image from "next/image";
 import Slider from "react-slick";
-import {
-  BsHeart,
-  BsMap,
-  BsClock,
-  BsFillCircleFill,
-} from "react-icons/bs";
+import { BsHeart, BsMap, BsClock, BsFillCircleFill } from "react-icons/bs";
 import { Button } from "@mui/material";
 import Link from "next/link";
-import { ToursData, TourPackage } from "@/types/tour";
+import { TourPackage } from "@/types/tour";
+import Loader from "../Loader"; // Import your Loader component
 
 interface ExcursionsProps {
-  toursData: TourPackage[]; // Adjusted to use TourPackage[]
+  toursData: TourPackage[] | null;
 }
 
 export default function Excursions({ toursData }: ExcursionsProps) {
@@ -43,6 +39,20 @@ export default function Excursions({ toursData }: ExcursionsProps) {
     ],
   };
 
+  if (toursData === null) {
+    return (
+      <div className="flex items-center justify-center h-[500px]">
+        <p className="text-gray-600 text-lg">
+          No tours available at the moment.
+        </p>
+      </div>
+    );
+  }
+
+  if (toursData.length === 0) {
+    return <Loader />;
+  }
+
   return (
     <div className="relative">
       <h2 className="md:text-3xl text-xl font-segoe ml-5 mb-6 text-start">
@@ -59,6 +69,8 @@ export default function Excursions({ toursData }: ExcursionsProps) {
                       className="w-full h-full object-cover transition-transform duration-300 ease-in-out transform hover:scale-105"
                       src={excursion.main_image}
                       alt={excursion.title}
+                      width={100}
+                      height={100}
                     />
                     <div className="absolute top-2 left-2 bg-[#FFF1BA] text-[#232323] text-xs font-segoe font-medium px-2 py-1 rounded">
                       Top Rated
@@ -70,7 +82,9 @@ export default function Excursions({ toursData }: ExcursionsProps) {
                   <div className="flex flex-col flex-grow px-4 py-4">
                     <div className="flex items-center text-gray-600 text-sm mb-2 font-segoe">
                       <BsMap size={16} className="mr-1" />
-                      <span className="font-segoe">{excursion.destination}</span>
+                      <span className="font-segoe">
+                        {excursion.destination}
+                      </span>
                     </div>
                     <h2 className="font-segoe text-xl mb-2 truncate">
                       {excursion.title}
@@ -96,12 +110,15 @@ export default function Excursions({ toursData }: ExcursionsProps) {
                     </div>
                     <div className="text-sm">
                       <span className="line-through text-gray-500">
-                        From ${excursion.min_price}
+                        From ${excursion.min_price}{" "}
+                        {/* Display minimum price */}
                       </span>
                     </div>
                     <div className="mt-1">
                       <span className="font-segoe text-xl text-yellow-700">
-                        From ${excursion.price}
+                        From $
+                        {excursion.tour_prices[0]?.prices[0]?.price || "N/A"}
+                        {/* Display actual price */}
                       </span>
                       <span className="text-gray-600 text-sm"> / Person</span>
                     </div>

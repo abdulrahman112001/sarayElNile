@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Loader: React.FC = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center h-28">
       {/* Logo Image */}
       <div className="mb-4">
         <Image src={Logo} alt="Company Logo" className="w-32 h-auto" />
