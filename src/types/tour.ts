@@ -1,7 +1,6 @@
 // types/tour.ts
 
 export interface TourPackage {
- 
   id: number;
   name: string;
   title: string;
@@ -71,3 +70,83 @@ export interface TourDetail extends TourPackage {
 export interface ToursData {
   data: TourPackage[];
 }
+export type PostedData_TP = "json" | "formData";
+
+const postMethods_TP = {
+  post: "POST",
+  put: "PUT",
+  delete: "DELETE",
+  get: "GET",
+} as const;
+
+/* 
+upload
+*/
+// custom file type
+export interface CFile_TP extends File {
+  src: string;
+  preview: string;
+  id: string;
+}
+
+export type SelectOption_TP = {
+  id?: string | number;
+  value: string;
+  label: string;
+  name?: string;
+};
+
+/* every email type */
+// I think i can do better
+export type Email_TP = `${string}@${string}.${string}`;
+
+/* 
+SYSTEM ESTABLISHMENT
+*/
+export type Units_TP = {
+  id: string;
+  value: string;
+  size_id: string;
+};
+export type CategoryMainData_TP = {
+  id: string | number;
+  name: string;
+  has_size: boolean;
+  has_selsal: boolean;
+  type: "multi" | "single";
+  selling_type: "part" | "all";
+  sizes?: CategorySize_TP[];
+};
+
+export type CategorySize_TP = {
+  id: string;
+  units: Units_TP[];
+  type: string;
+  start: string;
+  end: string;
+  increase: string;
+  category_name: string;
+};
+export interface Category_TP extends CategoryMainData_TP {
+  items?: CategoryMainData_TP[];
+}
+
+/* 
+// globals
+*/
+
+export type SetState_TP<T> = React.Dispatch<React.SetStateAction<T>>;
+
+export type Column_TP<AccessorTP> = {
+  header: string;
+  accessorKey?: AccessorTP;
+  Cell?: unknown;
+  filterKey?: any;
+
+  // id?: string,
+  // Filter?: unknown,
+  // dataType?: string,
+  // disableFilters?: boolean,
+};
+
+export type KaratValues_TP = "24" | "22" | "21" | "18";

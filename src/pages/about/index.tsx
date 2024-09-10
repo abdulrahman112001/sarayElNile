@@ -1,7 +1,8 @@
+import fetchData from "@/helper/FetchData";
 import Image from "next/image";
 import React from "react";
 
-const About = () => {
+const About = ({ data }) => {
   return (
     <div className="2xl:container lg:mt-20 mt-14 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 px-4">
       <div className="flex flex-col lg:flex-row justify-between gap-8">
@@ -9,15 +10,10 @@ const About = () => {
           <h1 className="text-3xl lg:text-4xl font-segoe leading-9 text-yellow-800 pb-4">
             About Us
           </h1>
-          <p className="font-segoe text-base leading-6 text-gray-600 ">
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout. The point
-            of using Lorem Ipsum.In the first place we have granted to God, and
-            by this our present charter confirmed for us and our heirs forever
-            that the English Church shall be free, and shall have her rights
-            entire, and her liberties inviolate; and we will that it be thus
-            observed; which is apparent from
-          </p>
+          <p
+            className="font-segoe text-base leading-6 text-gray-600 "
+            dangerouslySetInnerHTML={{ __html: data?.data[0]?.value?.AboutUs }}
+          />
         </div>
         <div className="w-full lg:w-8/12 ">
           <Image
@@ -35,15 +31,10 @@ const About = () => {
           <h1 className="text-3xl lg:text-4xl font-segoe leading-9 text-yellow-800 pb-4">
             Our Story
           </h1>
-          <p className="font-segoe text-base leading-6 text-gray-600 ">
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout. The point
-            of using Lorem Ipsum.In the first place we have granted to God, and
-            by this our present charter confirmed for us and our heirs forever
-            that the English Church shall be free, and shall have her rights
-            entire, and her liberties inviolate; and we will that it be thus
-            observed; which is apparent from
-          </p>
+          <p
+            className="font-segoe text-base leading-6 text-gray-600 "
+            dangerouslySetInnerHTML={{ __html: data?.data[0]?.value?.OurStory }}
+          />
         </div>
         <div className="w-full lg:w-8/12 lg:pt-8">
           <div className="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 lg:gap-4 shadow-lg rounded-md">
@@ -107,3 +98,12 @@ const About = () => {
 };
 
 export default About;
+export async function getServerSideProps() {
+  const data = await fetchData("settings?collection=about");
+
+  return {
+    props: {
+      data: data,
+    },
+  };
+}

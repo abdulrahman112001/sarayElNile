@@ -3,6 +3,7 @@
 import Image from "next/image";
 import React from "react";
 import PrivacyImage from "../../../public/assets/egys.jpeg";
+import fetchData from "@/helper/FetchData";
 type ContentItem = {
   title: string;
   description: string;
@@ -31,7 +32,8 @@ const contentItems: ContentItem[] = [
   },
 ];
 
-const TermsSection: React.FC = () => {
+const TermsSection: React.FC = ({ data }) => {
+  console.log("🚀 ~ data:", data);
   return (
     <>
       <div className="relative bg-gradient-to-r mt-16 lg:mt-24 from-gray-900 to-gray-800 py-16 font-[sans-serif]">
@@ -57,16 +59,21 @@ const TermsSection: React.FC = () => {
       <div className="bg-white sm:px-6 p-4 font-segoe ">
         <div className="">
           <div className="grid gap-10">
-            {contentItems.map((item, index) => (
-              <div key={index}>
-                <h3 className="text-2xl font-segoe text-gray-800">
+            {/* {contentItems.map((item, index) => ( */}
+            <div>
+              {/* <h3 className="text-2xl font-segoe text-gray-800">
                   {item.title}
-                </h3>
-                <div className="mt-4">
-                  <p className="text-gray-500 text-sm">{item.description}</p>
-                </div>
+                </h3> */}
+              <div className="mt-4">
+                <p
+                  className=""
+                  dangerouslySetInnerHTML={{
+                    __html: data?.data[2]?.value?.terms,
+                  }}
+                />
               </div>
-            ))}
+            </div>
+            {/* ))} */}
           </div>
         </div>
       </div>
@@ -75,3 +82,12 @@ const TermsSection: React.FC = () => {
 };
 
 export default TermsSection;
+export async function getServerSideProps() {
+  const data = await fetchData("settings?collection=terms");
+
+  return {
+    props: {
+      data: data,
+    },
+  };
+}

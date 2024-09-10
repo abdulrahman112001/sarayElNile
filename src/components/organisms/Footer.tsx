@@ -1,32 +1,31 @@
-import React from "react";
-import Logo from "../../../public/assets/srayaLogo.png";
 import Image from "next/image";
 import Link from "next/link";
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaTv } from "react-icons/fa";
-import { FaFacebook, FaInstagram, FaTelegram } from "react-icons/fa";
-import { Facebook } from "@mui/icons-material";
-import { FacebookIcon, Instagram, TwitterIcon } from "lucide-react";
 import { CiMail, CiPhone } from "react-icons/ci";
 import { LiaMapMarkerAltSolid } from "react-icons/lia";
-import { BsWhatsapp } from "react-icons/bs";
 import { PiWhatsappLogoLight } from "react-icons/pi";
+import Logo from "../../../public/assets/srayaLogo.png";
+import useFetch from "@/hooks/UseFetch";
 type Props = {};
 
 const Footer = (props: Props) => {
+  const { data, isLoading, failureReason } = useFetch<any>({
+    queryKey: ["settings?collection=contact"],
+    endpoint: `settings?collection=contact`,
+  });
   return (
     <footer className="bg-white py-10 px-10 font-sans tracking-wide mt-4">
       <div className="max-w-2xl mx-auto text-center">
         <Link href="/" className="inline-block">
           <Image src={Logo} alt="logo" className="w-48" />
         </Link>
-        <p className="text-sm mt-8 text-black">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-          gravida, mi eu pulvinar cursus, sem elit interdum mauris dipiscing
-          elit. Aenean gravida, mi eu pulvinar cursus.{" "}
-          <Link href="/" className="text-sm font-semibold text-black">
+        <p
+          className="text-sm mt-8 text-black"
+          dangerouslySetInnerHTML={{ __html: data?.data[3]?.value?.footerDesc }}
+        />
+
+        {/* <Link href="/" className="text-sm font-semibold text-black">
             Read more...
-          </Link>
-        </p>
+          </Link> */}
         <ul className="flex items-center justify-center flex-wrap gap-y-3 gap-x-6 mt-8">
           <li>
             <svg
@@ -131,7 +130,7 @@ const Footer = (props: Props) => {
           </div>
           <Link href="/" className="text-black text-sm ml-3">
             <small className="block">Tel</small>
-            <strong>180-548-2588</strong>
+            <strong>{data?.data[3]?.value?.phone}</strong>
           </Link>
         </li>
         <li className="flex items-center">
@@ -140,7 +139,7 @@ const Footer = (props: Props) => {
           </div>
           <Link href="/" className="text-black text-sm ml-3">
             <small className="block">Mail</small>
-            <strong>info@example.com</strong>
+            <strong>{data?.data[3]?.value?.email}</strong>
           </Link>
         </li>
         <li className="flex items-center">
@@ -149,7 +148,7 @@ const Footer = (props: Props) => {
           </div>
           <Link href="/" className="text-black text-sm ml-3">
             <small className="block">Address</small>
-            <strong>123 Main Street City, Country</strong>
+            <strong>{data?.data[3]?.value?.address}</strong>
           </Link>
         </li>
         <li className="flex items-center">
@@ -158,7 +157,7 @@ const Footer = (props: Props) => {
           </div>
           <Link href="/" className="text-black text-sm ml-3">
             <small className="block">Whatsapp</small>
-            <strong>01098767523</strong>
+            <strong>{data?.data[3]?.value?.whatsApp}</strong>
           </Link>
         </li>
       </ul>

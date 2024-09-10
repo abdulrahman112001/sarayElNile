@@ -3,7 +3,7 @@ import { FaUser } from "react-icons/fa";
 
 // Define the type for a price plan
 type PricePlan = {
-  name: string;
+  title: string;
   price: string;
 };
 
@@ -35,7 +35,7 @@ const PricePlanCard: React.FC<{
             className="bg-[#FFF9F9] p-3 md:p-4 rounded-lg flex flex-col md:flex-row justify-around items-center text-center space-y-2 md:space-y-0"
           >
             <FaUser className="text-xl md:text-2xl text-yellow-800" />
-            <p className="text-base md:text-lg font-segoe">{p.name}</p>
+            <p className="text-base md:text-lg font-segoe">{p.title}</p>
             <p className="font-semibold">{p.price}</p>
           </div>
         ))}
